@@ -15,8 +15,10 @@ avatar: images/avatar.png
 menu:
   Home: /
   Archives: /archives
-  # About: /about
-  # Links: /links
+  About: /about
+  tag: /tag
+  category: /category
+  Links: /links
   # ...
 
 # RSS
