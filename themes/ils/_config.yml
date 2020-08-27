@@ -32,8 +32,8 @@ comments:
     enable: true
     appid: 7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz               # your leancloud application appid
     appkey: Oz9ktEWXHxxXWg6h7Va0zX57              # your leancloud application appkey
-    meta:                 # comment input meta, type: Array, values: ['nick','mail','link']
-    placeholder:          # your placeholder
+    meta: ['nick','mail','link']                # comment input meta, type: Array, values: ['nick','mail','link']
+    placeholder: 请提出您的宝贵建议~          # your placeholder
 
   # Gitalk https://github.com/gitalk/gitalk
   gitalk:
@@ -80,7 +80,7 @@ side_tools:
 # back to top
 back2top:
   enable: true
-  position: right  # values: left | right
+  position: left  # values: left | right
 
 # Table of Contents in the Sidebar
 toc:
@@ -94,9 +94,9 @@ toc:
 
 # magic theme
 magic:
-  enable: true
+  enable: false
   transform: true
   sidebar:
     enable: true
     fixed: true
-    position: right  # values: left | right
+    position: left  # values: left | right
