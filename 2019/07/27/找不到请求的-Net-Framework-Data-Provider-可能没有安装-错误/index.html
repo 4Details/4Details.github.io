@@ -157,8 +157,8 @@
 
         <div class="article-content markdown-body">
             <h1 id="问题："><a href="#问题：" class="headerlink" title="问题："></a>问题：</h1><p>这几天在装.NET 的开发环境，在装好VS2013和Oracle 11g之后，做了一个测试项目，运行调试没问题<br>但是涉及到数据库相关操作，如新建数据集、连接数据库等在调试的时候则会出现如下错误：</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\assets\20180724122125269.jfif" alt="找不到请求的 .Net Framework Data Provider。可能没有安装"></p>
-<h3 id="目前百度之后现存的解决方案："><a href="#目前百度之后现存的解决方案：" class="headerlink" title="目前百度之后现存的解决方案："></a>目前百度之后现存的解决方案：</h3><ol>
+<p><img src="%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF.assets/20180724122125269.png" alt="找不到请求的 .Net Framework Data Provider。可能没有安装"></p>
+<h1 id="目前百度之后现存的解决方案："><a href="#目前百度之后现存的解决方案：" class="headerlink" title="目前百度之后现存的解决方案："></a>目前百度之后现存的解决方案：</h1><ol>
 <li><p>oracle odp.net 32位/64位版本的问题<br><a target="_blank" rel="noopener" href="http://www.cnblogs.com/yjmyzz/archive/2011/04/19/2020793.html">解决方案链接</a>；当然如果觉得这篇写的不怎么清楚，还可以点击 <a target="_blank" rel="noopener" href="https://www.cnblogs.com/gudi/p/6110875.html">这里</a><br><strong>*（我碰到的就是这个问题，但是据博主提供的方法没有解决问题）*</strong></p>
 </li>
 <li><p>Microsoft SQL Server Compact 4.0没有安装 这个问题是比较好解决的，只用安装Microsoft SQL Server Compact<br>4.0即可，具体可以点击<a target="_blank" rel="noopener" href="https://blog.csdn.net/yuchou123456789/article/details/7031206">这里</a></p>
@@ -168,9 +168,9 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;system.data&gt;</span><br><span class="line">    &lt;DbProviderFactories&gt;</span><br><span class="line">      &lt;add name&#x3D;&quot;ODP.NET, Managed Driver&quot; invariant&#x3D;&quot;Oracle.ManagedDataAccess.Client&quot; description&#x3D;&quot;Oracle Data Provider for .NET, Managed Driver&quot; type&#x3D;&quot;Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess, Version&#x3D;4.121.2.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;89b483f429c47342&quot; &#x2F;&gt;</span><br><span class="line">      &lt;add name&#x3D;&quot;Microsoft SQL Server Compact Data Provider 4.0&quot; invariant&#x3D;&quot;System.Data.SqlServerCe.4.0&quot; description&#x3D;&quot;.NET Framework Data Provider for Microsoft SQL Server Compact&quot; type&#x3D;&quot;System.Data.SqlServerCe.SqlCeProviderFactory, System.Data.SqlServerCe, Version&#x3D;4.0.0.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;89845dcd8080cc91&quot; &#x2F;&gt;</span><br><span class="line">    &lt;&#x2F;DbProviderFactories&gt;</span><br><span class="line">  &lt;&#x2F;system.data&gt;</span><br></pre></td></tr></table></figure>
 
 <p>新添加的应该是这一块：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">   </span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;add name&#x3D;&quot;ODP.NET, Managed Driver&quot; invariant&#x3D;&quot;Oracle.ManagedDataAccess.Client&quot; description&#x3D;&quot;Oracle Data Provider for .NET, Managed Driver&quot; type&#x3D;&quot;Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess, Version&#x3D;4.121.2.0, Culture&#x3D;neutral, PublicKeyToken&#x3D;89b483f429c47342&quot; &#x2F;&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="个人解决方案"><a href="#个人解决方案" class="headerlink" title="个人解决方案"></a>个人解决方案</h2><p>前面说过了，我尝试了上述的一些办法之后仍然没有解决问题，熬不住了我就去csdn的论坛发了帖，等了半个小时没人回复（可能是积分太少吧），无奈我就自己继续鼓捣了。想起来自己有一个 ODAC 12c的安装包，就直接点击安装了，安装完成之后重启VS，继续新建项目，配置数据库，调试之后竟然没有再继续报错，也就是说这个问题被我糊里糊涂解决了，哈哈哈~</p>
+<h1 id="个人解决方案"><a href="#个人解决方案" class="headerlink" title="个人解决方案"></a>个人解决方案</h1><p>前面说过了，我尝试了上述的一些办法之后仍然没有解决问题，熬不住了我就去csdn的论坛发了帖，等了半个小时没人回复（可能是积分太少吧），无奈我就自己继续鼓捣了。想起来自己有一个 ODAC 12c的安装包，就直接点击安装了，安装完成之后重启VS，继续新建项目，配置数据库，调试之后竟然没有再继续报错，也就是说这个问题被我糊里糊涂解决了，哈哈哈~</p>
 <p>写一篇记录一下，给各位一个借鉴也给自己一个教训。<br>下面提供ODAC 12c的下载地址</p>
 <p>官方下载地址：<a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/database/windows/downloads/index-090165.html">x64下载</a>、<a target="_blank" rel="noopener" href="http://www.oracle.com/technetwork/topics/dotnet/utilsoft-086879.html">x86下载</a></p>
 <p>如果没有oracle账号又或是账号无法登陆，可以通过这个<a target="_blank" rel="noopener" href="https://pan.baidu.com/s/13JEqOxtnqwVIu1ohEKds2g">链接</a>下载， 密码：amvz</p>
@@ -232,7 +232,7 @@
     <div class="sidebar sidebar-post fade-in-down-animation">
         <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%9B%AE%E5%89%8D%E7%99%BE%E5%BA%A6%E4%B9%8B%E5%90%8E%E7%8E%B0%E5%AD%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">1.0.1.</span> <span class="nav-text">目前百度之后现存的解决方案：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">1.1.</span> <span class="nav-text">个人解决方案</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">问题：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9B%AE%E5%89%8D%E7%99%BE%E5%BA%A6%E4%B9%8B%E5%90%8E%E7%8E%B0%E5%AD%98%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%EF%BC%9A"><span class="nav-number">2.</span> <span class="nav-text">目前百度之后现存的解决方案：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%B8%AA%E4%BA%BA%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">3.</span> <span class="nav-text">个人解决方案</span></a></li></ol>
     </div>
 </div>
     </div>
