@@ -15,8 +15,8 @@ avatar: images/avatar.png
 menu:
   主页: /
   归档: /archives
-  分类: /category
-  标签: /tag
+  # 分类: /category
+  # 标签: /tag
   链接: /links
   关于: /about
   # ...
