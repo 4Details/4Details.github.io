@@ -71,9 +71,16 @@
 }
 .links-container {
   background: var(--background-color);
+  box-shadow: 0 0 2px var(--border-color);
+  transition: all 0.3s ease;
   padding: 30px;
   border-radius: 2px;
 ils-tablet()
+}
+.links-container:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px var(--border-color);
+  transform: scaleX(1.005) scaleY(1.01);
 }
 .links-container .links-content {
   margin-bottom: 30px;

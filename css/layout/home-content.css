@@ -121,7 +121,30 @@
 }
 .home-content-container .home-article-list .home-article-item {
   background: var(--background-color);
-  margin-bottom: 70px;
+  box-shadow: 0 0 2px var(--border-color);
+  transition: all 0.3s ease;
+  padding: 30px;
+  border-radius: 2px;
+  margin-bottom: 30px;
+}
+.home-content-container .home-article-list .home-article-item:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px var(--border-color);
+  transform: scaleX(1.02) scaleY(1.02);
+}
+@media (max-width: 760px) {
+  .home-content-container .home-article-list .home-article-item {
+    box-shadow: 0 0 2px var(--border-color);
+    transition: all 0.3s ease;
+    padding: 20px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .home-content-container .home-article-list .home-article-item:hover {
+    transition: all 0.3s ease;
+    box-shadow: 0 0 6px var(--border-color);
+    transform: scaleX(1.01) scaleY(1.01);
+  }
 }
 .home-content-container .home-article-list .home-article-item .home-article-title {
   position: relative;
@@ -129,6 +152,8 @@
   color: var(--second-text-color);
   font-size: 1.5em;
   margin: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--border-color);
 }
 @media (max-width: 760px) {
   .home-content-container .home-article-list .home-article-item .home-article-title {
@@ -140,12 +165,9 @@
     font-size: 1.2em;
   }
 }
-.home-content-container .home-article-list .home-article-item .home-article-title a {
-  color: var(--second-text-color);
-}
 .home-content-container .home-article-list .home-article-item .home-article-content {
   text-align: justify;
-  margin: 30px 0;
+  margin: 30px 0 45px 0;
   line-height: 2em;
 }
 .home-content-container .home-article-list .home-article-item .home-article-meta-info {
@@ -153,7 +175,7 @@
   justify-content: space-between;
   align-items: center;
   color: var(--third-text-color);
-  font-size: 0.9em;
+  font-size: 1em;
 }
 .home-content-container .home-article-list .home-article-item .home-article-meta-info .article-date {
   letter-spacing: 0.5px;
