@@ -10,9 +10,11 @@ category: [编程笔记]
 这几天在装.NET 的开发环境，在装好VS2013和Oracle 11g之后，做了一个测试项目，运行调试没问题
 但是涉及到数据库相关操作，如新建数据集、连接数据库等在调试的时候则会出现如下错误：
 
-![找不到请求的 .Net Framework Data Provider。可能没有安装](D:\workplace\GitSpace\Blogs\source\_posts\assets\20180724122125269.jfif)
+![找不到请求的 .Net Framework Data Provider。可能没有安装](找不到请求的-Net-Framework-Data-Provider-可能没有安装-错误.assets/20180724122125269.png)
 
-### 目前百度之后现存的解决方案：
+
+
+# 目前百度之后现存的解决方案：
 
 1. oracle odp.net 32位/64位版本的问题
    [解决方案链接](http://www.cnblogs.com/yjmyzz/archive/2011/04/19/2020793.html)；当然如果觉得这篇写的不怎么清楚，还可以点击 [这里](https://www.cnblogs.com/gudi/p/6110875.html)
@@ -39,10 +41,10 @@ category: [编程笔记]
    新添加的应该是这一块：
 
    ```
-   
+   <add name="ODP.NET, Managed Driver" invariant="Oracle.ManagedDataAccess.Client" description="Oracle Data Provider for .NET, Managed Driver" type="Oracle.ManagedDataAccess.Client.OracleClientFactory, Oracle.ManagedDataAccess, Version=4.121.2.0, Culture=neutral, PublicKeyToken=89b483f429c47342" />
    ```
 
-   ## 个人解决方案
+   # 个人解决方案
 
    前面说过了，我尝试了上述的一些办法之后仍然没有解决问题，熬不住了我就去csdn的论坛发了帖，等了半个小时没人回复（可能是积分太少吧），无奈我就自己继续鼓捣了。想起来自己有一个 ODAC 12c的安装包，就直接点击安装了，安装完成之后重启VS，继续新建项目，配置数据库，调试之后竟然没有再继续报错，也就是说这个问题被我糊里糊涂解决了，哈哈哈~
 
