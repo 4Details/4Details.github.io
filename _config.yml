@@ -112,5 +112,5 @@ theme: ils
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: git
-  repository: https://github.com/4Details/4Details.github.io.git
+  repo: git@github.com:4Details/4Details.github.io.git
   branch: master
