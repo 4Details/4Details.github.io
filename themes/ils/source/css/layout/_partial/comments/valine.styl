@@ -1,0 +1,103 @@
+@require '../../common/variables.styl'
+@require '../../common/animated.styl'
+
+.valine-container {
+
+  #vcomments {
+
+    .vwrap {
+
+      border: 1px solid var(--third-text-color);
+
+      .vheader {
+
+        .vinput {
+
+          color: var(--normal-text-color);
+          border-color: var(--third-text-color);
+
+          &:focus {
+            border-bottom: 1px dashed var(--primary-color) !important;
+          }
+        }
+      }
+
+
+      .vedit {
+
+        .veditor {
+          color: var(--normal-text-color);
+        }
+
+        .vctrl {
+
+          .vicon {
+
+            fill: var(--normal-text-color);
+
+            &.actived {
+              fill: var(--primary-color);
+            }
+          }
+        }
+
+      }
+
+      button.vsubmit {
+
+        background: transparent !important;
+        color: var(--normal-text-color) !important;
+        border: 1px solid var(--normal-text-color) !important;
+
+        &:hover {
+          color: var(--primary-color) !important;
+          border: 1px solid var(--primary-color) !important;
+        }
+      }
+
+
+    }
+
+
+    .vcount {
+      color: var(--normal-text-color);
+
+      .vnum {
+        color: var(--second-text-color);
+      }
+    }
+
+    .vcard {
+
+      .vhead {
+        .vnick {
+          color: var(--primary-color);
+        }
+
+        .vsys {
+          color: var(--normal-text-color);
+          background: var(--fourth-text-color) !important;
+        }
+      }
+
+
+      .vcontent {
+        P {
+          color: var(--normal-text-color);
+        }
+      }
+
+      .vh {
+        border-bottom-color: var(--border-color);
+      }
+    }
+
+
+    .vcopy {
+      color: var(--third-text-color);
+    }
+
+  }
+
+
+}
