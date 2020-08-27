@@ -3,12 +3,12 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: Hexo
+title: 王旭的博客
 subtitle: ''
 description: ''
 keywords:
-author: John Doe
-language: en
+author: wangxu
+language: zh-CN
 timezone: ''
 
 # URL
@@ -94,6 +94,14 @@ pagination_dir: page
 include:
 exclude:
 ignore:
+
+# Search
+## https://github.com/theme-next/hexo-generator-searchdb
+search:
+  path: search.json
+  field: post
+  content: true
+  format: striptags
 
 # Extensions
 ## Plugins: https://hexo.io/plugins/

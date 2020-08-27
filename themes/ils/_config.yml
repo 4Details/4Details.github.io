@@ -13,12 +13,12 @@ avatar: images/avatar.png
 
 # navigation menu
 menu:
-  Home: /
-  Archives: /archives
-  About: /about
-  tag: /tag
-  category: /category
-  Links: /links
+  主页: /
+  归档: /archives
+  分类: /category
+  标签: /tag
+  链接: /links
+  关于: /about
   # ...
 
 # RSS
@@ -29,9 +29,9 @@ rss:
 comments:
   # Valine https://github.com/xCss/Valine
   valine:
-    enable: false
-    appid:                # your leancloud application appid
-    appkey:               # your leancloud application appkey
+    enable: true
+    appid: 7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz               # your leancloud application appid
+    appkey: Oz9ktEWXHxxXWg6h7Va0zX57              # your leancloud application appkey
     meta:                 # comment input meta, type: Array, values: ['nick','mail','link']
     placeholder:          # your placeholder
 
@@ -47,10 +47,10 @@ comments:
 website_count:
   # busuanzi http://ibruce.info/2015/04/04/busuanzi/
   busuanzi_count:
-    enable: false
+    enable: true
     site_uv: false
-    site_pv: false
-    page_pv: false
+    site_pv: true
+    page_pv: true
 
 # Local Search
 # Dependencies: https://github.com/theme-next/hexo-generator-searchdb
@@ -97,6 +97,6 @@ magic:
   enable: true
   transform: true
   sidebar:
-    enable: false
+    enable: true
     fixed: true
     position: right  # values: left | right
