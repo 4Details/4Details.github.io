@@ -1862,9 +1862,16 @@ button {
   padding: 30px 0;
 }
 .page-template .page-middle .main-content {
-  width: 60%;
+  width: 80%;
   height: 100%;
   position: relative;
+  box-sizing: border-box;
+  padding-right: 310px;
+}
+.page-template .page-middle .main-content .main-content-right {
+  position: absolute;
+  right: 0;
+  width: 280px;
   box-sizing: border-box;
 }
 .page-template .page-middle .main-content .main-content-left {
@@ -1876,13 +1883,13 @@ button {
 .page-template .page-middle .sidebar-tools {
   position: fixed;
   top: 110px;
-  right: 10%;
+  right: 5%;
   transition: all 0.3s ease;
 }
 .page-template .page-middle .scroll-to-top {
   display: none;
   position: fixed;
-  right: 10%;
+  right: 5%;
   bottom: 30px;
 }
 .page-template .page-middle .scroll-to-top li {
@@ -2062,6 +2069,15 @@ input.search-input::-webkit-search-cancel-button {
   font-size: 0.92em;
   box-sizing: border-box;
   background: var(--background-color);
+  box-shadow: 0 0 2px var(--border-color);
+  transition: all 0.3s ease;
+  padding: 20px;
+  border-radius: 2px;
+}
+.post-toc-wrap:hover {
+  transition: all 0.3s ease;
+  box-shadow: 0 0 6px var(--border-color);
+  transform: scaleX(1.02) scaleY(1.02);
 }
 .post-toc-wrap .post-toc ol {
   list-style: none;
@@ -2695,7 +2711,7 @@ input.search-input::-webkit-search-cancel-button {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 60%;
+  width: 80%;
   height: 100%;
   position: relative;
   transition: all 0.3s ease;
@@ -3258,33 +3274,6 @@ input.search-input::-webkit-search-cancel-button {
     display: none;
   }
 }
-.article-toc-container {
-  position: fixed;
-  top: 110px;
-  left: 30px;
-}
-@media (max-width: 760px) {
-  .article-toc-container {
-    display: none;
-  }
-}
-.article-toc-container .article-toc {
-  max-width: 188px;
-  max-height: 600px;
-  background: var(--background-color);
-  box-shadow: 0 0 2px var(--border-color);
-  transition: all 0.3s ease;
-  padding: 20px;
-  border-radius: 2px;
-}
-.article-toc-container .article-toc:hover {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 6px var(--border-color);
-  transform: scaleX(1.02) scaleY(1.02);
-}
-.article-toc-container-shrink {
-  top: 90px !important;
-}
 .category-container {
   background: var(--background-color);
   box-shadow: 0 0 2px var(--border-color);
@@ -3714,7 +3703,7 @@ pre .javascript .function {
   top: 0;
 }
 .sidebar {
-  width: $sidebar-width;
+  width: 280px;
   box-sizing: border-box;
 }
 .sidebar .sidebar-container .sidebar-item {

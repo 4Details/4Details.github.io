@@ -180,30 +180,3 @@
     display: none;
   }
 }
-.article-toc-container {
-  position: fixed;
-  top: 110px;
-  left: 30px;
-}
-@media (max-width: 760px) {
-  .article-toc-container {
-    display: none;
-  }
-}
-.article-toc-container .article-toc {
-  max-width: 188px;
-  max-height: 600px;
-  background: var(--background-color);
-  box-shadow: 0 0 2px var(--border-color);
-  transition: all 0.3s ease;
-  padding: 20px;
-  border-radius: 2px;
-}
-.article-toc-container .article-toc:hover {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 6px var(--border-color);
-  transform: scaleX(1.02) scaleY(1.02);
-}
-.article-toc-container-shrink {
-  top: 90px !important;
-}

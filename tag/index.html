@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="utf-8">
     
     <title>
-        tag | Hexo
+        tag | 王旭的博客
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -14,9 +14,10 @@
 <link rel="stylesheet" href="/css/style.css">
 
     <script id="hexo-configurations">
-    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.1.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"}};
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.1.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
   </script>
-<meta name="generator" content="Hexo 5.1.1"></head>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="王旭的博客" type="application/atom+xml">
+</head>
 
 
 <body>
@@ -27,7 +28,7 @@
     <div class="header-content">
 
         <a class="logo-title" href="/">
-            Hexo
+            王旭的博客
         </a>
 
         <ul class="menu-list">
@@ -36,7 +37,7 @@
                     <a class=""
                        href="/"
                     >
-                        HOME
+                        主页
                     </a>
                 </li>
             
@@ -44,23 +45,7 @@
                     <a class=""
                        href="/archives"
                     >
-                        ARCHIVES
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/about"
-                    >
-                        ABOUT
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class="active"
-                       href="/tag"
-                    >
-                        TAG
+                        归档
                     </a>
                 </li>
             
@@ -68,7 +53,15 @@
                     <a class=""
                        href="/category"
                     >
-                        CATEGORY
+                        分类
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class="active"
+                       href="/tag"
+                    >
+                        标签
                     </a>
                 </li>
             
@@ -76,7 +69,15 @@
                     <a class=""
                        href="/links"
                     >
-                        LINKS
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
                     </a>
                 </li>
             
@@ -92,32 +93,32 @@
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/">HOME</a>
+                       href="/">主页</a>
                 </li>
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/archives">ARCHIVES</a>
+                       href="/archives">归档</a>
                 </li>
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/about">ABOUT</a>
+                       href="/category">分类</a>
                 </li>
             
                 <li class="drawer-menu-item">
                     <a class="active"
-                       href="/tag">TAG</a>
+                       href="/tag">标签</a>
                 </li>
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/category">CATEGORY</a>
+                       href="/links">链接</a>
                 </li>
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/links">LINKS</a>
+                       href="/about">关于</a>
                 </li>
             
         </ul>
@@ -140,6 +141,33 @@
             </div>
 
             
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-other fade-in-down-animation">
+        <div class="sidebar-container">
+            <div class="sidebar-item">
+                <div class="sidebar-tagcloud">
+    <div class="tagcloud-label">标签云</div>
+    <div class="tagcloud-container">
+        <a href="/tags/FATE/" style="font-size: 1em;">FATE</a> <a href="/tags/FL/" style="font-size: 1em;">FL</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
+    </div>
+</div>
+
+            </div>
+            <div class="sidebar-item">
+                <div class="sidebar-category">
+    <div class="category-label">文章分类</div>
+
+    
+
+</div>
+
+            </div>
+        </div>
+    </div>
+
+                </div>
+            
 
         </main>
 
@@ -157,6 +185,10 @@
         <li class="mode-toggle">
             <i class="fa fa-moon-o"></i>
         </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
         
     </ul>
 </div>
@@ -179,12 +211,22 @@
         <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2020 <a href="/">John Doe</a>
+            &copy; 2020 <a href="/">wangxu</a>
         </div>
         <div class="theme-info info-item">
-            Powered by <a target="_blank" href="https://hexo.io">Hexo</a> | Theme <a
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
                     href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.1.1</a>
         </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
         
     </div>
 </footer>
@@ -201,7 +243,7 @@
                 <input autocomplete="off"
                        autocorrect="off"
                        autocapitalize="off"
-                       placeholder="Search..."
+                       placeholder="搜索..."
                        spellcheck="false"
                        type="search"
                        class="search-input"

@@ -139,9 +139,16 @@
   padding: 30px 0;
 }
 .page-template .page-middle .main-content {
-  width: 60%;
+  width: 80%;
   height: 100%;
   position: relative;
+  box-sizing: border-box;
+  padding-right: 310px;
+}
+.page-template .page-middle .main-content .main-content-right {
+  position: absolute;
+  right: 0;
+  width: 280px;
   box-sizing: border-box;
 }
 .page-template .page-middle .main-content .main-content-left {
@@ -153,13 +160,13 @@
 .page-template .page-middle .sidebar-tools {
   position: fixed;
   top: 110px;
-  right: 10%;
+  right: 5%;
   transition: all 0.3s ease;
 }
 .page-template .page-middle .scroll-to-top {
   display: none;
   position: fixed;
-  right: 10%;
+  right: 5%;
   bottom: 30px;
 }
 .page-template .page-middle .scroll-to-top li {
