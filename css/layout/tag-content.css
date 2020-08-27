@@ -121,28 +121,6 @@
 }
 .tag-container {
   background: var(--background-color);
-  box-shadow: 0 0 2px var(--border-color);
-  transition: all 0.3s ease;
-  padding: 30px;
-  border-radius: 2px;
-}
-.tag-container:hover {
-  transition: all 0.3s ease;
-  box-shadow: 0 0 6px var(--border-color);
-  transform: scaleX(1.02) scaleY(1.02);
-}
-@media (max-width: 760px) {
-  .tag-container {
-    box-shadow: 0 0 2px var(--border-color);
-    transition: all 0.3s ease;
-    padding: 20px;
-    border-radius: 2px;
-  }
-  .tag-container:hover {
-    transition: all 0.3s ease;
-    box-shadow: 0 0 6px var(--border-color);
-    transform: scaleX(1.01) scaleY(1.01);
-  }
 }
 .tag-container .tag-name {
   color: var(--second-text-color);
