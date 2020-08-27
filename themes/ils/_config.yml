@@ -94,7 +94,7 @@ toc:
 
 # magic theme
 magic:
-  enable: false
+  enable: true
   transform: true
   sidebar:
     enable: true
