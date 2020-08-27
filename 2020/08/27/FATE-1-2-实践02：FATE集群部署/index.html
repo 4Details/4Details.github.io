@@ -195,7 +195,7 @@
 <p>centos系统执行：rpm -qa | grep selinux</p>
 <p>ubuntu系统执行：apt list –installed | grep selinux</p>
 <p>如果已安装了selinux就执行：setenforce 0</p>
-<p><img src="/FATE-1-2-%E5%AE%9E%E8%B7%B502%EF%BC%9AFATE%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2.assets/%E5%85%B3%E9%97%ADselinux.png" alt="关闭selinux"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578365450270-a035c23e-1738-417f-89d1-fa1e9456064c.png" alt="关闭selinux"></p>
 <h3 id="（2）修改Linux最大打开文件数"><a href="#（2）修改Linux最大打开文件数" class="headerlink" title="（2）修改Linux最大打开文件数"></a>（2）修改Linux最大打开文件数</h3><p>切换root用户，在limits.conf文件最后添加5、6行代码，保存退出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line"></span><br><span class="line">vim &#x2F;etc&#x2F;security&#x2F;limits.conf</span><br><span class="line"></span><br><span class="line">* soft nofile 65536</span><br><span class="line">* hard nofile 65536</span><br></pre></td></tr></table></figure>
 
@@ -212,7 +212,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld.service</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
 
 <p>本例的环境是Centos系统</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578380317690-ecb24d9b-0cf9-47df-b92e-03330fbd8e92.png" alt="关闭虚拟机防火墙"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578380317690-ecb24d9b-0cf9-47df-b92e-03330fbd8e92.png" alt="关闭虚拟机防火墙"></p>
 <p>如果是Ubuntu系统：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ufw disable</span><br><span class="line">ufw status</span><br></pre></td></tr></table></figure>
 
@@ -222,17 +222,17 @@
 
 
 <h3 id="（6）配置ssh远程登录"><a href="#（6）配置ssh远程登录" class="headerlink" title="（6）配置ssh远程登录"></a>（6）配置ssh远程登录</h3><p><strong>a. 切换app用户，生成rsa_id，具体根据下面代码</strong></p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578380760894-2368928b-1570-451c-aac0-649a1afbcacd.png" alt="配置ssh登录01"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578380760894-2368928b-1570-451c-aac0-649a1afbcacd.png" alt="配置ssh登录01"></p>
 <p><strong>b.合并id_rsa_pub文件</strong></p>
 <p><strong>步骤如下：三台机器分别将id_rsa.pub 写入authorized_keys文件中并且赋予权限chomd 600</strong></p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578381412726-a1b69944-771d-4101-84ab-1f984304c52a-1598507951854.png" alt="image.png"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578381412726-a1b69944-771d-4101-84ab-1f984304c52a.png" alt="配置ssh登录02"></p>
 <p>155通过scp将authorized_keys文件发送到156上，并将156的id_rsa.pub文件写入，然后将生成的新文件发送至157上，并且写入157生成的id_rsa.pub文件，将最终生成的authorized_keys文件发送给155和156，此时通过ssh即可登录（在发送文件过程中建立连接需要输入密码）</p>
 <p>155-&gt;156</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578381586236-3903e88e-0851-43ea-9d00-aeff64e00d90.png" alt="155-&gt;156"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578381586236-3903e88e-0851-43ea-9d00-aeff64e00d90.png" alt="155-&gt;156"></p>
 <p>156写入， -&gt;157</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578381654023-9f91941b-d097-4fee-abef-b1c2e5dae98d.png" alt="156-&gt;157"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578381654023-9f91941b-d097-4fee-abef-b1c2e5dae98d.png" alt="156-&gt;157"></p>
 <p>157写入，-&gt;155  -&gt;156</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578381710128-b920208b-7d45-48a8-887f-c2dbdab925e6.png" alt="157-&gt;155 156"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578381710128-b920208b-7d45-48a8-887f-c2dbdab925e6.png" alt="157-&gt;155 156"></p>
 <p><strong>上述完成之后即可通过  ssh usernane@ip访问某台虚拟机</strong></p>
 <p>需要注意的是，访问自身需要重新建立一个连接。</p>
 <p>建议配置以上步骤之后拍摄虚拟机快照，便于后期恢复重新部署。</p>
@@ -243,13 +243,13 @@
 
 
 
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578399494803-2fb7d502-0815-4840-82f0-a68e4e8110dc.png" alt="下载压缩包"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578399494803-2fb7d502-0815-4840-82f0-a68e4e8110dc.png" alt="下载压缩包并解压"></p>
 <h3 id="（2）修改configuration文件"><a href="#（2）修改configuration文件" class="headerlink" title="（2）修改configuration文件"></a>（2）修改configuration文件</h3><p>可以使用vim，也可以直接使用编辑器打开并修改。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;data&#x2F;projects&#x2F;FATE&#x2F;cluster-deploy&#x2F;script</span><br><span class="line">vi multinode_cluster_configuration.sh</span><br></pre></td></tr></table></figure>
 
 
 
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\FATE-1-2-实践02：FATE集群部署.assets\1578399969465-c030b14f-baac-4dc3-ba3b-96fdbb9150ba.png" alt="修改conf文件"></p>
+<p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578399969465-c030b14f-baac-4dc3-ba3b-96fdbb9150ba.png" alt="修改conf文件"></p>
 <p><img src="https://cdn.nlark.com/yuque/0/2020/png/343708/1578399984843-bece1ed0-8147-4754-9ba9-14014be1d75b.png" alt="image.png"></p>
 <p>建议在部署之前拍摄快照，为防止在部署过程中因某些配置出错造成部署失败。</p>
 <h3 id="（3）部署"><a href="#（3）部署" class="headerlink" title="（3）部署"></a>（3）部署</h3><p>本例中选择在各机器上部署所有组件。</p>
@@ -260,7 +260,6 @@
 <p>-———————————————————————————————————————-</p>
 <p>———————————————–漫长地等待过程——————————————————–</p>
 <p>-———————————————————————————————————————-</p>
-<p><img src="D:\workplace\GitSpace\Blogs\source_posts\assets\1578399933245-b4e7ac81-a4a0-4520-accd-d8b6d3a7af41.png"></p>
 <p>（部署时间暂未统计，时间需要2-4个小时，记录下了部署过程中终端产生的日志）</p>
 <p>此处为语雀文档，点击链接查看：<a target="_blank" rel="noopener" href="https://www.yuque.com/u190689/qoiq3w/seeq38">https://www.yuque.com/u190689/qoiq3w/seeq38</a></p>
 <h2 id="2-3-配置检查"><a href="#2-3-配置检查" class="headerlink" title="2.3 配置检查"></a>2.3 配置检查</h2><p>请务必详细对照检查！！！</p>
