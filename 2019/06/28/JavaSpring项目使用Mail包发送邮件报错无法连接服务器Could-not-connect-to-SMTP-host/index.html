@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        JavaSpring项目使用Mail包发送邮件报错无法连接服务器Could not connect to SMTP host | 王旭的博客
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.1.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="王旭的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            王旭的博客
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">JavaSpring项目使用Mail包发送邮件报错无法连接服务器Could not connect to SMTP host</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-06-28 14:59:56
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/SpringBoot/">SpringBoot</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/MailSender/">MailSender</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h1><p>在使用SpringBoot的mail依赖库连接sina邮箱发送邮件时遇到如下问题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">org.springframework.mail.MailSendException: Mail server connection failed; nested exception is javax.mail.MessagingException: Could not connect to SMTP host: smtp.sina.com, port: 465;</span><br><span class="line">  nested exception is:</span><br><span class="line">	javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target. Failed messages: javax.mail.MessagingException: Could not connect to SMTP host: smtp.sina.com, port: 465;</span><br><span class="line">  nested exception is:</span><br><span class="line">	javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line">; message exception details (1) are:</span><br><span class="line">Failed message 1:</span><br><span class="line">javax.mail.MessagingException: Could not connect to SMTP host: smtp.sina.com, port: 465;</span><br><span class="line">  nested exception is:</span><br><span class="line">	javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line">	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2211)</span><br><span class="line">	at com.sun.mail.smtp.SMTPTransport.protocolConnect(SMTPTransport.java:722)</span><br><span class="line">	at javax.mail.Service.connect(Service.java:342)</span><br><span class="line">	at org.springframework.mail.javamail.JavaMailSenderImpl.connectTransport(JavaMailSenderImpl.java:518)</span><br><span class="line">	at org.springframework.mail.javamail.JavaMailSenderImpl.doSend(JavaMailSenderImpl.java:437)</span><br><span class="line">	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:361)</span><br><span class="line">	at org.springframework.mail.javamail.JavaMailSenderImpl.send(JavaMailSenderImpl.java:356)</span><br><span class="line">	at com.wx.talking.util.MailClient.sendMail(MailClient.java:36)</span><br><span class="line">	at com.wx.talking.MailTests.testTextMail(MailTests.java:24)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)</span><br><span class="line">	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)</span><br><span class="line">	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)</span><br><span class="line">	at java.lang.reflect.Method.invoke(Method.java:497)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)</span><br><span class="line">	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)</span><br><span class="line">	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)</span><br><span class="line">	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunBeforeTestExecutionCallbacks.evaluate(RunBeforeTestExecutionCallbacks.java:74)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunAfterTestExecutionCallbacks.evaluate(RunAfterTestExecutionCallbacks.java:84)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunBeforeTestMethodCallbacks.evaluate(RunBeforeTestMethodCallbacks.java:75)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunAfterTestMethodCallbacks.evaluate(RunAfterTestMethodCallbacks.java:86)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.SpringRepeat.evaluate(SpringRepeat.java:84)</span><br><span class="line">	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)</span><br><span class="line">	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:251)</span><br><span class="line">	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:97)</span><br><span class="line">	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)</span><br><span class="line">	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)</span><br><span class="line">	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)</span><br><span class="line">	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)</span><br><span class="line">	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61)</span><br><span class="line">	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:70)</span><br><span class="line">	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)</span><br><span class="line">	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:190)</span><br><span class="line">	at org.junit.runner.JUnitCore.run(JUnitCore.java:137)</span><br><span class="line">	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:68)</span><br><span class="line">	at com.intellij.rt.junit.IdeaTestRunner$Repeater.startRunnerWithArgs(IdeaTestRunner.java:33)</span><br><span class="line">	at com.intellij.rt.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:230)</span><br><span class="line">	at com.intellij.rt.junit.JUnitStarter.main(JUnitStarter.java:58)</span><br><span class="line">Caused by: javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line">	at sun.security.ssl.Alerts.getSSLException(Alerts.java:192)</span><br><span class="line">	at sun.security.ssl.SSLSocketImpl.fatal(SSLSocketImpl.java:1949)</span><br><span class="line">	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:302)</span><br><span class="line">	at sun.security.ssl.Handshaker.fatalSE(Handshaker.java:296)</span><br><span class="line">	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1509)</span><br><span class="line">	at sun.security.ssl.ClientHandshaker.processMessage(ClientHandshaker.java:216)</span><br><span class="line">	at sun.security.ssl.Handshaker.processLoop(Handshaker.java:979)</span><br><span class="line">	at sun.security.ssl.Handshaker.process_record(Handshaker.java:914)</span><br><span class="line">	at sun.security.ssl.SSLSocketImpl.readRecord(SSLSocketImpl.java:1062)</span><br><span class="line">	at sun.security.ssl.SSLSocketImpl.performInitialHandshake(SSLSocketImpl.java:1375)</span><br><span class="line">	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1403)</span><br><span class="line">	at sun.security.ssl.SSLSocketImpl.startHandshake(SSLSocketImpl.java:1387)</span><br><span class="line">	at com.sun.mail.util.SocketFetcher.configureSSLSocket(SocketFetcher.java:602)</span><br><span class="line">	at com.sun.mail.util.SocketFetcher.createSocket(SocketFetcher.java:376)</span><br><span class="line">	at com.sun.mail.util.SocketFetcher.getSocket(SocketFetcher.java:214)</span><br><span class="line">	at com.sun.mail.smtp.SMTPTransport.openServer(SMTPTransport.java:2160)</span><br><span class="line">	... 38 more</span><br><span class="line">Caused by: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line">	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:387)</span><br><span class="line">	at sun.security.validator.PKIXValidator.engineValidate(PKIXValidator.java:292)</span><br><span class="line">	at sun.security.validator.Validator.validate(Validator.java:260)</span><br><span class="line">	at sun.security.ssl.X509TrustManagerImpl.validate(X509TrustManagerImpl.java:324)</span><br><span class="line">	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:229)</span><br><span class="line">	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:124)</span><br><span class="line">	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1491)</span><br><span class="line">	... 49 more</span><br><span class="line">Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line">	at sun.security.provider.certpath.SunCertPathBuilder.build(SunCertPathBuilder.java:146)</span><br><span class="line">	at sun.security.provider.certpath.SunCertPathBuilder.engineBuild(SunCertPathBuilder.java:131)</span><br><span class="line">	at java.security.cert.CertPathBuilder.build(CertPathBuilder.java:280)</span><br><span class="line">	at sun.security.validator.PKIXValidator.doBuild(PKIXValidator.java:382)</span><br><span class="line">	... 55 more</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h1><p>从日志可以定位原因——没有连接到服务器（smtp.sina.com），原因有很多：</p>
+<ol>
+<li>账号密码配置错误？</li>
+<li>开启SSL登录，端口是否正确？</li>
+<li>证书问题？</li>
+</ol>
+<p>本文遇到的就是第三个问题。</p>
+<p>先放一张图，便于理解</p>
+<p><img src="https://images2015.cnblogs.com/blog/787477/201611/787477-20161130221429021-1790360354.png" alt="http协议"></p>
+<h1 id="解决方法"><a href="#解决方法" class="headerlink" title="解决方法"></a>解决方法</h1><p>当然，StackOverflow上也能找到对应解决方法。</p>
+<p>代码在最后，先给出使用方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">Usage:</span><br><span class="line">Need to compile, first:</span><br><span class="line">javac InstallCert.java</span><br><span class="line"></span><br><span class="line">Note: since java 11, you can run it directly without compiling it first:</span><br><span class="line">java --source 11 InstallCert.java &lt;args&gt;</span><br><span class="line"></span><br><span class="line"># Access server, and retrieve certificate (accept default certificate 1)</span><br><span class="line">java InstallCert [--proxy&#x3D;proxyHost:proxyPort] &lt;host&gt;[:port] [passphrase]</span><br><span class="line"></span><br><span class="line"># Extract certificate from created jssecacerts keystore</span><br><span class="line">keytool -exportcert -alias [host]-1 -keystore jssecacerts -storepass changeit -file [host].cer</span><br><span class="line"></span><br><span class="line"># Import certificate into system keystore</span><br><span class="line">keytool -importcert -alias [host] -keystore [path to system keystore] -storepass changeit -file [host].cer</span><br><span class="line"></span><br><span class="line"># Example:</span><br><span class="line">java InstallCert woot.com:443</span><br><span class="line"></span><br><span class="line">    Loading KeyStore &#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-6-sun-1.6.0.26&#x2F;jre&#x2F;lib&#x2F;security&#x2F;cacerts...</span><br><span class="line">    Opening connection to woot.com:443...</span><br><span class="line">    Starting SSL handshake...</span><br><span class="line"></span><br><span class="line">    javax.net.ssl.SSLHandshakeException: sun.security.validator.ValidatorException: PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: unable to find valid certification path to requested target</span><br><span class="line"></span><br><span class="line">    &lt;...&gt;</span><br><span class="line"></span><br><span class="line">    Server sent 1 certificate(s):</span><br><span class="line"></span><br><span class="line">     1 Subject O&#x3D;Woot Inc, C&#x3D;US, ST&#x3D;Texas, L&#x3D;Carrollton, CN&#x3D;*.woot.com</span><br><span class="line">       Issuer  CN&#x3D;SecureTrust CA, O&#x3D;SecureTrust Corporation, C&#x3D;US</span><br><span class="line">       sha1    4b 46 ca 6b 83 05 b3 51 ff c6 e7 9c fd b3 9b e3 3f 2e c4 53 </span><br><span class="line">       md5     e8 a5 88 1b d5 67 bb fc 88 cc b1 c5 2b ac c4 7d </span><br><span class="line"></span><br><span class="line">    Enter certificate to add to trusted keystore or &#39;q&#39; to quit: [1]</span><br><span class="line"></span><br><span class="line">[enter]</span><br><span class="line"></span><br><span class="line">    [</span><br><span class="line">    [</span><br><span class="line">      Version: V3</span><br><span class="line">      Subject: O&#x3D;Woot Inc, C&#x3D;US, ST&#x3D;Texas, L&#x3D;Carrollton, CN&#x3D;*.woot.com</span><br><span class="line">      Signature Algorithm: SHA1withRSA, OID &#x3D; 1.2.840.113549.1.1.5</span><br><span class="line"></span><br><span class="line">    &lt;...&gt;</span><br><span class="line"></span><br><span class="line">    Added certificate to keystore &#39;jssecacerts&#39; using alias &#39;woot.com-1&#39;</span><br><span class="line"></span><br><span class="line">keytool -exportcert -alias woot.com-1 -keystore jssecacerts -storepass changeit -file woot.com.cer</span><br><span class="line"></span><br><span class="line">    Certificate stored in file &lt;woot.com.cer&gt;</span><br><span class="line">  </span><br><span class="line">(sudo) keytool -importcert -alias woot.com -keystore &#x2F;usr&#x2F;lib&#x2F;jvm&#x2F;java-6-sun-1.6.0.26&#x2F;jre&#x2F;lib&#x2F;security&#x2F;cacerts -storepass changeit -file woot.com.cer</span><br><span class="line"></span><br><span class="line">    Owner: O&#x3D;Woot Inc, C&#x3D;US, ST&#x3D;Texas, L&#x3D;Carrollton, CN&#x3D;*.woot.com</span><br><span class="line">    Issuer: CN&#x3D;SecureTrust CA, O&#x3D;SecureTrust Corporation, C&#x3D;US</span><br><span class="line">  </span><br><span class="line">    &lt;...&gt;</span><br><span class="line">  </span><br><span class="line">    Trust this certificate? [no]:</span><br><span class="line">  </span><br><span class="line">yes</span><br><span class="line"></span><br><span class="line">    Certificate was added to keystore</span><br></pre></td></tr></table></figure>
+
+<p><code>//利用java生成证书文件，复制到jre的security文件夹</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;*</span><br><span class="line"> * Copyright 2006 Sun Microsystems, Inc.  All Rights Reserved.</span><br><span class="line"> *</span><br><span class="line"> * Redistribution and use in source and binary forms, with or without</span><br><span class="line"> * modification, are permitted provided that the following conditions</span><br><span class="line"> * are met:</span><br><span class="line"> *</span><br><span class="line"> *   - Redistributions of source code must retain the above copyright</span><br><span class="line"> *     notice, this list of conditions and the following disclaimer.</span><br><span class="line"> *</span><br><span class="line"> *   - Redistributions in binary form must reproduce the above copyright</span><br><span class="line"> *     notice, this list of conditions and the following disclaimer in the</span><br><span class="line"> *     documentation and&#x2F;or other materials provided with the distribution.</span><br><span class="line"> *</span><br><span class="line"> *   - Neither the name of Sun Microsystems nor the names of its</span><br><span class="line"> *     contributors may be used to endorse or promote products derived</span><br><span class="line"> *     from this software without specific prior written permission.</span><br><span class="line"> *</span><br><span class="line"> * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS &quot;AS</span><br><span class="line"> * IS&quot; AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,</span><br><span class="line"> * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR</span><br><span class="line"> * PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR</span><br><span class="line"> * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,</span><br><span class="line"> * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,</span><br><span class="line"> * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR</span><br><span class="line"> * PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF</span><br><span class="line"> * LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING</span><br><span class="line"> * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS</span><br><span class="line"> * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.</span><br><span class="line"> *&#x2F;</span><br><span class="line">&#x2F;**</span><br><span class="line"> * Originally from:</span><br><span class="line"> * http:&#x2F;&#x2F;blogs.sun.com&#x2F;andreas&#x2F;resource&#x2F;InstallCert.java</span><br><span class="line"> * Use:</span><br><span class="line"> * java InstallCert hostname</span><br><span class="line"> * Example:</span><br><span class="line"> *% java InstallCert ecc.fedora.redhat.com</span><br><span class="line"> *&#x2F;</span><br><span class="line"></span><br><span class="line">import javax.net.ssl.*;</span><br><span class="line">import java.io.*;</span><br><span class="line">import java.security.KeyStore;</span><br><span class="line">import java.security.MessageDigest;</span><br><span class="line">import java.security.cert.CertificateException;</span><br><span class="line">import java.security.cert.X509Certificate;</span><br><span class="line"></span><br><span class="line">&#x2F;**</span><br><span class="line"> * Class used to add the server&#39;s certificate to the KeyStore</span><br><span class="line"> * with your trusted certificates.</span><br><span class="line"> *&#x2F;</span><br><span class="line">public class InstallCert &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) throws Exception &#123;</span><br><span class="line">        String host;</span><br><span class="line">        int port;</span><br><span class="line">        char[] passphrase;</span><br><span class="line">        if ((args.length &#x3D;&#x3D; 1) || (args.length &#x3D;&#x3D; 2)) &#123;</span><br><span class="line">            String[] c &#x3D; args[0].split(&quot;:&quot;);</span><br><span class="line">            host &#x3D; c[0];</span><br><span class="line">            port &#x3D; (c.length &#x3D;&#x3D; 1) ? 443 : Integer.parseInt(c[1]);</span><br><span class="line">            String p &#x3D; (args.length &#x3D;&#x3D; 1) ? &quot;changeit&quot; : args[1];</span><br><span class="line">            passphrase &#x3D; p.toCharArray();</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            System.out.println(&quot;Usage: java InstallCert &lt;host&gt;[:port] [passphrase]&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        File file &#x3D; new File(&quot;jssecacerts&quot;);</span><br><span class="line">        if (file.isFile() &#x3D;&#x3D; false) &#123;</span><br><span class="line">            char SEP &#x3D; File.separatorChar;</span><br><span class="line">            File dir &#x3D; new File(System.getProperty(&quot;java.home&quot;) + SEP</span><br><span class="line">                    + &quot;lib&quot; + SEP + &quot;security&quot;);</span><br><span class="line">            file &#x3D; new File(dir, &quot;jssecacerts&quot;);</span><br><span class="line">            if (file.isFile() &#x3D;&#x3D; false) &#123;</span><br><span class="line">                file &#x3D; new File(dir, &quot;cacerts&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(&quot;Loading KeyStore &quot; + file + &quot;...&quot;);</span><br><span class="line">        InputStream in &#x3D; new FileInputStream(file);</span><br><span class="line">        KeyStore ks &#x3D; KeyStore.getInstance(KeyStore.getDefaultType());</span><br><span class="line">        ks.load(in, passphrase);</span><br><span class="line">        in.close();</span><br><span class="line"></span><br><span class="line">        SSLContext context &#x3D; SSLContext.getInstance(&quot;TLS&quot;);</span><br><span class="line">        TrustManagerFactory tmf &#x3D;</span><br><span class="line">                TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());</span><br><span class="line">        tmf.init(ks);</span><br><span class="line">        X509TrustManager defaultTrustManager &#x3D; (X509TrustManager) tmf.getTrustManagers()[0];</span><br><span class="line">        SavingTrustManager tm &#x3D; new SavingTrustManager(defaultTrustManager);</span><br><span class="line">        context.init(null, new TrustManager[]&#123;tm&#125;, null);</span><br><span class="line">        SSLSocketFactory factory &#x3D; context.getSocketFactory();</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;Opening connection to &quot; + host + &quot;:&quot; + port + &quot;...&quot;);</span><br><span class="line">        SSLSocket socket &#x3D; (SSLSocket) factory.createSocket(host, port);</span><br><span class="line">        socket.setSoTimeout(10000);</span><br><span class="line">        try &#123;</span><br><span class="line">            System.out.println(&quot;Starting SSL handshake...&quot;);</span><br><span class="line">            socket.startHandshake();</span><br><span class="line">            socket.close();</span><br><span class="line">            System.out.println();</span><br><span class="line">            System.out.println(&quot;No errors, certificate is already trusted&quot;);</span><br><span class="line">        &#125; catch (SSLException e) &#123;</span><br><span class="line">            System.out.println();</span><br><span class="line">            e.printStackTrace(System.out);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        X509Certificate[] chain &#x3D; tm.chain;</span><br><span class="line">        if (chain &#x3D;&#x3D; null) &#123;</span><br><span class="line">            System.out.println(&quot;Could not obtain server certificate chain&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        BufferedReader reader &#x3D;</span><br><span class="line">                new BufferedReader(new InputStreamReader(System.in));</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(&quot;Server sent &quot; + chain.length + &quot; certificate(s):&quot;);</span><br><span class="line">        System.out.println();</span><br><span class="line">        MessageDigest sha1 &#x3D; MessageDigest.getInstance(&quot;SHA1&quot;);</span><br><span class="line">        MessageDigest md5 &#x3D; MessageDigest.getInstance(&quot;MD5&quot;);</span><br><span class="line">        for (int i &#x3D; 0; i &lt; chain.length; i++) &#123;</span><br><span class="line">            X509Certificate cert &#x3D; chain[i];</span><br><span class="line">            System.out.println</span><br><span class="line">                    (&quot; &quot; + (i + 1) + &quot; Subject &quot; + cert.getSubjectDN());</span><br><span class="line">            System.out.println(&quot;   Issuer  &quot; + cert.getIssuerDN());</span><br><span class="line">            sha1.update(cert.getEncoded());</span><br><span class="line">            System.out.println(&quot;   sha1    &quot; + toHexString(sha1.digest()));</span><br><span class="line">            md5.update(cert.getEncoded());</span><br><span class="line">            System.out.println(&quot;   md5     &quot; + toHexString(md5.digest()));</span><br><span class="line">            System.out.println();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;Enter certificate to add to trusted keystore or &#39;q&#39; to quit: [1]&quot;);</span><br><span class="line">        String line &#x3D; reader.readLine().trim();</span><br><span class="line">        int k;</span><br><span class="line">        try &#123;</span><br><span class="line">            k &#x3D; (line.length() &#x3D;&#x3D; 0) ? 0 : Integer.parseInt(line) - 1;</span><br><span class="line">        &#125; catch (NumberFormatException e) &#123;</span><br><span class="line">            System.out.println(&quot;KeyStore not changed&quot;);</span><br><span class="line">            return;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        X509Certificate cert &#x3D; chain[k];</span><br><span class="line">        String alias &#x3D; host + &quot;-&quot; + (k + 1);</span><br><span class="line">        ks.setCertificateEntry(alias, cert);</span><br><span class="line"></span><br><span class="line">        OutputStream out &#x3D; new FileOutputStream(&quot;jssecacerts&quot;);</span><br><span class="line">        ks.store(out, passphrase);</span><br><span class="line">        out.close();</span><br><span class="line"></span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println(cert);</span><br><span class="line">        System.out.println();</span><br><span class="line">        System.out.println</span><br><span class="line">                (&quot;Added certificate to keystore &#39;jssecacerts&#39; using alias &#39;&quot;</span><br><span class="line">                        + alias + &quot;&#39;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static final char[] HEXDIGITS &#x3D; &quot;0123456789abcdef&quot;.toCharArray();</span><br><span class="line"></span><br><span class="line">    private static String toHexString(byte[] bytes) &#123;</span><br><span class="line">        StringBuilder sb &#x3D; new StringBuilder(bytes.length * 3);</span><br><span class="line">        for (int b : bytes) &#123;</span><br><span class="line">            b &amp;&#x3D; 0xff;</span><br><span class="line">            sb.append(HEXDIGITS[b &gt;&gt; 4]);</span><br><span class="line">            sb.append(HEXDIGITS[b &amp; 15]);</span><br><span class="line">            sb.append(&#39; &#39;);</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private static class SavingTrustManager implements X509TrustManager &#123;</span><br><span class="line"></span><br><span class="line">        private final X509TrustManager tm;</span><br><span class="line">        private X509Certificate[] chain;</span><br><span class="line"></span><br><span class="line">        SavingTrustManager(X509TrustManager tm) &#123;</span><br><span class="line">            this.tm &#x3D; tm;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public X509Certificate[] getAcceptedIssuers() &#123;</span><br><span class="line">	   </span><br><span class="line">	    &#x2F;** </span><br><span class="line">	     * This change has been done due to the following resolution advised for Java 1.7+</span><br><span class="line">		http:&#x2F;&#x2F;infposs.blogspot.kr&#x2F;2013&#x2F;06&#x2F;installcert-and-java-7.html</span><br><span class="line">       	     **&#x2F; </span><br><span class="line">	    </span><br><span class="line">	    return new X509Certificate[0];	</span><br><span class="line">            &#x2F;&#x2F;throw new UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void checkClientTrusted(X509Certificate[] chain, String authType)</span><br><span class="line">                throws CertificateException &#123;</span><br><span class="line">            throw new UnsupportedOperationException();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        public void checkServerTrusted(X509Certificate[] chain, String authType)</span><br><span class="line">                throws CertificateException &#123;</span><br><span class="line">            this.chain &#x3D; chain;</span><br><span class="line">            tm.checkServerTrusted(chain, authType);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">找不到请求的.Net Framework Data Provider.可能没有安装.  错误</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            })
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%AE%E9%A2%98"><span class="nav-number">1.</span> <span class="nav-text">问题</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E6%9E%90"><span class="nav-number">2.</span> <span class="nav-text">分析</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">3.</span> <span class="nav-text">解决方法</span></a></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.1.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
