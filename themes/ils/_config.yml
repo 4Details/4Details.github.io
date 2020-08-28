@@ -37,11 +37,11 @@ comments:
 
   # Gitalk https://github.com/gitalk/gitalk
   gitalk:
-    enable: false
-    github_id:             # GitHub repo owner
-      repository:          # Repository name to store issues
-    client_id:             # GitHub Application Client ID
-    client_secret:         # GitHub Application Client Secret
+    enable: true
+    github_id: 4Details            # GitHub repo owner
+    repository: 4Details.github.io          # Repository name to store issues
+    client_id: 97390e2532eeec6eb0f2            # GitHub Application Client ID
+    client_secret: 16315c17fedc02c2a371c5d6c10ddb992a517069        # GitHub Application Client Secret
 
 # website count
 website_count:

@@ -2,7 +2,7 @@
 title: Python 爬虫 01-通用爬虫基本流程
 date: 2018-10-18 20:28:01
 tags: [爬虫]
-categroy: [编程笔记]
+category: [编程笔记]
 ---
 
 #  爬虫是什么

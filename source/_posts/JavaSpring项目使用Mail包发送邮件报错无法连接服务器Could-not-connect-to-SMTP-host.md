@@ -1,7 +1,7 @@
 ---
 title: JavaSpring项目使用Mail包发送邮件报错无法连接服务器Could not connect to SMTP host
 date: 2019-06-28 14:59:56
-tags: [SpringBoot,MailSender]
+tags: [SpringBoot]
 category: [编程笔记]
 ---
 
