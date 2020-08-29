@@ -1,7 +1,7 @@
 ---
 title: 讨论社区04  -  Mybatis  入门
 date: 2019-06-18 21:00:28
-tags: [Mybatis, Spring]
+tags: [Mybatis,Spring]
 category: [讨论社区项目]
 ---
 

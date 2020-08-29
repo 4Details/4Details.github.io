@@ -1,7 +1,7 @@
 ---
 title: 找不到请求的.Net Framework Data Provider.可能没有安装.  错误
 date: 2019-07-27 16:23:27
-tags: [.net]
+tags: [.Net]
 category: [编程笔记]
 ---
 
