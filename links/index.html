@@ -111,41 +111,35 @@
 
             <div class="main-content-left">
                 
-                    <div class="fade-in-down-animation">
-    <div class="links-container">
-        <div class="links-content markdown-body">
-            
-        </div>
-        <div class="links-comments">
-            
-                <div class="comments-container">
-    
-        
-    <div class="valine-container">
-        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
-        <div id="vcomments"></div>
-        <script>
-            new Valine({
-                el: '#vcomments',
-                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
-                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
-                meta: 'nick,mail,link'.split(','),
-                avatar: 'wavatar',
-                enableQQ: true,
-                placeholder: '请提出您的宝贵建议~',
-                lang: 'zh-CN'.toLowerCase()
-            })
-        </script>
-    </div>
+                    @require "./common/magic-theme.styl";
 
+.links-container {
 
-    
-</div>
-            
-        </div>
-    </div>
-</div>
+  background: var(--background-color);
 
+  magic-container(1.005, 1.01, 30px);
+
+  +ils-tablet() {
+    magic-container(1.001, 1.005, 20px);
+  }
+
+  .links-content {
+
+    h1, h2, h3, h4, h5, h6 {
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+    }
+
+    margin-bottom: 30px;
+
+    +ils-tablet() {
+      margin-bottom: 20px;
+    }
+  }
+}
                 
 
             </div>
@@ -159,7 +153,7 @@
                 <div class="sidebar-tagcloud">
     <div class="tagcloud-label">标签云</div>
     <div class="tagcloud-container">
-        <a href="/tags/net/" style="font-size: 1em;">.net</a> <a href="/tags/FATE/" style="font-size: 1.5em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.5em;">FL</a> <a href="/tags/SpringBoot/" style="font-size: 1em;">SpringBoot</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2%EF%BC%8C%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">回文串，动态规划</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
+        <a href="/tags/net/" style="font-size: 1em;">.net</a> <a href="/tags/FATE/" style="font-size: 1.5em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.5em;">FL</a> <a href="/tags/SpringBoot/" style="font-size: 1em;">SpringBoot</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">动态规划</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/" style="font-size: 1em;">回文串</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
     </div>
 </div>
 
