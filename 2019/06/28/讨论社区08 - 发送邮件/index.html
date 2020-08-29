@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     
     <title>
-        讨论社区02 - Spring 入门 | 王旭的博客
+        讨论社区08  -  发送邮件 | 王旭的博客
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
@@ -51,22 +51,6 @@
             
                 <li class="menu-item">
                     <a class=""
-                       href="/categories"
-                    >
-                        分类
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
-                       href="/tags"
-                    >
-                        标签
-                    </a>
-                </li>
-            
-                <li class="menu-item">
-                    <a class=""
                        href="/links"
                     >
                         链接
@@ -103,16 +87,6 @@
             
                 <li class="drawer-menu-item">
                     <a class=""
-                       href="/categories">分类</a>
-                </li>
-            
-                <li class="drawer-menu-item">
-                    <a class=""
-                       href="/tags">标签</a>
-                </li>
-            
-                <li class="drawer-menu-item">
-                    <a class=""
                        href="/links">链接</a>
                 </li>
             
@@ -141,13 +115,13 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <h3><a class="title-hover-animation">讨论社区02 - Spring 入门</a></h3>
+            <h3><a class="title-hover-animation">讨论社区08  -  发送邮件</a></h3>
         </div>
 
         <div class="meta-info">
             <div class="article-meta-info">
     <span class="article-date article-meta-item">
-        <i class="fa fa-calendar-o"></i> 2020-08-29 20:56:39
+        <i class="fa fa-calendar-o"></i> 2019-06-28 23:31:25
     </span>
     
         <span class="article-categories article-meta-item">
@@ -167,7 +141,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/Spring/">Spring</a>
+                        <a href="/tags/SMTP/">SMTP</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/JavaMailSender/">JavaMailSender</a>
                     </li>
                 
             </ul>
@@ -182,60 +160,19 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="Spring全家桶"><a href="#Spring全家桶" class="headerlink" title="Spring全家桶"></a>Spring全家桶</h1><ul>
-<li>Spring Framework </li>
-<li>Spring Boot</li>
-<li>Spring Cloud (微服务,大项目拆分成若干子项目)</li>
-<li>Spring Cloud Data Flow(数据集成)</li>
-<li>官网: <a target="_blank" rel="noopener" href="https://spring.io/">https://spring.io</a></li>
-</ul>
-<h1 id="Spring-Framework"><a href="#Spring-Framework" class="headerlink" title="Spring Framework"></a>Spring Framework</h1><ul>
-<li>Spring Core</li>
-<li>IoC、AOP  (管理对象的思想,spring管理的对象叫做Bean.)</li>
-<li>Spring Data Access<ul>
-<li>Transactions(事务)、Spring MyBatis</li>
+            <ul>
+<li>邮箱设置<ul>
+<li>启用客户端SMTP服务</li>
 </ul>
 </li>
-<li>Web Servlet<ul>
-<li>Spring MVC</li>
+<li>Spring Email<ul>
+<li>导入 jar 包</li>
+<li>邮箱参数配置</li>
+<li>使用 JavaMailSender 发送邮件</li>
 </ul>
 </li>
-<li>Integration(集成)<ul>
-<li>Email、Scheduling(定时任务)、AMQP(消息队列)、Security(安全控制)</li>
-</ul>
-</li>
-</ul>
-<h1 id="Spring-IoC"><a href="#Spring-IoC" class="headerlink" title="Spring IoC"></a>Spring IoC</h1><ul>
-<li>Inversion of Control<ul>
-<li>控制反转，是一种面向对象编程的设计思想。</li>
-</ul>
-</li>
-<li>Dependency Injection</li>
-<li>依赖注入，是IoC思想的实现方式。</li>
-<li>IoC Container</li>
-<li>IoC容器，是实现依赖注入的关键，本质上是一个工厂。</li>
-<li>容器管理Bean的前提:提供Bean的类型,通过配置文件配置Bean之间的关系.</li>
-<li>降低Bean之间的耦合度</li>
-</ul>
-<h1 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h1><ul>
-<li>主动获取:</li>
-</ul>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SpringBootApplication</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingApplication</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">		SpringApplication.run(CommunityApplication.class, args);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">配置类,启动时自动扫描,扫描配置类所在的包以及子包下的Bean.</span><br><span class="line"><span class="meta">@Component</span> <span class="meta">@Repository</span> <span class="meta">@Service</span> <span class="meta">@Controller</span></span><br></pre></td></tr></table></figure>
-
-<p>测试代码要以其为配置类,需加上注解:</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@ContextConfiguration(classes = TalkingApplication.class)</span></span><br></pre></td></tr></table></figure>
-
-<p>想要使用spring容器需要实现接口,ApplicationContextAware,实现接口中set方法.传入参数applicationContext(spring容器),他是一个接口,继承自BeanFactory.</p>
-<p>获取Bean:applicationContext.getBean(test.class);</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingApplicationTests</span> <span class="keyword">implements</span> <span class="title">ApplicationContextAware</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> ApplicationContext applicationContext;</span><br><span class="line"></span><br><span class="line">	<span class="meta">@Override</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setApplicationContext</span><span class="params">(ApplicationContext applicationContext)</span> <span class="keyword">throws</span> BeansException </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.applicationContext = applicationContext;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>给Bean自定义名字:@Component(“名字”)</p>
-<p>初始化方法@PostConstruct,在构造器之后调用.销毁对象之前调用,@PreDestroy.</p>
-<p>@Scope()指定单例多例</p>
-<p>@Configuration配置类,用以装载使用第三方类.</p>
-<ul>
-<li>自动注入:<ul>
-<li>@Autowired</li>
+<li>模板引擎<ul>
+<li>使用 Thymeleaf 发送 HTML 邮件</li>
 </ul>
 </li>
 </ul>
@@ -244,13 +181,22 @@
 
         <div class="article-nav">
             
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/06/30/hexo%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">hexo快速开始</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
             
                 <div class="article-next">
                     <a class="next btn"
                        rel="next"
-                       href="/2020/08/28/%E5%9B%9E%E6%96%87%E4%B8%B2%E5%BC%95%E5%8F%91%E7%9A%84%E2%80%9C%E8%A1%80%E6%A1%88%E2%80%9D/"
+                       href="/2019/06/28/JavaSpring%E9%A1%B9%E7%9B%AE%E4%BD%BF%E7%94%A8Mail%E5%8C%85%E5%8F%91%E9%80%81%E9%82%AE%E4%BB%B6%E6%8A%A5%E9%94%99%E6%97%A0%E6%B3%95%E8%BF%9E%E6%8E%A5%E6%9C%8D%E5%8A%A1%E5%99%A8Could-not-connect-to-SMTP-host/"
                     >
-                        <span class="post-nav-title-item">回文串引发的“血案”</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                        <span class="post-nav-title-item">JavaSpring项目使用Mail包发送邮件报错无法连接服务器Could not connect to SMTP host</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
                     </a>
                 </div>
             
@@ -295,7 +241,7 @@
     <div class="sidebar sidebar-post fade-in-down-animation">
         <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring%E5%85%A8%E5%AE%B6%E6%A1%B6"><span class="nav-number">1.</span> <span class="nav-text">Spring全家桶</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-Framework"><span class="nav-number">2.</span> <span class="nav-text">Spring Framework</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-IoC"><span class="nav-number">3.</span> <span class="nav-text">Spring IoC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E9%83%A8%E5%88%86"><span class="nav-number">4.</span> <span class="nav-text">代码部分</span></a></li></ol>
+        
     </div>
 </div>
     </div>
