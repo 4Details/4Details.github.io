@@ -1,5 +1,5 @@
 ---
-title: 讨论社区02  -  Spring MVC 入门
+title: 讨论社区03  -  Spring MVC 入门
 date: 2019-06-14  21:00:28
 tags: [SpringMVC]
 category: [讨论社区项目]
@@ -34,7 +34,7 @@ category: [讨论社区项目]
 
 浏览器访问服务器，首先访问的时Controller控制层，Controller调用业务层处理，处理完后将得到的数据封装到Model,传给视图层。
 
- <img src="../../../../java-project/nowcoder-project-master/note/img/image-20191111134655288.png" alt="avatar" style="zoom:60%;" />
+ ![Spring MVC官方架构](/images/讨论社区03 - Spring-MVC-入门.assets/image-20191111134655288.png)
 
 # Thymeleaf
 
