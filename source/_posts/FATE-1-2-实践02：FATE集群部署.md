@@ -56,7 +56,7 @@ ubuntu系统执行：apt list --installed | grep selinux
 
 
 
-![关闭selinux](https://cdn.nlark.com/yuque/0/2020/png/343708/1578365450270-a035c23e-1738-417f-89d1-fa1e9456064c.png)
+![关闭selinux](/images/FATE-1-2-实践02：FATE集群部署.assets/1578365450270-a035c23e-1738-417f-89d1-fa1e9456064c.png)
 
 
 
@@ -77,7 +77,7 @@ vim /etc/security/limits.conf
 
 
 
-![编辑最大打开文件数](https://cdn.nlark.com/yuque/0/2020/png/343708/1578365728781-dc1352aa-9d0c-4400-81a4-1e28ecca6bcd.png)
+![编辑最大打开文件数](/images/FATE-1-2-实践02：FATE集群部署.assets/1578365728781-dc1352aa-9d0c-4400-81a4-1e28ecca6bcd.png)
 
 
 
@@ -93,7 +93,7 @@ vim /etc/hosts
 
 
 
-![添加主机映射](https://cdn.nlark.com/yuque/0/2020/png/343708/1578485849702-675aea11-871a-4201-8868-bc0a2653849d.png)
+![添加主机映射](/images/FATE-1-2-实践02：FATE集群部署.assets/1578485849702-675aea11-871a-4201-8868-bc0a2653849d.png)
 
 
 
@@ -113,7 +113,7 @@ systemctl status firewalld.service
 
 本例的环境是Centos系统
 
-![关闭虚拟机防火墙](https://cdn.nlark.com/yuque/0/2020/png/343708/1578380317690-ecb24d9b-0cf9-47df-b92e-03330fbd8e92.png)
+![关闭虚拟机防火墙](/images/FATE-1-2-实践02：FATE集群部署.assets/1578380317690-ecb24d9b-0cf9-47df-b92e-03330fbd8e92.png)
 
 
 
@@ -148,7 +148,7 @@ Defaults !env_reset
 
 
 
-![配置ssh登录01](https://cdn.nlark.com/yuque/0/2020/png/343708/1578380760894-2368928b-1570-451c-aac0-649a1afbcacd.png)
+![配置ssh登录01](/images/FATE-1-2-实践02：FATE集群部署.assets/1578380760894-2368928b-1570-451c-aac0-649a1afbcacd.png)
 
 
 
@@ -158,7 +158,7 @@ Defaults !env_reset
 
 **步骤如下：三台机器分别将id_rsa.pub 写入authorized_keys文件中并且赋予权限chomd 600**
 
-![配置ssh登录02](https://cdn.nlark.com/yuque/0/2020/png/343708/1578381412726-a1b69944-771d-4101-84ab-1f984304c52a.png)
+![配置ssh登录02](/images/FATE-1-2-实践02：FATE集群部署.assets/1578381412726-a1b69944-771d-4101-84ab-1f984304c52a.png)
 
 
 
@@ -168,7 +168,7 @@ Defaults !env_reset
 
 155->156
 
-![155->156](https://cdn.nlark.com/yuque/0/2020/png/343708/1578381586236-3903e88e-0851-43ea-9d00-aeff64e00d90.png)
+![155->156](/images/FATE-1-2-实践02：FATE集群部署.assets/1578381586236-3903e88e-0851-43ea-9d00-aeff64e00d90.png)
 
 
 
@@ -176,7 +176,7 @@ Defaults !env_reset
 
 
 
-![156->157](https://cdn.nlark.com/yuque/0/2020/png/343708/1578381654023-9f91941b-d097-4fee-abef-b1c2e5dae98d.png)
+![156->157](/images/FATE-1-2-实践02：FATE集群部署.assets/1578381654023-9f91941b-d097-4fee-abef-b1c2e5dae98d.png)
 
 
 
@@ -184,7 +184,7 @@ Defaults !env_reset
 
 
 
-![157->155 156](https://cdn.nlark.com/yuque/0/2020/png/343708/1578381710128-b920208b-7d45-48a8-887f-c2dbdab925e6.png)
+![157->155 156](/images/FATE-1-2-实践02：FATE集群部署.assets/1578381710128-b920208b-7d45-48a8-887f-c2dbdab925e6.png)
 
 
 
@@ -216,7 +216,7 @@ tar -xf FATE_install_v1.2.0.tar.gz
 
 
 
-![下载压缩包并解压](https://cdn.nlark.com/yuque/0/2020/png/343708/1578399494803-2fb7d502-0815-4840-82f0-a68e4e8110dc.png)
+![下载压缩包并解压](/images/FATE-1-2-实践02：FATE集群部署.assets/1578399494803-2fb7d502-0815-4840-82f0-a68e4e8110dc.png)
 
 ### 修改configuration文件
 
@@ -229,9 +229,9 @@ vi multinode_cluster_configuration.sh
 
 
 
-![修改conf文件](https://cdn.nlark.com/yuque/0/2020/png/343708/1578399969465-c030b14f-baac-4dc3-ba3b-96fdbb9150ba.png)
+![修改conf文件](/images/FATE-1-2-实践02：FATE集群部署.assets/1578399969465-c030b14f-baac-4dc3-ba3b-96fdbb9150ba.png)
 
-![image.png](https://cdn.nlark.com/yuque/0/2020/png/343708/1578399984843-bece1ed0-8147-4754-9ba9-14014be1d75b.png)
+![b端配置](/images/FATE-1-2-实践02：FATE集群部署.assets/1578399984843-bece1ed0-8147-4754-9ba9-14014be1d75b.png)
 
 
 
