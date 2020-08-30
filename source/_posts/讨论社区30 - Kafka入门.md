@@ -29,13 +29,13 @@ zookeeper-server-start.bat d:\software\kafka_2.12-2.3.0\config\zookeeper.propert
 kafka-server-start.bat d:\software\kafka_2.12-2.3.0\config\server.properties
 ```
 
-![windows启动zookeeper](/images/讨论社区30 - Kafka入门.assets/windows启动zookeeper.jpg)
+![windows启动zookeeper](http://i2.tiimg.com/726074/f09da785476dd516.jpg)
 
-![window启动kafka](/images/讨论社区30 - Kafka入门.assets/window启动kafka.jpg)
+![window启动kafka](http://i2.tiimg.com/726074/6e268e5245a0e8f8.jpg)
 
 创建一个test主题 分区
 
-![1598792421476](/images/讨论社区30 - Kafka入门.assets/1598792421476.png)
+![1598792421476](http://i2.tiimg.com/726074/aa14267742462333.png)
 
 查询是否创建成功
 

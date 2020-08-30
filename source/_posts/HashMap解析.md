@@ -7,4 +7,4 @@ category: []
 
 #  HashMap继承体系
 
-![HashMap继承体系](1598791484055.png)
+![HashMap继承体系](http://i1.fuimg.com/726074/1872c236e17296ec.png)
