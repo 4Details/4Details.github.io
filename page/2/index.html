@@ -117,27 +117,39 @@
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/11/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA17%20-%20%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">
+                    <a href="/2019/07/28/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA26%20-%20%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD%E5%92%8C%E6%94%B6%E5%88%B0%E8%B5%9E%E5%AE%9E%E7%8E%B0/">
                         
-                        讨论社区17  -  发布帖子功能实现
+                        讨论社区26  -  点赞功能和收到赞实现
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-AJAX
-Asynchronous JavaScript and XML
-异步的JavaScript与XML，不是一门新技术，只是一个新的术语。
-使用AJAX，网页能够将增量更新呈现在页面上，而不需要刷新整个页面。
-虽然X代表XML，但目前JSON的使用比XML更加普遍。
-https://d...
+                        开发时应考虑性能问题：很多用户对同一帖子或回复点赞。——数据存到Redis中，提升性能。
+为什么使用Redis实现这个功能？
+点赞
+点赞
+支持对帖子、评论点赞。
+第1次点赞，第2次取消点赞。
+
+
+首页点赞数量
+统计帖子的点赞数量。
+
+
+详情页点赞数量
+统计点赞数量。
+显示点赞状态。
+
+
+
+无需...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-11</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-28</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -151,42 +163,243 @@ https://d...
                         
                     </div>
                     
-                    <a href="/2019/07/11/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA17%20-%20%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/07/28/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA26%20-%20%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD%E5%92%8C%E6%94%B6%E5%88%B0%E8%B5%9E%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/09/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA16%20-%20%E8%BF%87%E6%BB%A4%E6%95%8F%E6%84%9F%E8%AF%8D/">
+                    <a href="/2019/07/27/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA25%20-%20Spring%E6%95%B4%E5%90%88Redis/">
                         
-                        讨论社区16  -  过滤敏感词
+                        讨论社区25  -  Spring整合Redis
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        最直接：字符串替换 replace方法
+                        
+引入依赖
 
-问题：敏感词数量多了怎么办？帖子字数很多怎么办？
-生产一般使用前缀树过滤敏感词
+spring-boot-starter-data-redis
 
-
-前缀树
-
-
-名称：Trie、字典树、查找树
-特点：查找效率高，消耗内存大
-应用：字符串检索、词频统计、字符串排序等
-
-
-构建敏感词前缀树：根节点不存储任何信息，每一个敏...
+12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spri...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-09</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-27</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                                    <li>| <a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/07/27/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA25%20-%20Spring%E6%95%B4%E5%90%88Redis/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/">
+                        
+                        找不到请求的.Net Framework Data Provider.可能没有安装.  错误
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        问题：这几天在装.NET 的开发环境，在装好VS2013和Oracle 11g之后，做了一个测试项目，运行调试没问题但是涉及到数据库相关操作，如新建数据集、连接数据库等在调试的时候则会出现如下错误：
+
+目前百度之后现存的解决方案：
+oracle odp.net 32位/64位版本的问题解决方案...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-27</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/07/25/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA24%20-%20Redis%E5%85%A5%E9%97%A8/">
+                        
+                        讨论社区24  -  Redis入门
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        
+Redis是一款基于键值对的NoSQL数据库，它的值支持多种数据结构：字符串(strings)、哈希(hashes)、列表(lists)、集合(sets)、有序集合(sorted sets)等。
+
+redis是一个key-value存储系统。和Memcached类似，它支持存储的value类...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-25</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                                    <li>| <a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/07/25/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA24%20-%20Redis%E5%85%A5%E9%97%A8/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/07/22/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA23%20-%20%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97/">
+                        
+                        讨论社区23  -  统一记录日志
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        需求：
+
+帖子模块
+评论模块
+消息模块
+
+AOP的概念：
+
+Aspect Oriented Programing，即面向方面（切面）编程。
+AOP是一种编程思想，是对OOP的补充，可以进一步提高编程的效率。
+
+![统一处理需求](/images/讨论社区23 - 统一记录日志.assets/2...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-22</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                                    <li>| <a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/07/22/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA23%20-%20%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/07/20/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA22%20-%20%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8/">
+                        
+                        讨论社区22  -  统一处理异常
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        SpringBoot 的统一处理方法：
+在template文件夹下包含error文件夹，且内容为错误代码.html文件。 template/error/404.html
+
+@ControllerAdvice
+用于修饰类，表示该类是Controller的全局配置类。
+在此类中，可以对Contro...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-20</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                                    <li>| <a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/07/20/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA22%20-%20%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/07/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA21%20-%20%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E5%92%8C%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">
+                        
+                        讨论社区21  -  私信列表和发送私信
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        表结构
+12345678910CREATE TABLE &#96;message&#96; (  &#96;id&#96; int NOT NULL AUTO_INCREMENT,  &#96;from_id&#96; int DEFAULT NULL,  &#96;to_id&#96; in...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-18</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -200,41 +413,57 @@ https://d...
                         
                     </div>
                     
-                    <a href="/2019/07/09/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA16%20-%20%E8%BF%87%E6%BB%A4%E6%95%8F%E6%84%9F%E8%AF%8D/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/07/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA21%20-%20%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E5%92%8C%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/08/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA15%20-%20%E6%A3%80%E6%9F%A5%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/">
+                    <a href="/2019/07/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA20%20-%20%E6%98%BE%E7%A4%BA%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/">
                         
-                        讨论社区15  -  检查登录状态
+                        讨论社区20  -  显示、添加评论
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-使用拦截器
+                        显示评论
+数据层
 
-在方法前标注自定义注解
-拦截所有请求，只处理带有该注解的方法
-
-
-自定义注解
-
-常用的元注解：@Target、@Retention、@Document、@Inherited
+根据实体查询一页评论数据。
+根据实体查询评论的数量。
 
 
-@Target声明自定义注解的位置（类？方法？属性？）
-@Retention  自定义注解的有效时间...
+业务层
+
+处理查询评论的业务。
+处理查询评论数量的业务。
+
+
+表现层
+
+显示帖子详情数据时，同时显示该帖子所有的评论数据。
+
+层层封装
+
+
+添加评论
+数据层
+
+增加评论数据。
+修改帖子的评论数量。
+
+
+业务层
+
+处理...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-08</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-16</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -248,48 +477,37 @@ https://d...
                         
                     </div>
                     
-                    <a href="/2019/07/08/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA15%20-%20%E6%A3%80%E6%9F%A5%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/07/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA20%20-%20%E6%98%BE%E7%A4%BA%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/07/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA14%20-%20%E8%B4%A6%E5%8F%B7%E8%AE%BE%E7%BD%AE/">
+                    <a href="/2019/07/14/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA19%20-%20%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
                         
-                        讨论社区14  -  账号设置
+                        讨论社区19  -  事务管理
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
                         
-上传文件
+回顾
 
-请求：必须是POST请求
-表单：enctype=“multipart/form-data”
-Spring MVC：通过 MultipartFile 处理上传文件
-
-
-开发步骤
-
-访问账号设置页面
+什么是事务
+事务是由N步数据库操作序列组成的逻辑执行单元，这系列操作要么全执行，要么全放弃执行。
 
 
-Service定义访问路径，模板页修改
-
-
-上传头像
-
-
-定义上传路径
-视图层更...
+事务的特性（ACID）
+原子性（Atomicity）：事务是应用中不可再分的最小执行体。
+一致性（Consistency）：事务执行的结果，须使数据从一个一致性状态，变为另一个一致性...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-07</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-14</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -303,34 +521,40 @@ Service定义访问路径，模板页修改
                         
                     </div>
                     
-                    <a href="/2019/07/07/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA14%20-%20%E8%B4%A6%E5%8F%B7%E8%AE%BE%E7%BD%AE/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/07/14/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA19%20-%20%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/05/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA13%20-%20%E6%98%BE%E7%A4%BA%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF/">
+                    <a href="/2019/07/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA18%20-%20%E5%B8%96%E5%AD%90%E8%AF%A6%E6%83%85/">
                         
-                        讨论社区13  -  显示登录信息
+                        讨论社区18  -  帖子详情
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
                         
-拦截器示例
+DiscussPostMapper       定义DAO方法
 
-定义拦截器，实现HandlerInterceptor
-配置拦截器，为它指定拦截、排除的路径
+DiscussPostService         业务层
 
-12345678910111213141516171819202122232425@Configurationpublic class WebMvcConfig implements ...
+DiscussPostController    控制层
+
+index.html
+
+在帖子标题上增加访问详情页面的链接
+
+
+discuss-detail.html...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-05</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-12</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -344,232 +568,7 @@ Service定义访问路径，模板页修改
                         
                     </div>
                     
-                    <a href="/2019/07/05/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA13%20-%20%E6%98%BE%E7%A4%BA%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/04/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA12%20-%20%E7%99%BB%E5%BD%95%E3%80%81%E9%80%80%E5%87%BA%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">
-                        
-                        讨论社区12  -  登录、退出功能实现
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-访问登录页面
-点击顶部区域内的链接，打开登录页面。
-
-
-登录
-验证账号、密码、验证码。
-成功时，生成登录凭证，发放给客户端。
-失败时，跳转回登录页。
-
-
-退出
-将登录凭证修改为失效状态。
-跳转至网站首页。
-
-
-
-
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-04</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/04/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA12%20-%20%E7%99%BB%E5%BD%95%E3%80%81%E9%80%80%E5%87%BA%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/02/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA11%20-%20%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/">
-                        
-                        讨论社区11  -  图片验证码
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Kaptcha
-
-导入 jar 包
-编写 Kaptcha 配置类
-生成随机字符、生成图片
-
-
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-02</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/02/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA11%20-%20%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/01/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA10%20-%20%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/">
-                        
-                        讨论社区10  -  会话管理
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-HTTP的基本性质
-
-HTTP是简单的
-HTTP是可扩展的
-HTTP是无状态的，有会话的
-
-
-Cookie
-
-是服务器发送到浏览器，并保存在浏览器端的一小块数据。
-浏览器下次访问该服务器时，会自动携带块该数据，将其发送给服务器。
-
-
-Session
-
-是JavaEE的标准，用于在服务端记录客...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-01</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/01/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA10%20-%20%E4%BC%9A%E8%AF%9D%E7%AE%A1%E7%90%86/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/06/30/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA09%20-%20%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">
-                        
-                        讨论社区09  -  注册功能实现
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-访问注册页面
-
-点击顶部区域内的链接，打开注册页面。
-
-
-复用Thymeleaf的标签，复用头部区域
-
-1&lt;header class=&quot;bg-dark sticky-top&quot; th:fragment=&quot;header&quot;&gt;
-
-在需要复用的地方
-...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-06-30</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/06/30/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA09%20-%20%E6%B3%A8%E5%86%8C%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/06/30/hexo%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">
-                        
-                        hexo快速开始
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer ...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-06-30</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/06/30/hexo%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/07/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA18%20-%20%E5%B8%96%E5%AD%90%E8%AF%A6%E6%83%85/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
@@ -604,7 +603,7 @@ Session
                 <div class="sidebar-tagcloud">
     <div class="tagcloud-label">标签云</div>
     <div class="tagcloud-container">
-        <a href="/tags/Net/" style="font-size: 1em;">.Net</a> <a href="/tags/Apache-Maven/" style="font-size: 1em;">Apache Maven</a> <a href="/tags/Bug%E8%B0%83%E8%AF%95/" style="font-size: 1em;">Bug调试</a> <a href="/tags/Cookie/" style="font-size: 1em;">Cookie</a> <a href="/tags/FATE/" style="font-size: 1.25em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.25em;">FL</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/HTTP/" style="font-size: 1em;">HTTP</a> <a href="/tags/JavaMailSender/" style="font-size: 1.25em;">JavaMailSender</a> <a href="/tags/MultipartFile/" style="font-size: 1em;">MultipartFile</a> <a href="/tags/Mybatis/" style="font-size: 1em;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 1em;">Mysql</a> <a href="/tags/SMTP/" style="font-size: 1em;">SMTP</a> <a href="/tags/Session/" style="font-size: 1em;">Session</a> <a href="/tags/Spring/" style="font-size: 1.5em;">Spring</a> <a href="/tags/Spring-AOP/" style="font-size: 1em;">Spring AOP</a> <a href="/tags/Spring-MVC/" style="font-size: 1em;">Spring MVC</a> <a href="/tags/SpringBoot/" style="font-size: 1.25em;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/ThreadLocal/" style="font-size: 1em;">ThreadLocal</a> <a href="/tags/Thymeleaf/" style="font-size: 1em;">Thymeleaf</a> <a href="/tags/Tire/" style="font-size: 1em;">Tire</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 1em;">事务</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" style="font-size: 1em;">事务管理</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/" style="font-size: 1em;">事务隔离</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">动态规划</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/" style="font-size: 1em;">回文串</a> <a href="/tags/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 1em;">图片验证码</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" style="font-size: 1em;">异常处理</a> <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 1.25em;">拦截器</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86/" style="font-size: 1em;">日志处理</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 1.25em;">注解</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
+        <a href="/tags/Net/" style="font-size: 1em;">.Net</a> <a href="/tags/Apache-Maven/" style="font-size: 1em;">Apache Maven</a> <a href="/tags/Bug%E8%B0%83%E8%AF%95/" style="font-size: 1em;">Bug调试</a> <a href="/tags/Cookie/" style="font-size: 1em;">Cookie</a> <a href="/tags/FATE/" style="font-size: 1.13em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.13em;">FL</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/HTTP/" style="font-size: 1em;">HTTP</a> <a href="/tags/HashMap/" style="font-size: 1em;">HashMap</a> <a href="/tags/JavaMailSender/" style="font-size: 1.13em;">JavaMailSender</a> <a href="/tags/Kafka/" style="font-size: 1.25em;">Kafka</a> <a href="/tags/MultipartFile/" style="font-size: 1em;">MultipartFile</a> <a href="/tags/Mybatis/" style="font-size: 1em;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 1em;">Mysql</a> <a href="/tags/NoSQL/" style="font-size: 1em;">NoSQL</a> <a href="/tags/Redis/" style="font-size: 1.38em;">Redis</a> <a href="/tags/SMTP/" style="font-size: 1em;">SMTP</a> <a href="/tags/Session/" style="font-size: 1em;">Session</a> <a href="/tags/Spring/" style="font-size: 1.5em;">Spring</a> <a href="/tags/Spring-AOP/" style="font-size: 1em;">Spring AOP</a> <a href="/tags/Spring-MVC/" style="font-size: 1em;">Spring MVC</a> <a href="/tags/SpringBoot/" style="font-size: 1.13em;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/ThreadLocal/" style="font-size: 1em;">ThreadLocal</a> <a href="/tags/Thymeleaf/" style="font-size: 1em;">Thymeleaf</a> <a href="/tags/Tire/" style="font-size: 1em;">Tire</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 1em;">事务</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" style="font-size: 1em;">事务管理</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/" style="font-size: 1em;">事务隔离</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">动态规划</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/" style="font-size: 1em;">回文串</a> <a href="/tags/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 1em;">图片验证码</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" style="font-size: 1em;">异常处理</a> <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 1.13em;">拦截器</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86/" style="font-size: 1em;">日志处理</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 1.13em;">注解</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
     </div>
 </div>
 
@@ -613,7 +612,7 @@ Session
                 <div class="sidebar-category">
     <div class="category-label">文章分类</div>
 
-    <ul class="post-category-list"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="post-category-list-count">1</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">3</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a><span class="post-category-list-count">2</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a><span class="post-category-list-count">23</span><ul class="post-category-list-child"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">4</span></li></ul></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="post-category-list-count">1</span></li></ul>
+    <ul class="post-category-list"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="post-category-list-count">1</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">3</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a><span class="post-category-list-count">2</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a><span class="post-category-list-count">32</span><ul class="post-category-list-child"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">6</span></li></ul></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="post-category-list-count">1</span></li></ul>
 
 </div>
 

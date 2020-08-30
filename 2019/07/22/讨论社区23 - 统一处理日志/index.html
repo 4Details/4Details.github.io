@@ -175,36 +175,42 @@
 <li>Aspect Oriented Programing，即面向方面（切面）编程。</li>
 <li>AOP是一种编程思想，是对OOP的补充，可以进一步提高编程的效率。</li>
 </ul>
-<p>![需求AOP解读](/images/讨论社区23 - 统一记录日志.assets/20191121213702.png)</p>
+<p>![统一处理需求](/images/讨论社区23 - 统一记录日志.assets/20191121213702.png)</p>
 <p><strong>AOP的术语</strong>：</p>
 <p>![AOP术语](/images/讨论社区23 - 统一记录日志.assets/20191121214201.png)</p>
-<p><strong>AOP的实现</strong></p>
+<p>每一个<code>Bean</code>称为一个<code>Target</code>，目标对象上有多处可以织入代码，可织入的点称为<code>Joinpoint</code>，<code>AOP</code>解决统一处理需求的方式是将代码定义到切片组件<code>Aspect</code>中，<code>Aspect</code>要通过<code>Pointcut</code>知道哪些位置需要织入代码，最后需要<code>Advice</code>处理通知。</p>
+<p><strong><code>AOP</code>的实现</strong></p>
 <ul>
-<li>AspectJ<ul>
+<li><p><code>AspectJ</code></p>
+<ul>
 <li>AspectJ是语言级的实现，它扩展了Java语言，定义了AOP语法。</li>
 <li>AspectJ在编译期织入代码，它有一个专门的编译器，用来生成遵守Java字节码规范的class文件。</li>
 </ul>
 </li>
-<li>Spring AOP<ul>
-<li>Spring AOP使用纯Java实现，它不需要专门的编译过程，也不需要特殊的类装载器。</li>
-<li>Spring AOP在运行时通过代理的方式织入代码，只支持方法类型的连接点。</li>
-<li>Spring支持对AspectJ的集成。</li>
-</ul>
-</li>
-</ul>
-<p><strong>Spring AOP</strong></p>
+<li><p><code>Spring AOP</code></p>
 <ul>
-<li>JDK动态代理<ul>
-<li>Java提供的动态代理技术，可以在运行时创建接口的代理实例。</li>
-<li>Spring AOP默认采用此种方式，在接口的代理实例中织入代码。</li>
+<li><code>Spring AOP</code>使用纯Java实现，它不需要专门的编译过程，也不需要特殊的类装载器。</li>
+<li><code>Spring AOP</code>在运行时通过代理的方式织入代码，只支持<strong>方法类型的连接点</strong>。</li>
+<li><code>Spring</code>支持对<code>AspectJ</code>的集成。</li>
+</ul>
+<p><code>Spring AOP </code>是一个高性价比的<code>AOP</code>实现技术。</p>
+</li>
+</ul>
+<p><strong><code>Spring AOP</code></strong></p>
+<ul>
+<li><code>JDK</code>动态代理<ul>
+<li><code>Java</code>提供的动态代理技术，可以在运行时创建接口的代理实例。</li>
+<li><code>Spring AOP</code>默认采用此种方式，在接口的代理实例中织入代码。</li>
 </ul>
 </li>
-<li>CGLib动态代理<ul>
+<li><code>CGLib</code>动态代理<ul>
 <li>采用底层的字节码技术，在运行时创建子类代理实例。</li>
-<li>当目标对象不存在接口时，Spring AOP会采用此种方式，在子类实例中织入代码。</li>
+<li>当目标对象不存在接口时，<code>Spring AOP</code>会采用此种方式，在子类实例中织入代码。</li>
 </ul>
 </li>
 </ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.aspectj.lang.ProceedingJoinPoint;</span><br><span class="line"><span class="keyword">import</span> org.springframework.stereotype.Component;</span><br><span class="line"><span class="keyword">import</span> org.aspectj.lang.annotation.*;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Component</span></span><br><span class="line"><span class="meta">@Aspect</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">AlphaAspect</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// service 包下所有class的所有方法及所有返回值</span></span><br><span class="line">    <span class="meta">@Pointcut(&quot;execution(* com.wx.talking.service.*.*(..))&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">pointcut</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Before(&quot;pointcut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">before</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;before&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@After(&quot;pointcut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">after</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;after&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterReturning(&quot;pointcut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterReturning</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterReturning&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@AfterThrowing(&quot;pointcut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">afterThrowing</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;afterThrowing&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Around(&quot;pointcut()&quot;)</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">around</span><span class="params">(ProceedingJoinPoint joinPoint)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">&quot;around before&quot;</span>);</span><br><span class="line">        Object obj = joinPoint.proceed(); <span class="comment">//Target的方法</span></span><br><span class="line">        System.out.println(<span class="string">&quot;around after&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span> obj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -213,9 +219,9 @@
                 <div class="article-prev">
                     <a class="prev btn"
                        rel="prev"
-                       href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/"
+                       href="/2019/07/25/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA24%20-%20Redis%E5%85%A5%E9%97%A8/"
                     >
-                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">找不到请求的.Net Framework Data Provider.可能没有安装.  错误</span><span class="post-nav-item">上一篇</span>
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区24  -  Redis入门</span><span class="post-nav-item">上一篇</span>
                     </a>
                 </div>
             

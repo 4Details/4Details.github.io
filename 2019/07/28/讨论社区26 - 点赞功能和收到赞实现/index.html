@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区26  -  点赞功能和收到赞实现 | 王旭的博客
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.1.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="王旭的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            王旭的博客
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区26  -  点赞功能和收到赞实现</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-07-28 20:14:22
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Redis/">Redis</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+        </div>
+
+        <div class="article-content markdown-body">
+            <p>开发时应考虑性能问题：很多用户对同一帖子或回复点赞。——数据存到Redis中，提升性能。</p>
+<p>为什么使用Redis实现这个功能？</p>
+<h1 id="点赞"><a href="#点赞" class="headerlink" title="点赞"></a>点赞</h1><ul>
+<li>点赞<ul>
+<li>支持对帖子、评论点赞。</li>
+<li>第1次点赞，第2次取消点赞。</li>
+</ul>
+</li>
+<li>首页点赞数量<ul>
+<li>统计帖子的点赞数量。</li>
+</ul>
+</li>
+<li>详情页点赞数量<ul>
+<li>统计点赞数量。</li>
+<li>显示点赞状态。</li>
+</ul>
+</li>
+</ul>
+<p>无需再写DAO层，直接在Service实现，然后通过RedisConfig文件操作。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="我收到的赞"><a href="#我收到的赞" class="headerlink" title="我收到的赞"></a>我收到的赞</h1><p>可以基于上面的点赞数据实现去统计，但是需要统计所有帖子，然后针对帖子去统计赞，业务繁杂。</p>
+<p>一般采用下面的方式：</p>
+<ul>
+<li>重构点赞功能<ul>
+<li>以用户为key，记录点赞数量</li>
+<li>increment(key)，decrement(key)</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>开发个人主页<ul>
+<li>以用户为key，查询点赞数量</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/07/29/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA27%20-%20%E5%85%B3%E6%B3%A8%E5%92%8C%E5%8F%96%E6%B6%88%E5%85%B3%E6%B3%A8%E5%AE%9E%E7%8E%B0/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区27  -  关注相关功能实现</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/07/27/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA25%20-%20Spring%E6%95%B4%E5%90%88Redis/"
+                    >
+                        <span class="post-nav-title-item">讨论社区25  -  Spring整合Redis</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            })
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%82%B9%E8%B5%9E"><span class="nav-number">1.</span> <span class="nav-text">点赞</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%88%91%E6%94%B6%E5%88%B0%E7%9A%84%E8%B5%9E"><span class="nav-number">2.</span> <span class="nav-text">我收到的赞</span></a></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.1.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

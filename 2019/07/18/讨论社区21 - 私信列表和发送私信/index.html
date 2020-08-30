@@ -145,7 +145,12 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="发送私信"><a href="#发送私信" class="headerlink" title="发送私信"></a>发送私信</h1><ul>
+            <p>表结构</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE &#96;message&#96; (</span><br><span class="line">  &#96;id&#96; int NOT NULL AUTO_INCREMENT,</span><br><span class="line">  &#96;from_id&#96; int DEFAULT NULL,</span><br><span class="line">  &#96;to_id&#96; int DEFAULT NULL,</span><br><span class="line">  &#96;conversation_id&#96; varchar(100) DEFAULT NULL,</span><br><span class="line">  &#96;content&#96; text,</span><br><span class="line">  &#96;status&#96; int DEFAULT NULL COMMENT &#39;&#39;&#39;0-未读;1-已读;2-删除;&#39;&#39;&#39;,</span><br><span class="line">  &#96;create_time&#96; timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,</span><br><span class="line">  PRIMARY KEY (&#96;id&#96;)</span><br><span class="line">) ENGINE&#x3D;InnoDB DEFAULT CHARSET&#x3D;utf8;</span><br></pre></td></tr></table></figure>
+
+<p><code>id </code>为表主键，<code>from_id</code> 、<code>to_id</code> 发送人、接收人；<code>conversation_id </code>为冗余的会话id，便于查询，拼接规则是 <code>from_id-to_id </code>（但是小<code>id</code>在前，大<code>id</code>在后）；<code>content</code>为会话内容；<code>status</code>为会话状态。</p>
+<p>注：系统或超级管理员在表中<code>user_id</code>为1，所以在查询的时候，<code>from_id</code>为1的会话是系统下发的通知。</p>
+<h1 id="发送私信"><a href="#发送私信" class="headerlink" title="发送私信"></a>发送私信</h1><ul>
 <li>发送私信<ul>
 <li>采用异步的方式发送私信。</li>
 <li>发送成功后刷新私信列表。</li>
@@ -158,7 +163,8 @@
 </ul>
 <h1 id="私信列表"><a href="#私信列表" class="headerlink" title="私信列表"></a>私信列表</h1><ul>
 <li>私信列表<ul>
-<li>查询当前用户的会话列表，每个会话只显示一条最新的私信。</li>
+<li>查询当前用户的会话列表</li>
+<li>每个会话只显示一条最新的私信。</li>
 <li>支持分页显示。</li>
 </ul>
 </li>
