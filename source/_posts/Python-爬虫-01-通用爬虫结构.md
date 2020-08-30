@@ -13,7 +13,7 @@ category: [编程笔记]
 
 用一个通用的网络爬虫结构来说明网络爬虫的基本工作流程：
 
-![img](images/Python-爬虫-01-通用爬虫结构.assets/clip_image001.png)
+![通用爬虫结构](http://i2.tiimg.com/726074/a2ce3704de8fd00d.png)
 
 网络爬虫的基本工作流程如下：
 
