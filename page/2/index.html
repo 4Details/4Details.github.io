@@ -117,39 +117,29 @@
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/28/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA26%20-%20%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD%E5%92%8C%E6%94%B6%E5%88%B0%E8%B5%9E%E5%AE%9E%E7%8E%B0/">
+                    <a href="/2019/08/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA40%20-%20%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/">
                         
-                        讨论社区26  -  点赞功能和收到赞实现
+                        讨论社区40  -  网站数据统计
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        开发时应考虑性能问题：很多用户对同一帖子或回复点赞。——数据存到Redis中，提升性能。
-为什么使用Redis实现这个功能？
-点赞
-点赞
-支持对帖子、评论点赞。
-第1次点赞，第2次取消点赞。
+                        UV(Unique Visitor)
+独立访客，需通过用户IP排重新统计数据。
+每次访问都要进行统计。
+HyperLoglog,性能好，且存储空间小。
 
-
-首页点赞数量
-统计帖子的点赞数量。
-
-
-详情页点赞数量
-统计点赞数量。
-显示点赞状态。
-
-
-
-无需...
+DAU(Daily Active User)
+日活跃用户，需通过用户ID排重新统计数据。
+访问过一次，则认为其为活跃。QW
+Bitmap,性...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-28</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-18</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -163,16 +153,214 @@
                         
                     </div>
                     
-                    <a href="/2019/07/28/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA26%20-%20%E7%82%B9%E8%B5%9E%E5%8A%9F%E8%83%BD%E5%92%8C%E6%94%B6%E5%88%B0%E8%B5%9E%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/08/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA40%20-%20%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/27/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA25%20-%20Spring%E6%95%B4%E5%90%88Redis/">
+                    <a href="/2019/08/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA39%20-%20Redis%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
                         
-                        讨论社区25  -  Spring整合Redis
+                        讨论社区39  -  Redis高级数据类型
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        HyperLoglog
+采用一种基数算法，用于完成独立总数的统计。
+占据空间小，无论统计多少个数据，只占12K的内存空间。
+不精确的统计算法，标准误差为0.81%。
+
+123456789101112131415161718192021222324252627282930313233343536...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-16</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/08/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA39%20-%20Redis%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/08/15/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA38%20-%20%E7%BD%AE%E9%A1%B6%E3%80%81%E5%8A%A0%E7%B2%BE%E3%80%81%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">
+                        
+                        讨论社区38  -  置顶、加精、删除功能实现
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        功能实现
+点击“置顶”、“加精”、“删除”，修改帖子的状态
+在DiscussPostMapper增加修改方法
+DiscussPostService、DiscussPostController相应增加方法，注意在Es中同步变化
+要在EventConsumer增加消费删帖事件
+修改html和js文...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-15</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/08/15/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA38%20-%20%E7%BD%AE%E9%A1%B6%E3%80%81%E5%8A%A0%E7%B2%BE%E3%80%81%E5%88%A0%E9%99%A4%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/08/13/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA37%20-%20%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">
+                        
+                        讨论社区37  -  权限控制
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        导入security
+1234&lt;dependency&gt;   &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;   &lt;artifactId&gt;spring-boot-starter-security&lt;/ar...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-13</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/08/13/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA37%20-%20%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/08/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA36%20-%20Spring%20Security/">
+                        
+                        讨论社区36  -  Spring Security
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        https://sping.io/projects/spring-security
+学习文档：http://www.spring4all.com/article/428
+
+介绍
+简介
+Spring Security是一个专注与为Java应用程序提供身份认证和授权的框架，它的强大之处在于它可以轻...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-12</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/08/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA36%20-%20Spring%20Security/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/08/10/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA35%20-%20%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">
+                        
+                        讨论社区35  -  社区搜索功能实现
+                    </a>
+                </h3>
+
+                <div class="home-article-content markdown-body">
+                    
+                        搜索服务
+将帖子保存至Elasticsearch服务器。
+对贴子实体类DiscussPost用注解进行相关配置
+从Mybatis取数据存入
+在dao层创建DiscussPostRepository类，继承ElasticsearchRepository接口即可，它集成了CRUD方法
+
+
+从Ela...
+                    
+                </div>
+
+                <div class="home-article-meta-info">
+                    <div class="article-date">
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-10</span>
+                        
+                            <span>
+                            <i class="fa fa-folder"></i>
+                            <ul>
+                                
+                                    <li><a
+                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
+                                
+                            </ul>
+                        </span>
+                        
+                    </div>
+                    
+                    <a href="/2019/08/10/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA35%20-%20%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                </div>
+            </li>
+        
+            <li class="home-article-item">
+
+                <h3 class="home-article-title">
+                    <a href="/2019/08/08/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA34%20-%20Spring%E6%95%B4%E5%90%88Elasticsearch/">
+                        
+                        讨论社区34  -  Spring整合Elasticsearch
                     </a>
                 </h3>
 
@@ -181,228 +369,15 @@
                         
 引入依赖
 
-spring-boot-starter-data-redis
+spring-boot-starter-data-elasticsearch
 
-12345&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&gt;spri...
+1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.boot&lt;/groupId&gt;    &lt;artifactId&...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-27</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                                    <li>| <a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/27/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA25%20-%20Spring%E6%95%B4%E5%90%88Redis/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/">
-                        
-                        找不到请求的.Net Framework Data Provider.可能没有安装.  错误
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        问题：这几天在装.NET 的开发环境，在装好VS2013和Oracle 11g之后，做了一个测试项目，运行调试没问题但是涉及到数据库相关操作，如新建数据集、连接数据库等在调试的时候则会出现如下错误：
-
-目前百度之后现存的解决方案：
-oracle odp.net 32位/64位版本的问题解决方案...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-27</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/25/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA24%20-%20Redis%E5%85%A5%E9%97%A8/">
-                        
-                        讨论社区24  -  Redis入门
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        
-Redis是一款基于键值对的NoSQL数据库，它的值支持多种数据结构：字符串(strings)、哈希(hashes)、列表(lists)、集合(sets)、有序集合(sorted sets)等。
-
-redis是一个key-value存储系统。和Memcached类似，它支持存储的value类...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-25</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                                    <li>| <a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/25/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA24%20-%20Redis%E5%85%A5%E9%97%A8/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/22/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA23%20-%20%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97/">
-                        
-                        讨论社区23  -  统一记录日志
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        需求：
-
-帖子模块
-评论模块
-消息模块
-
-AOP的概念：
-
-Aspect Oriented Programing，即面向方面（切面）编程。
-AOP是一种编程思想，是对OOP的补充，可以进一步提高编程的效率。
-
-
-AOP的术语：
-
-每一个Bean称为一个Target，目标对象上有多处可以织入代码...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-22</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                                    <li>| <a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/22/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA23%20-%20%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/20/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA22%20-%20%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8/">
-                        
-                        讨论社区22  -  统一处理异常
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        SpringBoot 的统一处理方法：
-在template文件夹下包含error文件夹，且内容为错误代码.html文件。 template/error/404.html
-
-@ControllerAdvice
-用于修饰类，表示该类是Controller的全局配置类。
-在此类中，可以对Contro...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-20</span>
-                        
-                            <span>
-                            <i class="fa fa-folder"></i>
-                            <ul>
-                                
-                                    <li><a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a></li>
-                                
-                                    <li>| <a
-                                                href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a></li>
-                                
-                            </ul>
-                        </span>
-                        
-                    </div>
-                    
-                    <a href="/2019/07/20/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA22%20-%20%E7%BB%9F%E4%B8%80%E8%AE%B0%E5%BD%95%E5%BC%82%E5%B8%B8/">阅读全文 <i class="fa fa-angle-right"></i></a>
-                </div>
-            </li>
-        
-            <li class="home-article-item">
-
-                <h3 class="home-article-title">
-                    <a href="/2019/07/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA21%20-%20%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E5%92%8C%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">
-                        
-                        讨论社区21  -  私信列表和发送私信
-                    </a>
-                </h3>
-
-                <div class="home-article-content markdown-body">
-                    
-                        表结构
-12345678910CREATE TABLE &#96;message&#96; (  &#96;id&#96; int NOT NULL AUTO_INCREMENT,  &#96;from_id&#96; int DEFAULT NULL,  &#96;to_id&#96; in...
-                    
-                </div>
-
-                <div class="home-article-meta-info">
-                    <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-18</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-08</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -416,57 +391,38 @@ AOP的术语：
                         
                     </div>
                     
-                    <a href="/2019/07/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA21%20-%20%E7%A7%81%E4%BF%A1%E5%88%97%E8%A1%A8%E5%92%8C%E5%8F%91%E9%80%81%E7%A7%81%E4%BF%A1/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/08/08/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA34%20-%20Spring%E6%95%B4%E5%90%88Elasticsearch/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA20%20-%20%E6%98%BE%E7%A4%BA%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/">
+                    <a href="/2019/08/06/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA33%20-%20Elasticsearch%E5%85%A5%E9%97%A8/">
                         
-                        讨论社区20  -  显示、添加评论
+                        讨论社区33  -  Elasticsearch入门
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        显示评论
-数据层
-
-根据实体查询一页评论数据。
-根据实体查询评论的数量。
-
-
-业务层
-
-处理查询评论的业务。
-处理查询评论数量的业务。
+                        https://elastic.co
+Elasticsearch简介
+一个分布式的、Restful风格（请求标准的描述）的搜索引擎。
+支持对各种类型的数据的检索。
+搜索速度快，可以提供实时的搜索服务。
+便于水平扩展，每秒可以处理PB级海量数据。
 
 
-表现层
 
-显示帖子详情数据时，同时显示该帖子所有的评论数据。
-
-层层封装
-
-
-添加评论
-数据层
-
-增加评论数据。
-修改帖子的评论数量。
-
-
-业务层
-
-处理...
+Elasticsearch术语
+索引（对应...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-16</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-06</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -480,37 +436,54 @@ AOP的术语：
                         
                     </div>
                     
-                    <a href="/2019/07/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA20%20-%20%E6%98%BE%E7%A4%BA%E3%80%81%E6%B7%BB%E5%8A%A0%E8%AF%84%E8%AE%BA/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/08/06/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA33%20-%20Elasticsearch%E5%85%A5%E9%97%A8/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/14/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA19%20-%20%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">
+                    <a href="/2019/08/05/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA32%20-%20%E5%8F%91%E9%80%81%E3%80%81%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">
                         
-                        讨论社区19  -  事务管理
+                        讨论社区32  -  发送、显示系统通知
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
-                        
-回顾
+                        发送系统通知
+触发事件
+评论后，发布通知
+点赞后，发布通知
+关注后，发布通知
 
-什么是事务
-事务是由N步数据库操作序列组成的逻辑执行单元，这系列操作要么全执行，要么全放弃执行。
+
+处理事件
+封装事件对象
+开发事件的生产者
+开发事件的消费者
 
 
-事务的特性（ACID）
-原子性（Atomicity）：事务是应用中不可再分的最小执行体。
-一致性（Consistency）：事务执行的结果，须使数据从一个一致性状态，变为另一个一致性...
+
+显示系统通知
+通知列表
+
+显示评论、点赞、关注三种类型的通知
+
+统一处理三种类型的通知
+
+通知详情
+
+分页显示某一类主题所包含的通知
+
+
+未读消息...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-14</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-05</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -524,40 +497,34 @@ AOP的术语：
                         
                     </div>
                     
-                    <a href="/2019/07/14/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA19%20-%20%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/08/05/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA32%20-%20%E5%8F%91%E9%80%81%E3%80%81%E6%98%BE%E7%A4%BA%E7%B3%BB%E7%BB%9F%E9%80%9A%E7%9F%A5/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
             <li class="home-article-item">
 
                 <h3 class="home-article-title">
-                    <a href="/2019/07/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA18%20-%20%E5%B8%96%E5%AD%90%E8%AF%A6%E6%83%85/">
+                    <a href="/2019/08/04/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA31%20-%20Spring%E6%95%B4%E5%90%88Kafka/">
                         
-                        讨论社区18  -  帖子详情
+                        讨论社区31  -  Spring整合Kafka
                     </a>
                 </h3>
 
                 <div class="home-article-content markdown-body">
                     
                         
-DiscussPostMapper       定义DAO方法
-
-DiscussPostService         业务层
-
-DiscussPostController    控制层
-
-index.html
-
-在帖子标题上增加访问详情页面的链接
+引入依赖
+spring-kafka
 
 
-discuss-detail.html...
+
+1234&lt;dependency&gt;    &lt;groupId&gt;org.springframework.kafka&lt;/groupId&gt;    &lt;artifactId&gt;spring-kafka&lt;/arti...
                     
                 </div>
 
                 <div class="home-article-meta-info">
                     <div class="article-date">
-                        <span><i class="fa fa-pencil-square-o"></i> 2019-07-12</span>
+                        <span><i class="fa fa-pencil-square-o"></i> 2019-08-04</span>
                         
                             <span>
                             <i class="fa fa-folder"></i>
@@ -571,7 +538,7 @@ discuss-detail.html...
                         
                     </div>
                     
-                    <a href="/2019/07/12/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA18%20-%20%E5%B8%96%E5%AD%90%E8%AF%A6%E6%83%85/">阅读全文 <i class="fa fa-angle-right"></i></a>
+                    <a href="/2019/08/04/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA31%20-%20Spring%E6%95%B4%E5%90%88Kafka/">阅读全文 <i class="fa fa-angle-right"></i></a>
                 </div>
             </li>
         
@@ -606,7 +573,7 @@ discuss-detail.html...
                 <div class="sidebar-tagcloud">
     <div class="tagcloud-label">标签云</div>
     <div class="tagcloud-container">
-        <a href="/tags/Net/" style="font-size: 1em;">.Net</a> <a href="/tags/Apache-Maven/" style="font-size: 1em;">Apache Maven</a> <a href="/tags/Bug%E8%B0%83%E8%AF%95/" style="font-size: 1em;">Bug调试</a> <a href="/tags/Cookie/" style="font-size: 1em;">Cookie</a> <a href="/tags/FATE/" style="font-size: 1.13em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.13em;">FL</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/HTTP/" style="font-size: 1em;">HTTP</a> <a href="/tags/HashMap/" style="font-size: 1em;">HashMap</a> <a href="/tags/JavaMailSender/" style="font-size: 1.13em;">JavaMailSender</a> <a href="/tags/Kafka/" style="font-size: 1.25em;">Kafka</a> <a href="/tags/MultipartFile/" style="font-size: 1em;">MultipartFile</a> <a href="/tags/Mybatis/" style="font-size: 1em;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 1em;">Mysql</a> <a href="/tags/NoSQL/" style="font-size: 1em;">NoSQL</a> <a href="/tags/Redis/" style="font-size: 1.38em;">Redis</a> <a href="/tags/SMTP/" style="font-size: 1em;">SMTP</a> <a href="/tags/Session/" style="font-size: 1em;">Session</a> <a href="/tags/Spring/" style="font-size: 1.5em;">Spring</a> <a href="/tags/Spring-AOP/" style="font-size: 1em;">Spring AOP</a> <a href="/tags/Spring-MVC/" style="font-size: 1em;">Spring MVC</a> <a href="/tags/SpringBoot/" style="font-size: 1.13em;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/ThreadLocal/" style="font-size: 1em;">ThreadLocal</a> <a href="/tags/Thymeleaf/" style="font-size: 1em;">Thymeleaf</a> <a href="/tags/Tire/" style="font-size: 1em;">Tire</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 1em;">事务</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" style="font-size: 1em;">事务管理</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/" style="font-size: 1em;">事务隔离</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">动态规划</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/" style="font-size: 1em;">回文串</a> <a href="/tags/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 1em;">图片验证码</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" style="font-size: 1em;">异常处理</a> <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 1.13em;">拦截器</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86/" style="font-size: 1em;">日志处理</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 1.13em;">注解</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
+        <a href="/tags/Net/" style="font-size: 1em;">.Net</a> <a href="/tags/Apache-Maven/" style="font-size: 1em;">Apache Maven</a> <a href="/tags/Bitmap/" style="font-size: 1em;">Bitmap</a> <a href="/tags/Bug%E8%B0%83%E8%AF%95/" style="font-size: 1em;">Bug调试</a> <a href="/tags/Cookie/" style="font-size: 1em;">Cookie</a> <a href="/tags/Elasticsearch/" style="font-size: 1.25em;">Elasticsearch</a> <a href="/tags/FATE/" style="font-size: 1.13em;">FATE</a> <a href="/tags/FL/" style="font-size: 1.13em;">FL</a> <a href="/tags/Git/" style="font-size: 1em;">Git</a> <a href="/tags/HTTP/" style="font-size: 1em;">HTTP</a> <a href="/tags/HashMap/" style="font-size: 1em;">HashMap</a> <a href="/tags/HyperLoglog/" style="font-size: 1.13em;">HyperLoglog</a> <a href="/tags/JavaMailSender/" style="font-size: 1.13em;">JavaMailSender</a> <a href="/tags/Kafka/" style="font-size: 1.25em;">Kafka</a> <a href="/tags/MultipartFile/" style="font-size: 1em;">MultipartFile</a> <a href="/tags/Mybatis/" style="font-size: 1em;">Mybatis</a> <a href="/tags/Mysql/" style="font-size: 1em;">Mysql</a> <a href="/tags/NoSQL/" style="font-size: 1em;">NoSQL</a> <a href="/tags/Redis/" style="font-size: 1.38em;">Redis</a> <a href="/tags/SMTP/" style="font-size: 1em;">SMTP</a> <a href="/tags/Session/" style="font-size: 1em;">Session</a> <a href="/tags/Spring/" style="font-size: 1.5em;">Spring</a> <a href="/tags/Spring-AOP/" style="font-size: 1em;">Spring AOP</a> <a href="/tags/Spring-MVC/" style="font-size: 1em;">Spring MVC</a> <a href="/tags/Spring-Security/" style="font-size: 1.25em;">Spring Security</a> <a href="/tags/SpringBoot/" style="font-size: 1.13em;">SpringBoot</a> <a href="/tags/SpringMVC/" style="font-size: 1em;">SpringMVC</a> <a href="/tags/ThreadLocal/" style="font-size: 1em;">ThreadLocal</a> <a href="/tags/Thymeleaf/" style="font-size: 1em;">Thymeleaf</a> <a href="/tags/Tire/" style="font-size: 1em;">Tire</a> <a href="/tags/%E4%BA%8B%E5%8A%A1/" style="font-size: 1em;">事务</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E7%AE%A1%E7%90%86/" style="font-size: 1em;">事务管理</a> <a href="/tags/%E4%BA%8B%E5%8A%A1%E9%9A%94%E7%A6%BB/" style="font-size: 1em;">事务隔离</a> <a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1em;">动态规划</a> <a href="/tags/%E5%9B%9E%E6%96%87%E4%B8%B2/" style="font-size: 1em;">回文串</a> <a href="/tags/%E5%9B%BE%E7%89%87%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 1em;">图片验证码</a> <a href="/tags/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" style="font-size: 1em;">异常处理</a> <a href="/tags/%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96/" style="font-size: 1em;">性能优化</a> <a href="/tags/%E6%8B%A6%E6%88%AA%E5%99%A8/" style="font-size: 1.13em;">拦截器</a> <a href="/tags/%E6%97%A5%E5%BF%97%E5%A4%84%E7%90%86/" style="font-size: 1em;">日志处理</a> <a href="/tags/%E6%B3%A8%E8%A7%A3/" style="font-size: 1.13em;">注解</a> <a href="/tags/%E7%88%AC%E8%99%AB/" style="font-size: 1em;">爬虫</a> <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/" style="font-size: 1em;">线程池</a> <a href="/tags/%E9%9A%8F%E7%AC%94/" style="font-size: 1em;">随笔</a>
     </div>
 </div>
 
@@ -615,7 +582,7 @@ discuss-detail.html...
                 <div class="sidebar-category">
     <div class="category-label">文章分类</div>
 
-    <ul class="post-category-list"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="post-category-list-count">1</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">3</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a><span class="post-category-list-count">2</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a><span class="post-category-list-count">32</span><ul class="post-category-list-child"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">6</span></li></ul></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="post-category-list-count">1</span></li></ul>
+    <ul class="post-category-list"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%AE%97%E6%B3%95%E7%AC%94%E8%AE%B0/">算法笔记</a><span class="post-category-list-count">1</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">3</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a><span class="post-category-list-count">2</span></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a><span class="post-category-list-count">46</span><ul class="post-category-list-child"><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a><span class="post-category-list-count">6</span></li></ul></li><li class="post-category-list-item"><a class="post-category-list-link" href="/categories/%E9%9A%8F%E7%AC%94/">随笔</a><span class="post-category-list-count">1</span></li></ul>
 
 </div>
 

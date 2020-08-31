@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区34  -  Spring整合Elasticsearch | 王旭的博客
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.1.1","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="王旭的博客" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            王旭的博客
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区34  -  Spring整合Elasticsearch</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-08-08 21:32:50
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Spring/">Spring</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/Elasticsearch/">Elasticsearch</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+        </div>
+
+        <div class="article-content markdown-body">
+            <ul>
+<li><p>引入依赖</p>
+<ul>
+<li>spring-boot-starter-data-elasticsearch</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-data-elasticsearch<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>配置Elasticsearch</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># ElasticSearch</span><br><span class="line">spring.data.elasticsearch.cluster-name=talking</span><br><span class="line"># 9200是http访问的端口，9300是tcp访问的端口</span><br><span class="line">spring.data.elasticsearch.cluster-nodes=127.0.0.1:9300</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>cluster-name、cluster-nodes（集群的名字，节点）</p>
+</li>
+<li><p>Redis和Es底层都用到了Netty,有启动冲突。解决：在TalkingApplication类加入初始化方法进行配置。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@PostConstruct</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 解决netty启动冲突问题</span></span><br><span class="line">    <span class="comment">// see Netty4Utils.setAvailableProcessors()</span></span><br><span class="line">    System.setProperty(<span class="string">&quot;es.set.netty.runtime.available.processors&quot;</span>, <span class="string">&quot;false&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<ul>
+<li>Spring Data Elasticsearch(调用API)<ul>
+<li><code>ElasticsearchTemplate</code>（集成了Es的CRUD方法）</li>
+<li><code>ElasticsearchRepository</code>（接口，底层为ElasticsearchTemplate，用起来更方便）</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 使用 ElasticsearchRepository</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSearchByRepository</span><span class="params">()</span></span>&#123;</span><br><span class="line">    SearchQuery searchQuery = <span class="keyword">new</span> NativeSearchQueryBuilder()</span><br><span class="line">    	.withQuery(QueryBuilders.multiMatchQuery(<span class="string">&quot;test&quot;</span>,<span class="string">&quot;title&quot;</span>,<span class="string">&quot;content&quot;</span>))</span><br><span class="line">    	.withSort(SortBuilders.fieldSort(<span class="string">&quot;type&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">    	.withSort(SortBuilders.fieldSort(<span class="string">&quot;score&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">    	.withSort(SortBuilders.fieldSort(<span class="string">&quot;createTime&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">    	.withPageable(PageRequest.of(<span class="number">0</span>,<span class="number">10</span>))</span><br><span class="line">    	.withHighlightFields(</span><br><span class="line">    		<span class="keyword">new</span> HighlightBuilder.Field(<span class="string">&quot;title&quot;</span>).preTags(<span class="string">&quot;&lt;em&gt;&quot;</span>).postTags(<span class="string">&quot;&lt;/em&gt;&quot;</span>),</span><br><span class="line">    		<span class="keyword">new</span> HighlightBuilder.Field(<span class="string">&quot;content&quot;</span>).preTags(<span class="string">&quot;&lt;em&gt;&quot;</span>).postTags(<span class="string">&quot;&lt;/em&gt;&quot;</span>)</span><br><span class="line">    	).build();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">// elasticTemplate.queryForPage(searchQuery, class, SearchResultMapper)</span></span><br><span class="line">    <span class="comment">// 底层获取得到了高亮显示的值, 但是没有返回.</span></span><br><span class="line">    Page&lt;DiscussPost&gt; page = discussPostRepository.search(searchQuery);</span><br><span class="line"></span><br><span class="line">    System.out.println(page.getTotalElements());</span><br><span class="line">    System.out.println(page.getTotalPages());</span><br><span class="line">    System.out.println(page.getNumber());</span><br><span class="line">    System.out.println(page.getSize());</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (DiscussPost post : page) &#123;</span><br><span class="line">    	System.out.println(post);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testSearchByTemplate</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	SearchQuery searchQuery = <span class="keyword">new</span> NativeSearchQueryBuilder()</span><br><span class="line">    	.withQuery(QueryBuilders.multiMatchQuery(<span class="string">&quot;互联网寒冬&quot;</span>, <span class="string">&quot;title&quot;</span>, <span class="string">&quot;content&quot;</span>))</span><br><span class="line">        .withSort(SortBuilders.fieldSort(<span class="string">&quot;type&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">         .withSort(SortBuilders.fieldSort(<span class="string">&quot;score&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">         .withSort(SortBuilders.fieldSort(<span class="string">&quot;createTime&quot;</span>).order(SortOrder.DESC))</span><br><span class="line">         .withPageable(PageRequest.of(<span class="number">0</span>, <span class="number">10</span>))</span><br><span class="line">         .withHighlightFields(</span><br><span class="line">                 <span class="keyword">new</span> HighlightBuilder.Field(<span class="string">&quot;title&quot;</span>).preTags(<span class="string">&quot;&lt;em&gt;&quot;</span>).postTags(<span class="string">&quot;&lt;/em&gt;&quot;</span>),</span><br><span class="line">                 <span class="keyword">new</span> HighlightBuilder.Field(<span class="string">&quot;content&quot;</span>).preTags(<span class="string">&quot;&lt;em&gt;&quot;</span>).postTags(<span class="string">&quot;&lt;/em&gt;&quot;</span>)</span><br><span class="line">          ).build();</span><br><span class="line"></span><br><span class="line">        Page&lt;DiscussPost&gt; page = elasticTemplate.queryForPage(searchQuery, DiscussPost.class, <span class="keyword">new</span> SearchResultMapper() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="keyword">public</span> &lt;T&gt; <span class="function">AggregatedPage&lt;T&gt; <span class="title">mapResults</span><span class="params">(SearchResponse response, Class&lt;T&gt; aClass, Pageable pageable)</span> </span>&#123;</span><br><span class="line">            SearchHits hits = response.getHits();</span><br><span class="line">            <span class="keyword">if</span> (hits.getTotalHits() &lt;= <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">                &#125;</span><br><span class="line">		   <span class="comment">//封装数据</span></span><br><span class="line">            List&lt;DiscussPost&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">            <span class="keyword">for</span> (SearchHit hit : hits) &#123;</span><br><span class="line">            DiscussPost post = <span class="keyword">new</span> DiscussPost();</span><br><span class="line"></span><br><span class="line">            String id = hit.getSourceAsMap().get(<span class="string">&quot;id&quot;</span>).toString();</span><br><span class="line">            post.setId(Integer.valueOf(id));</span><br><span class="line"></span><br><span class="line">            String userId = hit.getSourceAsMap().get(<span class="string">&quot;userId&quot;</span>).toString();</span><br><span class="line">            post.setUserId(Integer.valueOf(userId));</span><br><span class="line"></span><br><span class="line">            String title = hit.getSourceAsMap().get(<span class="string">&quot;title&quot;</span>).toString();</span><br><span class="line">            post.setTitle(title);</span><br><span class="line"></span><br><span class="line">            String content = hit.getSourceAsMap().get(<span class="string">&quot;content&quot;</span>).toString();</span><br><span class="line">            post.setContent(content);</span><br><span class="line"></span><br><span class="line">            String status = hit.getSourceAsMap().get(<span class="string">&quot;status&quot;</span>).toString();</span><br><span class="line">            post.setStatus(Integer.valueOf(status));</span><br><span class="line"></span><br><span class="line">            String createTime = hit.getSourceAsMap().get(<span class="string">&quot;createTime&quot;</span>).toString();</span><br><span class="line">            post.setCreateTime(<span class="keyword">new</span> Date(Long.valueOf(createTime)));</span><br><span class="line"></span><br><span class="line">            String commentCount = hit.getSourceAsMap().get(<span class="string">&quot;commentCount&quot;</span>).toString();</span><br><span class="line">            post.setCommentCount(Integer.valueOf(commentCount));</span><br><span class="line"></span><br><span class="line">            <span class="comment">// 处理高亮显示的结果</span></span><br><span class="line">            HighlightField titleField = hit.getHighlightFields().get(<span class="string">&quot;title&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (titleField != <span class="keyword">null</span>) &#123;</span><br><span class="line">            	post.setTitle(titleField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            HighlightField contentField = hit.getHighlightFields().get(<span class="string">&quot;content&quot;</span>);</span><br><span class="line">            <span class="keyword">if</span> (contentField != <span class="keyword">null</span>) &#123;</span><br><span class="line">            	post.setContent(contentField.getFragments()[<span class="number">0</span>].toString());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            list.add(post);</span><br><span class="line">         &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> AggregatedPageImpl(list, pageable,</span><br><span class="line">                        hits.getTotalHits(), response.getAggregations(), response.getScrollId(), hits.getMaxScore());</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="keyword">public</span> &lt;T&gt; <span class="function">T <span class="title">mapSearchHit</span><span class="params">(SearchHit searchHit, Class&lt;T&gt; aClass)</span> </span>&#123;</span><br><span class="line">            	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">            	&#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            System.out.println(page.getTotalElements());</span><br><span class="line">            System.out.println(page.getTotalPages());</span><br><span class="line">            System.out.println(page.getNumber());</span><br><span class="line">            System.out.println(page.getSize());</span><br><span class="line">            <span class="keyword">for</span> (DiscussPost post : page) &#123;</span><br><span class="line">                System.out.println(post);</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>匹配的结果是与高亮匹配相关的前后文，不会只高亮匹配显示所有text文本。</p>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/08/10/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA35%20-%20%E7%A4%BE%E5%8C%BA%E6%90%9C%E7%B4%A2%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区35  -  社区搜索功能实现</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/08/06/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA33%20-%20Elasticsearch%E5%85%A5%E9%97%A8/"
+                    >
+                        <span class="post-nav-title-item">讨论社区33  -  Elasticsearch入门</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            })
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.1.1</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量<span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
