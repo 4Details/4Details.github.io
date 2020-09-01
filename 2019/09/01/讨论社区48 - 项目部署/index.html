@@ -163,6 +163,17 @@
 <li>Putty(访问服务器的客户端)</li>
 </ul>
 <p><img src="https://i2.tiimg.com/726074/87e4a37ae38d5716.png" alt="项目部署框架"></p>
+<p><img src="https://i2.tiimg.com/726074/9849ba4bee8beff5.png" alt="浏览器访问过程"></p>
+<p>需要修改几处代码：</p>
+<p>application.properties context_path</p>
+<p>首页访问路径改为空（HomeController访问首页和global.js的context_path）</p>
+<p>项目打包为war，且文件名为ROOT</p>
+<p>另建开发和生产环境下使用的application-develop.properties、application-produce.properties和logback-spring-develop.xml、logback-spring-produce.xml，还需要在默认的application.properties中配置启用哪份文件配置。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Tomcat访问下面的文件，文件声明主启动文件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.boot.builder.SpringApplicationBuilder;</span><br><span class="line"><span class="keyword">import</span> org.springframework.boot.web.servlet.support.SpringBootServletInitializer;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">TalkingServletInitializer</span> <span class="keyword">extends</span> <span class="title">SpringBootServletInitializer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> SpringApplicationBuilder <span class="title">configure</span><span class="params">(SpringApplicationBuilder builder)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> builder.sources(TalkingApplication.class);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
         </div>
 

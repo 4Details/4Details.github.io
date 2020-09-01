@@ -222,8 +222,8 @@
 <li>增加行级锁之前，InnoDB会自动给表加意向锁；</li>
 <li>执行DML语句时，InnoDB会自动给数据加排他锁；</li>
 <li>执行DQL语句时<ul>
-<li>共享锁（S）：SELECT…FROM…WHERE…LOCK IN SHARE MODE;</li>
-<li>排他锁（X）：SELECT…FROM…WHERE…FOR UPDATE;</li>
+<li>共享锁（S）：<code>SELECT...FROM...WHERE...LOCK IN SHARE MODE</code>;</li>
+<li>排他锁（X）：<code>SELECT...FROM...WHERE...FOR UPDATE</code>;</li>
 <li>间隙锁（NK）：上述SQL采用范围条件时，InnoDB对不存在的记录自动增加间隙锁。</li>
 </ul>
 </li>
@@ -232,8 +232,8 @@
 <li><p>死锁</p>
 <ul>
 <li>场景<ul>
-<li>事务1：UPDATE T SET…WHERE ID=1;UPDATE T SET…WHERE ID=2;</li>
-<li>事务2：UPDATE T SET…WHERE ID=2;UPDATE T SET…WHERE ID=1;</li>
+<li>事务1：<code>UPDATE T SET...WHERE ID=1</code>;<code>UPDATE T SET...WHERE ID=2</code>;</li>
+<li>事务2：<code>UPDATE T SET...WHERE ID=2</code>;<code>UPDATE T SET...WHERE ID=1</code>;</li>
 </ul>
 </li>
 <li>解决方案<ul>
@@ -255,7 +255,7 @@
 <ul>
 <li><p>版本号机制</p>
 <ul>
-<li>UPDATE..SET…,VERSION=#{version+1} WHERE … AND … VERSION=#{version}</li>
+<li><code>UPDATE..SET...,VERSION=#&#123;version+1&#125; WHERE ... AND ... VERSION=#&#123;version&#125;</code></li>
 </ul>
 </li>
 <li><p>CAS算法（Compare and swap）</p>
@@ -341,12 +341,12 @@
 <li><p>淘汰策略</p>
 <p>当Redis占用内存超出最大限制（maxmemory）时，可采用如下策略（maxmemory-policy），让Redis淘汰一些数据，以腾出空间继续提供读写服务：</p>
 <ul>
-<li>noeviction：对可能导致增大内存的命令返回错误（大多数写命令，DEL除外）；</li>
-<li>volatile-ttl：在设置了过期时间的key中，选择剩余寿命（TTL）最短的key，将其淘汰；</li>
-<li>volatile-lru：在设置了过期时间的key中，选择最少使用的key（LRU），将其淘汰；</li>
-<li>volatile-random：在设置了过期时间的key中，随机选择一些key，将其淘汰；</li>
-<li>allkeys-lru：在所有的key中，选择最少使用的key（LRU），将其淘汰；</li>
-<li>allkeys-random：在所有的key中，随机选择一些key，将其淘汰；</li>
+<li><code>noeviction</code>：对可能导致增大内存的命令返回错误（大多数写命令，DEL除外）；</li>
+<li><code>volatile-ttl</code>：在设置了过期时间的key中，选择剩余寿命（TTL）最短的key，将其淘汰；</li>
+<li><code>volatile-lru</code>：在设置了过期时间的key中，选择最少使用的key（LRU），将其淘汰；</li>
+<li><code>volatile-random</code>：在设置了过期时间的key中，随机选择一些key，将其淘汰；</li>
+<li><code>allkeys-lru</code>：在所有的key中，选择最少使用的key（LRU），将其淘汰；</li>
+<li><code>allkeys-random</code>：在所有的key中，随机选择一些key，将其淘汰；</li>
 </ul>
 <p>LRU算法：</p>
 <ul>
@@ -509,6 +509,7 @@
 </ol>
 </li>
 </ul>
+<p><img src="https://i2.tiimg.com/726074/11ae5331320816e8.png" alt="AOP"></p>
 </li>
 <li><p>Spring MVC</p>
 <ol>
@@ -522,6 +523,7 @@
 </ol>
 </li>
 </ul>
+<p><img src="https://i2.tiimg.com/726074/e3caab7f1519c9e4.png" alt="Spring MVC"></p>
 
         </div>
 
