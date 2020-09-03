@@ -3778,7 +3778,7 @@ pre .javascript .function {
   position: fixed;
 }
 .sidebar-other {
-  position: fixed;
+  position: absolute;
 }
 .site-info-container {
   width: 100%;
@@ -3827,52 +3827,36 @@ pre .javascript .function {
   font-size: 16px;
   font-weight: 600;
   border-bottom: 1px solid var(--border-color);
-/*&::after {
-      content: '';
-      position: absolute;
-      top: 20px;
-      left: 20px;
-      width: 4px;
-      height: 20px;
-      background: #333;
-
-    }
-*/
-}
-.sidebar-category .category-list li.category-list-item {
-  padding: 6px;
-  margin-bottom: 10px;
-  border: 1px solid var(--border-color);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: all 0.3s ease;
-}
-.sidebar-category .category-list li.category-list-item:last-child {
-  margin-bottom: 0;
-}
-.sidebar-category .category-list li.category-list-item:hover {
-  box-shadow: 0 0 5px var(--border-color);
-  transform: scale(1.02);
-}
-.sidebar-category .category-list li.category-list-item .number {
-  font-size: 12px;
-  background: #87ceeb;
-  border-radius: 2px;
-  width: 22px;
-  height: 22px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--background-color);
 }
 .sidebar-category .post-category-list .post-category-list-item {
-  display: flex;
-  justify-content: space-between;
   margin-bottom: 10px;
 }
 .sidebar-category .post-category-list .post-category-list-item:last-child {
+  margin-bottom: 0;
+}
+.sidebar-category .post-category-list .post-category-list-item a.post-category-list-link:hover {
+  font-weight: 550;
+}
+.sidebar-category .post-category-list .post-category-list-item span.post-category-list-count {
+  float: right;
+}
+.sidebar-category .post-category-list .post-category-list-item span.post-category-list-count::before {
+  content: '（';
+}
+.sidebar-category .post-category-list .post-category-list-item span.post-category-list-count::after {
+  content: '）';
+}
+.sidebar-category .post-category-list .post-category-list-item ul.post-category-list-child {
+  margin-left: 10px;
+  margin-top: 15px;
+}
+.sidebar-category .post-category-list .post-category-list-item ul.post-category-list-child li {
+  margin-bottom: 10px;
+}
+.sidebar-category .post-category-list .post-category-list-item ul.post-category-list-child li::before {
+  content: '· ';
+}
+.sidebar-category .post-category-list .post-category-list-item ul.post-category-list-child li:last-child {
   margin-bottom: 0;
 }
 .sidebar-tags {

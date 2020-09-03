@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区41  -  任务执行和调度 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区41  -  任务执行和调度</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-08-20 21:43:15
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/%E7%BA%BF%E7%A8%8B%E6%B1%A0/">线程池</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>1.6k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>6 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="JDK线程池"><a href="#JDK线程池" class="headerlink" title="JDK线程池"></a>JDK线程池</h1><ul>
+<li>ExecutorService</li>
+<li>ScheduledExecutorService(可以执行定时任务)</li>
+</ul>
+<p>没有解决分布式部署的问题</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// JDK普通线程池</span></span><br><span class="line"><span class="keyword">private</span> ExecutorService executorService = Executors.newFixedThreadPool(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// JDK可执行定时任务的线程池</span></span><br><span class="line"><span class="keyword">private</span> ScheduledExecutorService scheduledExecutorService = Executors.newScheduledThreadPool(<span class="number">5</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 1. JDK 普通线程池</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testExecutorService</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			logger.debug(<span class="string">&quot;hello ExecutorService&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">	executorService.submit(task);</span><br><span class="line">	&#125;</span><br><span class="line">	sleep(<span class="number">10000</span>);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.JDK可执行定时任务的线程池</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testScheduledExecutorService</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">		<span class="meta">@Override</span></span><br><span class="line">		<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">			logger.debug(<span class="string">&quot;hello ScheduledExecutorService&quot;</span>);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;;</span><br><span class="line"></span><br><span class="line">	scheduledExecutorService.scheduleAtFixedRate(task, <span class="number">10000</span>, <span class="number">1000</span>, TimeUnit.MILLISECONDS);</span><br><span class="line"></span><br><span class="line">	sleep(<span class="number">10000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="Spring-线程池"><a href="#Spring-线程池" class="headerlink" title="Spring 线程池"></a>Spring 线程池</h1><ul>
+<li>ThreadPoolTaskExecutor</li>
+<li>ThreadPoolTaskScheduler（分布式环境可能出问题）</li>
+</ul>
+<h2 id="正常版"><a href="#正常版" class="headerlink" title="正常版"></a>正常版</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 3. Spring 普通线程池</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testThreadPoolExecutor</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            logger.debug(<span class="string">&quot;hello ThreadPoolExecutor&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        threadPoolExecutor.submit(task);</span><br><span class="line">    &#125;</span><br><span class="line">    sleep(<span class="number">10000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4. Spring 可执行定时任务的线程池</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testThreadPoolTaskScheduler</span><span class="params">()</span></span>&#123;</span><br><span class="line">    Runnable task = <span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            logger.debug(<span class="string">&quot;hello ThreadPoolTaskScheduler&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    Date date = <span class="keyword">new</span> Date(System.currentTimeMillis()+<span class="number">10000</span>);</span><br><span class="line">    threadPoolTaskScheduler.scheduleAtFixedRate(task, date, <span class="number">1000</span>);</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">10000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="简化版"><a href="#简化版" class="headerlink" title="简化版"></a>简化版</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//service中定义</span></span><br><span class="line"><span class="comment">// 让该方法在多线程环境下,被异步的调用.</span></span><br><span class="line"><span class="meta">@Async</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute1</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	logger.debug(<span class="string">&quot;execute1&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Scheduled(initialDelay = 10000, fixedRate = 1000)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">execute2</span><span class="params">()</span> </span>&#123;</span><br><span class="line">	logger.debug(<span class="string">&quot;execute2&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 5.Spring普通线程池(简化)</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testThreadPoolTaskExecutorSimple</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">10</span>; i++) &#123;</span><br><span class="line">        alphaService.execute1();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    sleep(<span class="number">10000</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 6.Spring定时任务线程池(简化)</span></span><br><span class="line"><span class="meta">@Test</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">testThreadPoolTaskSchedulerSimple</span><span class="params">()</span> </span>&#123;</span><br><span class="line">     sleep(<span class="number">30000</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="分布式定时任务"><a href="#分布式定时任务" class="headerlink" title="分布式定时任务"></a>分布式定时任务</h1><p><a target="_blank" rel="noopener" href="http://www.quartz-scheduler.org/">http://www.quartz-scheduler.org</a></p>
+<ul>
+<li><p>Spring Quartz（将数据存储到数据库，分布式时可以共享数据）</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework.boot<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-boot-starter-quartz<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>导入包之后还需要在数据库导入对应的表，可从<a target="_blank" rel="noopener" href="https://github.com/quartz-scheduler/quartz/tree/9f9e400733f51f7cb658e3319fc2c140ab8af938/quartz-core/src/main/resources/org/quartz/impl/jdbcjobstore">Quartz-Github</a>根据数据库类型选择下载。</p>
+<h2 id="Quartz-表介绍"><a href="#Quartz-表介绍" class="headerlink" title="Quartz 表介绍"></a>Quartz 表介绍</h2><p>​    Quartz的集群部署方案在架构上是分布式的，没有负责集中管理的节点，各节点间不会直接通信而是利用数据库锁的方式来实现集群环境下进行并发控制，所以Quartz集群化部署时必须要启用持久化配置。<br>分布式部署时需要保证各个节点的系统时间一致。Quartz默认提供了11张表。</p>
+<p>​    本文使用的是<code>tables_mysql_innodb.sql</code>文件，它显示指定了使用innodb存储引擎，另一个<code>tables_mysql.sql</code>文件没有指定具体的存储引擎；本文将对这些张表做简单介绍。</p>
+<p><img src="https://i2.tiimg.com/726074/5846948e32d2dc91.png" alt="Quartz包含的表"></p>
+<p>​    前面6张都是关于各种triggers的信息，后面包括job，日程表，调度节点状态，悲观锁等信息；相关表操作在类<code>StdJDBCDelegate</code>中，相关sql语句在<code>StdJDBCConstants</code>中；</p>
+</li>
+</ul>
+<p>  1.<code>qrtz_blob_triggers  </code></p>
+<p>  用户自定义的Trigger使用Blob类型进行trigger详细信息的存储（这样设计，JobStore更容易通用），非自定义的Trigger不会存放在此表中;</p>
+<p>  Quartz提供的triggers包括：<code>CronTrigger</code>，<code>CalendarIntervalTrigger</code>，  <code>DailyTimeIntervalTrigger</code>以及<code>SimpleTrigger</code>，这几个trigger信息会保存在后面的几张表中； </p>
+<p>   2.<code>qrtz_cron_triggers </code></p>
+<p>  存储<code>CronTrigger</code>的详细信息，这也是我们使用最多的触发器, 包括cron表达式，时区信息等; Spring对应的封装<code>CronTriggerFactoryBean</code></p>
+<p>  3.<code>qrtz_simple_triggers  </code></p>
+<p>  存储<code>SimpleTrigger</code>的详细信息,  包括重复次数，重复间隔时间和已经执行的次数等</p>
+<p>  Spring对应的封装<code>SimpleTriggerFactoryBean</code></p>
+<p>  4.<code>qrtz_simprop_triggers</code></p>
+<p>  存储<code>CalendarIntervalTrigger</code>和<code>DailyTimeIntervalTrigger</code>两种类型的触发器</p>
+<p>  Spring没有对应的封装类，可能因为这两种不常用，且基本上可以用<code>CronTrigger</code>来实现</p>
+<p>  5.<code>qrtz_triggers</code></p>
+<p>  存储所有Trigger(包括自带的4种Trigger和用户自定义Trigger)的通用动态信息；随着调度的触发<code>preFireTime</code>,<code>nextFireTime</code>, <code>triggerState</code>等都会相应的跟着变化</p>
+<p>  6.<code>qrtz_fired_triggers</code></p>
+<p>  存储即将触发或正在触发的trigger相关信息，trigger随着时间的推移状态发生变化，直到最后trigger执行完成，从表中被删除</p>
+<p>  7.<code>qrtz_job_details</code></p>
+<p>  存储jobDetails信息，相关信息在定义的时候指定，后续不会发生变化</p>
+<p>  8.<code>qrtz_calendars</code></p>
+<p>   Quartz为我们提供了日历的功能，可以自己定义多个时间段，可以控制触发器在这个时间段内不触发或者触发；实际使用中一般是用于定义多个不触发的时间段，用于排除特殊日期，节假日等</p>
+<p>  系统提供6种类型：<code>AnnualCalendar</code>，<code>CronCalendar</code>，<code>DailyCalendar</code>，<code>HolidayCalendar</code>，<code>MonthlyCalendar</code>，<code>WeeklyCalendar</code></p>
+<p>  9.<code>qrtz_paused_trigger_grps</code></p>
+<p>  存储已暂停的Trigger组的信息，批量暂停Trigger时用到，不常用。</p>
+<p>  10.<code>qrtz_scheduler_state</code></p>
+<p>  开启集群功能时，存储Scheduler实例名称，检查周期，各节点最后活跃时间等信息；Quartz集群下的故障转移就是借助这个表来实现的</p>
+<p>  11.<code>qrtz_locks</code></p>
+<p>  Quartz提供的锁表，为多个节点调度提供分布式锁，实现分布式调度，默认有2个锁：STATE_ACCESS 主要用在scheduler定期检查是否有失效节点的时候，保证只有一个节点去检查和处理；</p>
+<p>  TRIGGER_ACCESS 主要用在Trigger触发和触发完成的时候，保证只有一个节点去执行相应的逻辑， 当然也可以通过配置让Trigger在获取任务时也加锁</p>
+<ul>
+<li><p>核心调度接口<code>Scheduler</code></p>
+</li>
+<li><p>定义任务的接口Job的<code>execute</code>方法</p>
+</li>
+<li><p><code>Jobdetail</code>接口来配置Job的名字、组等</p>
+</li>
+<li><p><code>Trigger</code>接口配置Job的什么时候运行、运行频率</p>
+</li>
+<li><p><code>QuartzConfig</code>：配置 -&gt; 数据库 -&gt; 调用</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> com.wx.talking.quartz.AlphaJob;</span><br><span class="line"><span class="keyword">import</span> com.wx.talking.quartz.PostScoreRefreshJob;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobDataMap;</span><br><span class="line"><span class="keyword">import</span> org.quartz.JobDetail;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Bean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.JobDetailFactoryBean;</span><br><span class="line"><span class="keyword">import</span> org.springframework.scheduling.quartz.SimpleTriggerFactoryBean;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 配置 -&gt; 数据库 -&gt; 调用   //进第一次配置初始化到数据库</span></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuartzConfig</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// FactoryBean可简化Bean的实例化过程:</span></span><br><span class="line">    <span class="comment">// 1.通过FactoryBean封装Bean的实例化过程.</span></span><br><span class="line">    <span class="comment">// 2.将FactoryBean装配到Spring容器里.</span></span><br><span class="line">    <span class="comment">// 3.将FactoryBean注入给其他的Bean.</span></span><br><span class="line">    <span class="comment">// 4.该Bean得到的是FactoryBean所管理的对象实例.</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配置JobDetail</span></span><br><span class="line">    <span class="comment">// @Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JobDetailFactoryBean <span class="title">alphaJobDetail</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        JobDetailFactoryBean factoryBean = <span class="keyword">new</span> JobDetailFactoryBean();</span><br><span class="line">        factoryBean.setJobClass(AlphaJob.class);</span><br><span class="line">        factoryBean.setName(<span class="string">&quot;alphaJob&quot;</span>);</span><br><span class="line">        factoryBean.setGroup(<span class="string">&quot;alphaJobGroup&quot;</span>);</span><br><span class="line">        factoryBean.setDurability(<span class="keyword">true</span>); <span class="comment">// 设置任务是否持久保存</span></span><br><span class="line">        factoryBean.setRequestsRecovery(<span class="keyword">true</span>); <span class="comment">// 任务是否可恢复</span></span><br><span class="line">        <span class="keyword">return</span> factoryBean;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 配置Trigger(SimpleTriggerFactoryBean, CronTriggerFactoryBean)</span></span><br><span class="line">    <span class="comment">// @Bean</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> SimpleTriggerFactoryBean <span class="title">alphaTrigger</span><span class="params">(JobDetail alphaJobDetail)</span> </span>&#123;</span><br><span class="line">        SimpleTriggerFactoryBean factoryBean = <span class="keyword">new</span> SimpleTriggerFactoryBean();</span><br><span class="line">        factoryBean.setJobDetail(alphaJobDetail);</span><br><span class="line">        factoryBean.setName(<span class="string">&quot;alphaTrigger&quot;</span>);</span><br><span class="line">        factoryBean.setGroup(<span class="string">&quot;alphaTriggerGroup&quot;</span>);</span><br><span class="line">        factoryBean.setRepeatInterval(<span class="number">3000</span>);</span><br><span class="line">        factoryBean.setJobDataMap(<span class="keyword">new</span> JobDataMap());</span><br><span class="line">        <span class="keyword">return</span> factoryBean;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<ul>
+<li>FactoryBean可简化Bean的实例化过程:<ol>
+<li>通过FactoryBean封装Bean的实例化过程</li>
+<li>将FactoryBean装配到Spring容器里</li>
+<li>将FactoryBean注入给其他的Bean.</li>
+<li>该Bean得到的是FactoryBean所管理的对象实例.</li>
+</ol>
+</li>
+</ul>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/08/21/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA42%20-%20%E7%83%AD%E5%B8%96%E6%8E%92%E8%A1%8C/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区42  -  热帖排行</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/08/18/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA40%20-%20%E7%BD%91%E7%AB%99%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1/"
+                    >
+                        <span class="post-nav-title-item">讨论社区40  -  网站数据统计</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JDK%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">1.</span> <span class="nav-text">JDK线程池</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Spring-%E7%BA%BF%E7%A8%8B%E6%B1%A0"><span class="nav-number">2.</span> <span class="nav-text">Spring 线程池</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AD%A3%E5%B8%B8%E7%89%88"><span class="nav-number">2.1.</span> <span class="nav-text">正常版</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AE%80%E5%8C%96%E7%89%88"><span class="nav-number">2.2.</span> <span class="nav-text">简化版</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%86%E5%B8%83%E5%BC%8F%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="nav-number">3.</span> <span class="nav-text">分布式定时任务</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quartz-%E8%A1%A8%E4%BB%8B%E7%BB%8D"><span class="nav-number">3.1.</span> <span class="nav-text">Quartz 表介绍</span></a></li></ol></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

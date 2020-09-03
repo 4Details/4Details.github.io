@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区16  -  过滤敏感词 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区16  -  过滤敏感词</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-07-09 22:51:01
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Tire/">Tire</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>4 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <p>最直接：字符串替换 replace方法</p>
+<blockquote>
+<p>问题：敏感词数量多了怎么办？帖子字数很多怎么办？</p>
+<p>生产一般使用前缀树过滤敏感词</p>
+</blockquote>
+<ul>
+<li>前缀树</li>
+</ul>
+<ul>
+<li>名称：Trie、字典树、查找树</li>
+<li>特点：查找效率高，消耗内存大</li>
+<li>应用：字符串检索、词频统计、字符串排序等</li>
+</ul>
+<ol>
+<li>构建敏感词前缀树：根节点不存储任何信息，每一个敏感词从第一个字符开始，逐个加入树，前缀相同继续在其后添加字符，不相同则从根节点重新开启一颗子树，直至到叶子节点整个路径构成一个敏感词。</li>
+<li>敏感词过滤：<ol>
+<li>定义三个指针p，begin，end（p 指向树的根节点，begin 和 end 开始均指向待检测字符串的第一个位置）。</li>
+<li>开始begin、end与 p 同时移动，遇到前缀树中第一层结点，begin停止不动，p 与end 继续移动，检查p 与end 能否匹配至叶子节点，如果是则替换begin 与end之间所有字符，然后begin 与 end 移到敏感词后一个位置，且p 指针归位到根节点；不是则p归位到根节点，begin 向前移动1位，end后退至begin 的位置，重新开始判断。</li>
+<li>注意，在其中不是敏感词的字符存储到新的变量区不改变，敏感词用 特殊符号代替之后append到非敏感词后面。</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li><p>敏感词过滤器</p>
+<ul>
+<li>定义前缀树</li>
+<li>根据敏感词，初始化前缀树</li>
+<li>编写过滤敏感词的方法</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 前缀树</span></span><br><span class="line"><span class="keyword">private</span> <span class="class"><span class="keyword">class</span> <span class="title">TrieNode</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 关键词结束标识</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isKeywordEnd = <span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 子节点(key是下级字符,value是下级节点)</span></span><br><span class="line">    <span class="keyword">private</span> Map&lt;Character, TrieNode&gt; subNodes = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isKeywordEnd</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> isKeywordEnd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setKeywordEnd</span><span class="params">(<span class="keyword">boolean</span> keywordEnd)</span> </span>&#123;</span><br><span class="line">        isKeywordEnd = keywordEnd;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 添加子节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">addSubNode</span><span class="params">(Character c, TrieNode node)</span> </span>&#123;</span><br><span class="line">        subNodes.put(c, node);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 获取子节点</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> TrieNode <span class="title">getSubNode</span><span class="params">(Character c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> subNodes.get(c);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 替换符</span></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String REPLACEMENT = <span class="string">&quot;***&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 根节点</span></span><br><span class="line"><span class="keyword">private</span> TrieNode rootNode = <span class="keyword">new</span> TrieNode();</span><br><span class="line"></span><br><span class="line"><span class="meta">@PostConstruct</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> (</span><br><span class="line">        InputStream is = <span class="keyword">this</span>.getClass().getClassLoader().getResourceAsStream(<span class="string">&quot;sensitive-words.txt&quot;</span>); <span class="comment">//sensitive-words.txt存放在resource文件夹下，编译之后一定要在classes下能找到</span></span><br><span class="line">        BufferedReader reader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(is));</span><br><span class="line">    ) &#123;</span><br><span class="line">        String keyword;</span><br><span class="line">        <span class="keyword">while</span> ((keyword = reader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 添加到前缀树</span></span><br><span class="line">            <span class="keyword">this</span>.addKeyword(keyword);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;加载敏感词文件失败: &quot;</span> + e.getMessage());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将一个敏感词添加到前缀树中</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addKeyword</span><span class="params">(String keyword)</span> </span>&#123;</span><br><span class="line">    TrieNode tempNode = rootNode;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; keyword.length(); i++) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = keyword.charAt(i);</span><br><span class="line">        TrieNode subNode = tempNode.getSubNode(c);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (subNode == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 初始化子节点</span></span><br><span class="line">            subNode = <span class="keyword">new</span> TrieNode();</span><br><span class="line">            tempNode.addSubNode(c, subNode);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 指向子节点,进入下一轮循环</span></span><br><span class="line">        tempNode = subNode;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 设置结束标识</span></span><br><span class="line">        <span class="keyword">if</span> (i == keyword.length() - <span class="number">1</span>) &#123;</span><br><span class="line">            tempNode.setKeywordEnd(<span class="keyword">true</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">  * 过滤敏感词</span></span><br><span class="line"><span class="comment">  *</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@param</span> text 待过滤的文本</span></span><br><span class="line"><span class="comment">  * <span class="doctag">@return</span> 过滤后的文本</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">filter</span><span class="params">(String text)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (StringUtils.isBlank(text)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 指针1</span></span><br><span class="line">    TrieNode tempNode = rootNode;</span><br><span class="line">    <span class="comment">// 指针2</span></span><br><span class="line">    <span class="keyword">int</span> begin = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 指针3</span></span><br><span class="line">    <span class="keyword">int</span> position = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">// 结果</span></span><br><span class="line">    StringBuilder sb = <span class="keyword">new</span> StringBuilder();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (position &lt; text.length()) &#123;</span><br><span class="line">        <span class="keyword">char</span> c = text.charAt(position);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 跳过符号</span></span><br><span class="line">        <span class="keyword">if</span> (isSymbol(c)) &#123;</span><br><span class="line">            <span class="comment">// 若指针1处于根节点,将此符号计入结果,让指针2向下走一步</span></span><br><span class="line">            <span class="keyword">if</span> (tempNode == rootNode) &#123;</span><br><span class="line">                sb.append(c);</span><br><span class="line">                begin++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 无论符号在开头或中间,指针3都向下走一步</span></span><br><span class="line">            position++;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 检查下级节点</span></span><br><span class="line">        tempNode = tempNode.getSubNode(c);</span><br><span class="line">        <span class="keyword">if</span> (tempNode == <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="comment">// 以begin开头的字符串不是敏感词</span></span><br><span class="line">            sb.append(text.charAt(begin));</span><br><span class="line">            <span class="comment">// 进入下一个位置</span></span><br><span class="line">            position = ++begin;</span><br><span class="line">            <span class="comment">// 重新指向根节点</span></span><br><span class="line">            tempNode = rootNode;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (tempNode.isKeywordEnd()) &#123;</span><br><span class="line">            <span class="comment">// 发现敏感词,将begin~position字符串替换掉</span></span><br><span class="line">            sb.append(REPLACEMENT);</span><br><span class="line">            <span class="comment">// 进入下一个位置</span></span><br><span class="line">            begin = ++position;</span><br><span class="line">            <span class="comment">// 重新指向根节点</span></span><br><span class="line">            tempNode = rootNode;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 检查下一个字符</span></span><br><span class="line">            position++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 将最后一批字符计入结果 position提前到终点，但begin没有到终点</span></span><br><span class="line">    sb.append(text.substring(begin));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> sb.toString();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 判断是否为符号</span></span><br><span class="line"><span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isSymbol</span><span class="params">(Character c)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 0x2E80~0x9FFF 是东亚文字范围</span></span><br><span class="line">    <span class="keyword">return</span> !CharUtils.isAsciiAlphanumeric(c) &amp;&amp; (c &lt; <span class="number">0x2E80</span> || c &gt; <span class="number">0x9FFF</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/07/11/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA17%20-%20%E5%8F%91%E5%B8%83%E5%B8%96%E5%AD%90%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区17  -  发布帖子功能实现</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/07/08/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA15%20-%20%E6%A3%80%E6%9F%A5%E7%99%BB%E5%BD%95%E7%8A%B6%E6%80%81/"
+                    >
+                        <span class="post-nav-title-item">讨论社区15  -  检查登录状态</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

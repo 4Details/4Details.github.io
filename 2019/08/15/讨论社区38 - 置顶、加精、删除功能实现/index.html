@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区38  -  置顶、加精、删除功能实现 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区38  -  置顶、加精、删除功能实现</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-08-15 21:29:50
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Spring-Security/">Spring Security</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>1.1k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>5 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h1><ul>
+<li>点击“置顶”、“加精”、“删除”，修改帖子的状态<ul>
+<li>在DiscussPostMapper增加修改方法</li>
+<li>DiscussPostService、DiscussPostController相应增加方法，注意在Es中同步变化</li>
+<li>要在EventConsumer增加消费删帖事件</li>
+<li>修改html和js文件</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 修改帖子类型</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">updateType</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> type)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DiscussPostService</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">updateType</span><span class="params">(<span class="keyword">int</span> id, <span class="keyword">int</span> type)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> discussPostMapper.updateType(id, type);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// DiscussPostController，还需要出发Es中的事件</span></span><br><span class="line"><span class="comment">// 置顶</span></span><br><span class="line"><span class="meta">@RequestMapping(path = &quot;/top&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">setTop</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    discussPostService.updateType(id, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 触发发帖事件</span></span><br><span class="line">    Event event = <span class="keyword">new</span> Event()</span><br><span class="line">            .setTopic(TOPIC_PUBLISH)</span><br><span class="line">            .setUserId(hostHolder.getUser().getId())</span><br><span class="line">            .setEntityType(ENTITY_TYPE_POST)</span><br><span class="line">            .setEntityId(id);</span><br><span class="line">    eventProducer.fireEvent(event);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> TalkingUtil.getJSONString(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 加精</span></span><br><span class="line"><span class="meta">@RequestMapping(path = &quot;/wonderful&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">setWonderful</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    discussPostService.updateStatus(id, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 触发发帖事件</span></span><br><span class="line">    Event event = <span class="keyword">new</span> Event()</span><br><span class="line">            .setTopic(TOPIC_PUBLISH)</span><br><span class="line">            .setUserId(hostHolder.getUser().getId())</span><br><span class="line">            .setEntityType(ENTITY_TYPE_POST)</span><br><span class="line">            .setEntityId(id);</span><br><span class="line">    eventProducer.fireEvent(event);</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 删除</span></span><br><span class="line"><span class="meta">@RequestMapping(path = &quot;/delete&quot;, method = RequestMethod.POST)</span></span><br><span class="line"><span class="meta">@ResponseBody</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> String <span class="title">setDelete</span><span class="params">(<span class="keyword">int</span> id)</span> </span>&#123;</span><br><span class="line">    discussPostService.updateStatus(id, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 触发删帖事件</span></span><br><span class="line">    Event event = <span class="keyword">new</span> Event()</span><br><span class="line">            .setTopic(TOPIC_DELETE)</span><br><span class="line">            .setUserId(hostHolder.getUser().getId())</span><br><span class="line">            .setEntityType(ENTITY_TYPE_POST)</span><br><span class="line">            .setEntityId(id);</span><br><span class="line">    eventProducer.fireEvent(event);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> TalkingUtil.getJSONString(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// EventConsumer   Es中也要添加相应的消费事件</span></span><br><span class="line"><span class="comment">// 消费发帖事件</span></span><br><span class="line"><span class="meta">@KafkaListener(topics = &#123;TOPIC_PUBLISH&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handlePublishMessage</span><span class="params">(ConsumerRecord record)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (record == <span class="keyword">null</span> || record.value() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;消息的内容为空!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Event event = JSONObject.parseObject(record.value().toString(), Event.class);</span><br><span class="line">    <span class="keyword">if</span> (event == <span class="keyword">null</span>) &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;消息格式错误!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    DiscussPost post = discussPostService.findDiscussPostById(event.getEntityId());</span><br><span class="line">    elasticsearchService.saveDiscussPost(post);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 消费删帖事件</span></span><br><span class="line"><span class="meta">@KafkaListener(topics = &#123;TOPIC_DELETE&#125;)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handleDeleteMessage</span><span class="params">(ConsumerRecord record)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (record == <span class="keyword">null</span> || record.value() == <span class="keyword">null</span>) &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;消息的内容为空!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Event event = JSONObject.parseObject(record.value().toString(), Event.class);</span><br><span class="line">    <span class="keyword">if</span> (event == <span class="keyword">null</span>) &#123;</span><br><span class="line">        logger.error(<span class="string">&quot;消息格式错误!&quot;</span>);</span><br><span class="line">        <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    elasticsearchService.deleteDiscussPost(event.getEntityId());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h1><ul>
+<li>版主可以执行“置顶”、“加精”操作。管理员可以执行“删除”操作。<ul>
+<li>在SecurityConfig类下配置，置顶、加精、删除的访问权限。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.access.AccessDeniedException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.builders.HttpSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.builders.WebSecurity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.core.AuthenticationException;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.web.AuthenticationEntryPoint;</span><br><span class="line"><span class="keyword">import</span> org.springframework.security.web.access.AccessDeniedHandler;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SecurityConfig</span> <span class="keyword">extends</span> <span class="title">WebSecurityConfigurerAdapter</span> <span class="keyword">implements</span> <span class="title">TalkingConstant</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 忽略静态资源的拦截</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(WebSecurity web)</span> </span>&#123;</span><br><span class="line">        web.ignoring().antMatchers(<span class="string">&quot;/resources/**&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 根据角色权限，添加访问路径</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">configure</span><span class="params">(HttpSecurity http)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">        <span class="comment">// 授权</span></span><br><span class="line">        http.authorizeRequests()</span><br><span class="line">                .antMatchers(</span><br><span class="line">                        ...所有用户可访问路径...</span><br><span class="line">                )</span><br><span class="line">                .hasAnyAuthority(</span><br><span class="line">                        AUTHORITY_USER,</span><br><span class="line">                        AUTHORITY_ADMIN,</span><br><span class="line">                        AUTHORITY_MODERATOR</span><br><span class="line">                )</span><br><span class="line">                .antMatchers(</span><br><span class="line">                        ...版主可访问路径...</span><br><span class="line">                )</span><br><span class="line">                .hasAnyAuthority(</span><br><span class="line">                        AUTHORITY_MODERATOR</span><br><span class="line">                )</span><br><span class="line">                .antMatchers(</span><br><span class="line">                        ...管理员可访问路径...</span><br><span class="line">                )</span><br><span class="line">                .hasAnyAuthority(</span><br><span class="line">                        AUTHORITY_ADMIN</span><br><span class="line">                )</span><br><span class="line">                .anyRequest().permitAll()</span><br><span class="line">                .and().csrf().disable(); <span class="comment">//禁用csrf检查</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// 权限不够时的处理：未登录？权限不足？</span></span><br><span class="line">        http.exceptionHandling()</span><br><span class="line">                .authenticationEntryPoint(<span class="keyword">new</span> AuthenticationEntryPoint() &#123;</span><br><span class="line">                    <span class="comment">// 没有登录</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">commence</span><span class="params">(HttpServletRequest request, HttpServletResponse response, AuthenticationException e)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">                        <span class="comment">// 获取请求体的字符串</span></span><br><span class="line">                        String xRequestedWith = request.getHeader(<span class="string">&quot;x-requested-with&quot;</span>);</span><br><span class="line">                        <span class="comment">// 请求为xml，则为异步请求</span></span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;XMLHttpRequest&quot;</span>.equals(xRequestedWith)) &#123;</span><br><span class="line">                            response.setContentType(<span class="string">&quot;application/plain;charset=utf-8&quot;</span>);</span><br><span class="line">                            PrintWriter writer = response.getWriter();</span><br><span class="line">                            writer.write(TalkingUtil.getJSONString(<span class="number">403</span>, <span class="string">&quot;你还没有登录哦!&quot;</span>));</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;<span class="comment">// 普通请求</span></span><br><span class="line">                            response.sendRedirect(request.getContextPath() + <span class="string">&quot;/login&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;)</span><br><span class="line">                .accessDeniedHandler(<span class="keyword">new</span> AccessDeniedHandler() &#123;</span><br><span class="line">                    <span class="comment">// 权限不足</span></span><br><span class="line">                    <span class="meta">@Override</span></span><br><span class="line">                    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">handle</span><span class="params">(HttpServletRequest request, HttpServletResponse response, AccessDeniedException e)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">                        String xRequestedWith = request.getHeader(<span class="string">&quot;x-requested-with&quot;</span>);</span><br><span class="line">                        <span class="keyword">if</span> (<span class="string">&quot;XMLHttpRequest&quot;</span>.equals(xRequestedWith)) &#123;</span><br><span class="line">                            response.setContentType(<span class="string">&quot;application/plain;charset=utf-8&quot;</span>);</span><br><span class="line">                            PrintWriter writer = response.getWriter();</span><br><span class="line">                            writer.write(TalkingUtil.getJSONString(<span class="number">403</span>, <span class="string">&quot;你没有访问此功能的权限!&quot;</span>));</span><br><span class="line">                        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            response.sendRedirect(request.getContextPath() + <span class="string">&quot;/denied&quot;</span>);</span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Security底层默认会拦截/logout请求,进行退出处理.</span></span><br><span class="line">        <span class="comment">// 覆盖它默认的逻辑/logout,才能执行我们自己的退出代码.</span></span><br><span class="line">        http.logout().logoutUrl(<span class="string">&quot;/securitylogout&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="按钮显示"><a href="#按钮显示" class="headerlink" title="按钮显示"></a>按钮显示</h1><ul>
+<li><p>版主可以看到“置顶”、“加精”按钮。管理员可以看到“删除“按钮。</p>
+<ul>
+<li>导包：thymeleaf-extras-springsecurity5，thymeleaf对security的支持。</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.thymeleaf.extras<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>thymeleaf-extras-springsecurity5<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>  文档：<a target="_blank" rel="noopener" href="https://github.com/thymeleaf/thymeleaf-extras-springsecurity">https://github.com/thymeleaf/thymeleaf-extras-springsecurity</a></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- sec:authorize=&quot;hasAnyAuthority(&#x27;moderator&#x27;)&quot; 判断是否有权限 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-danger btn-sm&quot;</span> <span class="attr">id</span>=<span class="string">&quot;topBtn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">th:disabled</span>=<span class="string">&quot;$&#123;post.type==1&#125;&quot;</span> <span class="attr">sec:authorize</span>=<span class="string">&quot;hasAnyAuthority(&#x27;moderator&#x27;)&quot;</span>&gt;</span>置顶<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-danger btn-sm&quot;</span> <span class="attr">id</span>=<span class="string">&quot;wonderfulBtn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">th:disabled</span>=<span class="string">&quot;$&#123;post.status==1&#125;&quot;</span> <span class="attr">sec:authorize</span>=<span class="string">&quot;hasAnyAuthority(&#x27;moderator&#x27;)&quot;</span>&gt;</span>加精<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> <span class="attr">class</span>=<span class="string">&quot;btn btn-danger btn-sm&quot;</span> <span class="attr">id</span>=<span class="string">&quot;deleteBtn&quot;</span></span></span><br><span class="line"><span class="tag">        <span class="attr">th:disabled</span>=<span class="string">&quot;$&#123;post.status==2&#125;&quot;</span> <span class="attr">sec:authorize</span>=<span class="string">&quot;hasAnyAuthority(&#x27;admin&#x27;)&quot;</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/08/16/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA39%20-%20Redis%E9%AB%98%E7%BA%A7%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">讨论社区39  -  Redis高级数据类型</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/08/13/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA37%20-%20%E6%9D%83%E9%99%90%E6%8E%A7%E5%88%B6/"
+                    >
+                        <span class="post-nav-title-item">讨论社区37  -  权限控制</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8A%9F%E8%83%BD%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">功能实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86"><span class="nav-number">2.</span> <span class="nav-text">权限管理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8C%89%E9%92%AE%E6%98%BE%E7%A4%BA"><span class="nav-number">3.</span> <span class="nav-text">按钮显示</span></a></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

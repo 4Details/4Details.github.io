@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        讨论社区24  -  Redis入门 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">讨论社区24  -  Redis入门</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2019-07-25 23:12:41
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/">讨论社区项目</a>
+                    </li>
+                
+                    <li>
+                        &gt; <a href="/categories/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA%E9%A1%B9%E7%9B%AE/%E7%BC%96%E7%A8%8B%E7%AC%94%E8%AE%B0/">编程笔记</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Redis/">Redis</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/NoSQL/">NoSQL</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>2.5k 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>9 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <ul>
+<li><p><code>Redis</code>是一款基于键值对的<code>NoSQL</code>数据库，它的值支持多种数据结构：<br>字符串(strings)、哈希(hashes)、列表(lists)、集合(sets)、有序集合(sorted sets)等。</p>
+<blockquote>
+<p>redis是一个key-value存储系统。和Memcached类似，它支持存储的value类型相对更多，包括string(字符串)、list(链表)、set(集合)、zset(sorted set –有序集合)和hash（哈希类型）。</p>
+<p>这些数据类型都支持push/pop、add/remove及取交集并集和差集及更丰富的操作，而且这些操作都是原子性的。在此基础上，redis支持各种不同方式的排序。与memcached一样，为了保证效率，数据都是缓存在内存中。区别的是redis会周期性的把更新的数据写入磁盘或者把修改操作写入追加的记录文件，并且在此基础上实现了master-slave(主从)同步。</p>
+</blockquote>
+</li>
+<li><p><code>Redis</code>将所有的数据都存放在内存中，所以它的读写性能十分惊人。<br>同时，<code>Redis</code>还可以将内存中的数据以快照或日志的形式保存到硬盘上，以保证数据的安全性。</p>
+</li>
+</ul>
+<blockquote>
+<p>RDB  体积小。以快照形式存储到硬盘比较耗时，也会对进程造成阻塞，故可以隔一段时间执行</p>
+<p>AOF  可以实时存储。以日志形式存储<code>Redis</code>命令，是以追加日志的方式，占磁盘空间，恢复则是重复执行所有的记录命令，恢复速度较差。</p>
+</blockquote>
+<ul>
+<li><code>Redis</code>典型的应用场景包括：缓存、排行榜、计数器、社交网络、消息队列等。</li>
+</ul>
+<h1 id="Linux安装"><a href="#Linux安装" class="headerlink" title="Linux安装"></a>Linux安装</h1><ol>
+<li>官网下载压缩包安装  <a target="_blank" rel="noopener" href="http://download.redis.io/releases/redis-3.0.0.tar.gz">http://download.redis.io/releases/redis-3.0.0.tar.gz</a></li>
+<li>通过wget命令下载安装</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 下载之后解压到/usr/<span class="built_in">local</span>路径，进入redis文件夹，make编译安装</span></span><br><span class="line">wget http://download.redis.io/releases/redis-3.0.0.tar.gz</span><br><span class="line">tar -xvzf redis-3.0.0.tar.gz /usr/local</span><br><span class="line">cd redis-3.0.0</span><br><span class="line">make PREFIX=/usr/local/redis install</span><br></pre></td></tr></table></figure>
+
+<p>启动redis服务端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 前台启动，终端关闭，服务端就关闭</span></span><br><span class="line">./redis-server</span><br><span class="line"><span class="meta">#</span><span class="bash"> 推荐使用下面的后台启动，终端关闭，服务端不会关闭</span></span><br><span class="line"><span class="meta">#</span><span class="bash"> 修改conf文件，将daemonize改为yes</span></span><br><span class="line">vim /usr/local/redis/bin/redis.conf</span><br><span class="line"><span class="meta">#</span><span class="bash"> 启动redis服务端</span></span><br><span class="line">cd /usr/local/redis</span><br><span class="line">./bin/redis-server ./redis.conf</span><br></pre></td></tr></table></figure>
+
+<p>启动redis客户端</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/local/redis/bin/redis-cli </span><br></pre></td></tr></table></figure>
+
+<h1 id="Windows-安装"><a href="#Windows-安装" class="headerlink" title="Windows 安装"></a>Windows 安装</h1><p><a target="_blank" rel="noopener" href="https://github.com/microsoftarchive/redis/releases/download/win-3.2.100/Redis-x64-3.2.100.msi">https://github.com/microsoftarchive/redis/releases/download/win-3.2.100/Redis-x64-3.2.100.msi</a></p>
+<p>一路点击下一步即可安装，建议将安装路径添加到环境变量。</p>
+<p>cmd  <code>$ redis-cli</code>  启动redis客户端</p>
+<h1 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h1><h2 id="redis键值对的管理和操作"><a href="#redis键值对的管理和操作" class="headerlink" title="redis键值对的管理和操作"></a>redis键值对的管理和操作</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">1 DEL key</span><br><span class="line">该命令用于在 key 存在时删除 key。</span><br><span class="line">2 DUMP key</span><br><span class="line">序列化给定 key ，并返回被序列化的值。</span><br><span class="line">3 EXISTS key</span><br><span class="line">检查给定 key 是否存在。</span><br><span class="line">4 EXPIRE key seconds</span><br><span class="line">为给定 key 设置过期时间。</span><br><span class="line">5 EXPIREAT key timestamp</span><br><span class="line">EXPIREAT 的作用和 EXPIRE 类似，都用于为 key 设置过期时间。 不同在于 EXPIREAT 命令接受的时间参数是 UNIX 时间戳(unix timestamp)。</span><br><span class="line">6 PEXPIRE key milliseconds</span><br><span class="line">设置 key 的过期时间以毫秒计。</span><br><span class="line">7 PEXPIREAT key milliseconds-timestamp</span><br><span class="line">设置 key 过期时间的时间戳(unix timestamp) 以毫秒计</span><br><span class="line">8 KEYS pattern</span><br><span class="line">查找所有符合给定模式( pattern)的 key 。</span><br><span class="line">9 MOVE key db</span><br><span class="line">将当前数据库的 key 移动到给定的数据库 db 当中。</span><br><span class="line">10 PERSIST key</span><br><span class="line">移除 key 的过期时间，key 将持久保持。</span><br><span class="line">11 PTTL key</span><br><span class="line">以毫秒为单位返回 key 的剩余的过期时间。</span><br><span class="line">12 TTL key</span><br><span class="line">以秒为单位，返回给定 key 的剩余生存时间(TTL, time to live)。</span><br><span class="line">13 RANDOMKEY</span><br><span class="line">从当前数据库中随机返回一个 key 。</span><br><span class="line">14 RENAME key newkey</span><br><span class="line">修改 key 的名称</span><br><span class="line">15 RENAMENX key newkey</span><br><span class="line">仅当 newkey 不存在时，将 key 改名为 newkey 。</span><br><span class="line">16 TYPE key</span><br><span class="line">返回 key 所储存的值的类型。</span><br></pre></td></tr></table></figure>
+
+<h2 id="redis哈希的操作"><a href="#redis哈希的操作" class="headerlink" title="redis哈希的操作"></a>redis哈希的操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">HDEL key field2 [field2] </span><br><span class="line">删除一个或多个哈希表字段</span><br><span class="line">HEXISTS key field </span><br><span class="line">查看哈希表 key 中，指定的字段是否存在。</span><br><span class="line">HGET key field </span><br><span class="line">获取存储在哈希表中指定字段的值。</span><br><span class="line">HGETALL key </span><br><span class="line">获取在哈希表中指定 key 的所有字段和值</span><br><span class="line">HINCRBY key field increment </span><br><span class="line">为哈希表 key 中的指定字段的整数值加上增量 increment 。</span><br><span class="line">HINCRBYFLOAT key field increment </span><br><span class="line">为哈希表 key 中的指定字段的浮点数值加上增量 increment 。</span><br><span class="line">HKEYS key </span><br><span class="line">获取所有哈希表中的字段</span><br><span class="line">HLEN key </span><br><span class="line">获取哈希表中字段的数量</span><br><span class="line">HMGET key field1 [field2] </span><br><span class="line">获取所有给定字段的值</span><br><span class="line">HMSET key field1 value1 [field2 value2 ] </span><br><span class="line">同时将多个 field-value (域-值)对设置到哈希表 key 中。</span><br><span class="line">HSET key field value </span><br><span class="line">将哈希表 key 中的字段 field 的值设为 value 。</span><br><span class="line">HSETNX key field value </span><br><span class="line">只有在字段 field 不存在时，设置哈希表字段的值。</span><br><span class="line">HVALS key </span><br><span class="line">获取哈希表中所有值HSCAN key cursor [MATCH pattern] [COUNT count] 迭代哈希表中的键值对。</span><br></pre></td></tr></table></figure>
+
+<h2 id="redis列表操作"><a href="#redis列表操作" class="headerlink" title="redis列表操作"></a>redis列表操作</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">BLPOP key1 [key2 ] timeout </span><br><span class="line">移出并获取列表的第一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</span><br><span class="line">BRPOP key1 [key2 ] timeout </span><br><span class="line">移出并获取列表的最后一个元素， 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</span><br><span class="line">BRPOPLPUSH source destination timeout </span><br><span class="line">从列表中弹出一个值，将弹出的元素插入到另外一个列表中并返回它； 如果列表没有元素会阻塞列表直到等待超时或发现可弹出元素为止。</span><br><span class="line">LINDEX key index </span><br><span class="line">通过索引获取列表中的元素</span><br><span class="line">LINSERT key BEFORE|AFTER pivot value </span><br><span class="line">在列表的元素前或者后插入元素</span><br><span class="line">LLEN key </span><br><span class="line">获取列表长度</span><br><span class="line">LPOP key </span><br><span class="line">移出并获取列表的第一个元素</span><br><span class="line">LPUSH key value1 [value2] </span><br><span class="line">将一个或多个值插入到列表头部</span><br><span class="line">LPUSHX key value </span><br><span class="line">将一个或多个值插入到已存在的列表头部</span><br><span class="line">LRANGE key start stop </span><br><span class="line">获取列表指定范围内的元素</span><br><span class="line">LREM key count value </span><br><span class="line">移除列表元素</span><br><span class="line">LSET key index value </span><br><span class="line">通过索引设置列表元素的值</span><br><span class="line">LTRIM key start stop </span><br><span class="line">对一个列表进行修剪(trim)，就是说，让列表只保留指定区间内的元素，不在指定区间之内的元素都将被删除。</span><br><span class="line">RPOP key </span><br><span class="line">移除并获取列表最后一个元素</span><br><span class="line">RPOPLPUSH source destination </span><br><span class="line">移除列表的最后一个元素，并将该元素添加到另一个列表并返回</span><br><span class="line">RPUSH key value1 [value2] </span><br><span class="line">在列表中添加一个或多个值</span><br><span class="line">RPUSHX key value </span><br><span class="line">为已存在的列表添加值</span><br></pre></td></tr></table></figure>
+
+<h2 id="redis集合"><a href="#redis集合" class="headerlink" title="redis集合"></a>redis集合</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">SADD key member1 [member2] </span><br><span class="line">向集合添加一个或多个成员</span><br><span class="line">SCARD key </span><br><span class="line">获取集合的成员数</span><br><span class="line">SDIFF key1 [key2] </span><br><span class="line">返回给定所有集合的差集</span><br><span class="line">SDIFFSTORE destination key1 [key2] </span><br><span class="line">返回给定所有集合的差集并存储在 destination 中</span><br><span class="line">SINTER key1 [key2] </span><br><span class="line">返回给定所有集合的交集</span><br><span class="line">SINTERSTORE destination key1 [key2] </span><br><span class="line">返回给定所有集合的交集并存储在 destination 中</span><br><span class="line">SISMEMBER key member </span><br><span class="line">判断 member 元素是否是集合 key 的成员</span><br><span class="line">SMEMBERS key </span><br><span class="line">返回集合中的所有成员</span><br><span class="line">SMOVE source destination member </span><br><span class="line">将 member 元素从 source 集合移动到 destination 集合</span><br><span class="line">SPOP key </span><br><span class="line">移除并返回集合中的一个随机元素</span><br><span class="line">SRANDMEMBER key [count] </span><br><span class="line">返回集合中一个或多个随机数</span><br><span class="line">SREM key member1 [member2] </span><br><span class="line">移除集合中一个或多个成员</span><br><span class="line">SUNION key1 [key2] </span><br><span class="line">返回所有给定集合的并集</span><br><span class="line">SUNIONSTORE destination key1 [key2] </span><br><span class="line">所有给定集合的并集存储在 destination 集合中</span><br><span class="line">SSCAN key cursor [MATCH pattern] [COUNT count] </span><br><span class="line">迭代集合中的元素</span><br></pre></td></tr></table></figure>
+
+<h2 id="有序集合"><a href="#有序集合" class="headerlink" title="有序集合"></a>有序集合</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">ZADD key score1 member1 [score2 member2] </span><br><span class="line">向有序集合添加一个或多个成员，或者更新已存在成员的分数</span><br><span class="line">ZCARD key </span><br><span class="line">获取有序集合的成员数</span><br><span class="line">ZCOUNT key min max </span><br><span class="line">计算在有序集合中指定区间分数的成员数</span><br><span class="line">ZINCRBY key increment member </span><br><span class="line">有序集合中对指定成员的分数加上增量 increment</span><br><span class="line">ZINTERSTORE destination numkeys key [key ...] </span><br><span class="line">计算给定的一个或多个有序集的交集并将结果集存储在新的有序集合 key 中</span><br><span class="line">ZLEXCOUNT key min max </span><br><span class="line">在有序集合中计算指定字典区间内成员数量</span><br><span class="line">ZRANGE key start stop [WITHSCORES] </span><br><span class="line">通过索引区间返回有序集合成指定区间内的成员</span><br><span class="line">ZRANGEBYLEX key min max [LIMIT offset count] </span><br><span class="line">通过字典区间返回有序集合的成员</span><br><span class="line">ZRANGEBYSCORE key min max [WITHSCORES] [LIMIT] </span><br><span class="line">通过分数返回有序集合指定区间内的成员</span><br><span class="line">ZRANK key member </span><br><span class="line">返回有序集合中指定成员的索引</span><br><span class="line">ZREM key member [member ...] </span><br><span class="line">移除有序集合中的一个或多个成员</span><br><span class="line">ZREMRANGEBYLEX key min max </span><br><span class="line">移除有序集合中给定的字典区间的所有成员</span><br><span class="line">ZREMRANGEBYRANK key start stop </span><br><span class="line">移除有序集合中给定的排名区间的所有成员</span><br><span class="line">ZREMRANGEBYSCORE key min max </span><br><span class="line">移除有序集合中给定的分数区间的所有成员</span><br><span class="line">ZREVRANGE key start stop [WITHSCORES] </span><br><span class="line">返回有序集中指定区间内的成员，通过索引，分数从高到底</span><br><span class="line">ZREVRANGEBYSCORE key max min [WITHSCORES] </span><br><span class="line">返回有序集中指定分数区间内的成员，分数从高到低排序</span><br><span class="line">ZREVRANK key member </span><br><span class="line">返回有序集合中指定成员的排名，有序集成员按分数值递减(从大到小)排序</span><br><span class="line">ZSCORE key member </span><br><span class="line">返回有序集中，成员的分数值</span><br><span class="line">ZUNIONSTORE destination numkeys key [key ...] </span><br><span class="line">计算给定的一个或多个有序集的并集，并存储在新的 key 中</span><br><span class="line">ZSCAN key cursor [MATCH pattern] [COUNT count] </span><br><span class="line">迭代有序集合中的元素（包括元素成员和元素分值）</span><br></pre></td></tr></table></figure>
+
+<h2 id="redis事务的实现"><a href="#redis事务的实现" class="headerlink" title="redis事务的实现"></a>redis事务的实现</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">DISCARD </span><br><span class="line">取消事务，放弃执行事务块内的所有命令。</span><br><span class="line">EXEC </span><br><span class="line">执行所有事务块内的命令。</span><br><span class="line">MULTI </span><br><span class="line">标记一个事务块的开始。</span><br><span class="line">UNWATCH </span><br><span class="line">取消 WATCH 命令对所有 key 的监视。</span><br><span class="line">WATCH key [key ...] </span><br><span class="line">监视一个(或多个) key ，如果在事务执行之前这个(或这些) key 被其他命令所改动，那么事务将被打断。</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<p><a target="_blank" rel="noopener" href="https://redis.io/">https://redis.io</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoftarchive/redis">https://github.com/microsoftarchive/redis</a></p>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2019/07/27/%E6%89%BE%E4%B8%8D%E5%88%B0%E8%AF%B7%E6%B1%82%E7%9A%84-Net-Framework-Data-Provider-%E5%8F%AF%E8%83%BD%E6%B2%A1%E6%9C%89%E5%AE%89%E8%A3%85-%E9%94%99%E8%AF%AF/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">找不到请求的.Net Framework Data Provider.可能没有安装.  错误</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2019/07/22/%E8%AE%A8%E8%AE%BA%E7%A4%BE%E5%8C%BA23%20-%20%E7%BB%9F%E4%B8%80%E5%A4%84%E7%90%86%E6%97%A5%E5%BF%97/"
+                    >
+                        <span class="post-nav-title-item">讨论社区23  -  统一记录日志</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Linux%E5%AE%89%E8%A3%85"><span class="nav-number">1.</span> <span class="nav-text">Linux安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Windows-%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">Windows 安装</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8"><span class="nav-number">3.</span> <span class="nav-text">使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E9%94%AE%E5%80%BC%E5%AF%B9%E7%9A%84%E7%AE%A1%E7%90%86%E5%92%8C%E6%93%8D%E4%BD%9C"><span class="nav-number">3.1.</span> <span class="nav-text">redis键值对的管理和操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E5%93%88%E5%B8%8C%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="nav-number">3.2.</span> <span class="nav-text">redis哈希的操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E5%88%97%E8%A1%A8%E6%93%8D%E4%BD%9C"><span class="nav-number">3.3.</span> <span class="nav-text">redis列表操作</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E9%9B%86%E5%90%88"><span class="nav-number">3.4.</span> <span class="nav-text">redis集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%89%E5%BA%8F%E9%9B%86%E5%90%88"><span class="nav-number">3.5.</span> <span class="nav-text">有序集合</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#redis%E4%BA%8B%E5%8A%A1%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">3.6.</span> <span class="nav-text">redis事务的实现</span></a></li></ol></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>

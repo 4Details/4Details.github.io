@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        FATE 1.2 实践01-虚拟机安装 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">FATE 1.2 实践01-虚拟机安装</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-08-27 10:10:29
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/%E8%81%94%E9%82%A6%E5%AD%A6%E4%B9%A0/">联邦学习</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fa fa-tags"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/tags/FATE/">FATE</a>
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/FL/">FL</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>964 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>3 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <h1 id="创建虚拟机"><a href="#创建虚拟机" class="headerlink" title="创建虚拟机"></a>创建虚拟机</h1><h2 id="新建虚拟机"><a href="#新建虚拟机" class="headerlink" title="新建虚拟机"></a>新建虚拟机</h2><p>使用VMWare WorkStation创建虚拟机（单机版只需要一台机器，集群版可以使用多台机器，下面示例中创建了3台虚拟机，配置均为 300G，16GB，4核处理器，系统镜像为 CentOS-7-x86_64-DVD-1810版本）</p>
+<p><img src="https://i2.tiimg.com/726074/89154bfc28d26208.png" alt="新建向导1-创建包含空白硬盘的虚拟机"></p>
+<p><img src="https://i2.tiimg.com/726074/c4f11c041dc337fa.png" alt="新建向导2-选择客户机操作系统"></p>
+<p><img src="https://i2.tiimg.com/726074/1eaf6ac021042136.png" alt="新建向导3-命名虚拟机"></p>
+<p><img src="https://i2.tiimg.com/726074/18eb58f7c246e1bd.png" alt="新建向导4-指定磁盘容量">                         </p>
+<p><img src="https://i2.tiimg.com/726074/c61093a659d32204.png" alt="新建向导5-配置硬件信息"></p>
+<p><img src="https://i2.tiimg.com/726074/df56b15fb12f2fc7.png" alt="新建向导5-配置硬件信息"></p>
+<p><img src="https://i2.tiimg.com/726074/a5708abe2935f37f.png" alt="虚拟机详细配置信息">                                       </p>
+<h2 id="配置操作系统"><a href="#配置操作系统" class="headerlink" title="配置操作系统"></a>配置操作系统</h2><p><strong>启动虚拟机，加载并配置操作系统</strong></p>
+<p><img src="https://i2.tiimg.com/726074/65977403c14d0be4.png" alt="选择默认语言">     </p>
+<p>  <img src="https://i2.tiimg.com/726074/c1b032023a455553.png" alt="image.png"></p>
+<p>此处选择默认语言为【简体中文】，可以直接在编辑框输入快速查找。下一步则需要配置系统的软件、磁盘分区、网络等信息。</p>
+<p><img src="https://i2.tiimg.com/726074/07cb7dde684ceed8.png" alt="详细配置"></p>
+<p>这里需要注意的是详细配置图中标注的1，2，3。本例中详细的配置如下：</p>
+<p><img src="https://i2.tiimg.com/726074/bb8187d72aac1f05.png" alt="软件选择"></p>
+<p>本例中选择的是GNOME桌面版的软件，已选环境附加选项可根据实际需要选择，选择桌面版的可视化环境有利于后续工作的进行。下一步选择安装目标位置中提前配置分区信息尤为重要！！！</p>
+<p><img src="https://i2.tiimg.com/726074/6d2573e8d831fbfe.png" alt="安装目标位置1-重新配置分区"></p>
+<p><img src="https://i2.tiimg.com/726074/6660030a861e7450.png" alt="安装目标位置2-选择自动创建分区"></p>
+<p><img src="https://i2.tiimg.com/726074/775d2f261664aa51.png" alt="安装目标位置3-重新配置分区磁盘"></p>
+<p>官方文档中建议全部磁盘挂载到新建的用户app下，但是本例中将大部分磁盘挂载到root下，经实践是有效的，在如上配置之后点击【完成】即可完成磁盘及分区的配置。</p>
+<p>下一步需要提前完成系统网络信息的配置，如主机名、ip、子网掩码、DNS、路由信息等。</p>
+<p><img src="https://i2.tiimg.com/726074/0bbcf0a30e5a05c1.png" alt="配置主机名"></p>
+<p>点击【配置】可进入ip、DNS等信息的配置。</p>
+<p><img src="https://i2.tiimg.com/726074/34d23c8ae8c7d96f.png" alt="网络信息详细配置"></p>
+<p>在上图的配置中需要注意的是，选择手动配置IPv4的信息，地址、子网掩码和网关需要配置正确，本例中DNS服务器默认为网关信息。网络信息配置完成之后可以【开启】以太网的连接，详细的信息可以参考下图</p>
+<p><img src="https://i2.tiimg.com/726074/0a5251eeb05aaf7d.png" alt="网络配置详细信息"></p>
+<p>1，2，3的所有信息完成配置之后点击【开始安装】则进入安装界面，此时可以配置系统root用户的密码以及新建用户。本例中遵循官方文档创建用户 app，在“高级用户配置”中，编辑app分属apps组，用户id为6000。</p>
+<p><img src="https://i2.tiimg.com/726074/5b9f20707763fb54.png" alt="安装进度页面"></p>
+<p><img src="https://i2.tiimg.com/726074/211dae0da29db0ae.png" alt="高级用户配置"></p>
+<p>等待安装完成，【重启】即可进入桌面版的centos7 操作系统。</p>
+<p><img src="https://i2.tiimg.com/726074/c22f8cb802262f87.png" alt="等待重启"></p>
+<p>初始设置需要接受许可证协议，【完成配置】即可登录输入密码，进入系统。</p>
+<p><img src="https://i2.tiimg.com/726074/a634908789cbb0a6.png" alt="许可证"></p>
+<p><strong>提示：</strong>在实际操作中无需一步步按照上述步骤创建三台或多台虚拟机，在创建完成一台虚拟机之后可以通过“克隆”操作得到已安装完成的虚拟机镜像，这样可以在一定程度上节约创建虚拟机的时间，需要注意的是，在克隆完成启动之前需要重新生成机器的mac地址，否则会造成mac冲突。因为原始虚拟机使用的是静态地址，所以在开启之后需要重新对副本虚拟机分配静态IP。</p>
+<p>克隆方法主要是： 点击 <strong>虚拟机-管理-克隆</strong>  使用克隆虚拟机向导</p>
+<p><img src="https://i2.tiimg.com/726074/cc8c06ec9306c7ee.png" alt="克隆虚拟机01"></p>
+<p><img src="https://i2.tiimg.com/726074/f4890c2edc6d3bb3.png" alt="克隆虚拟机02"></p>
+<p><img src="https://i2.tiimg.com/726074/194b776452661499.png" alt="克隆虚拟机03"></p>
+<p><strong>重命名和选择虚拟机所在路径之后点击【完成】即可。</strong></p>
+<p><img src="https://i2.tiimg.com/726074/7231414d603260c5.png" alt="重命名01"></p>
+<p><img src="https://i2.tiimg.com/726074/589d26d2952860c4.png" alt="重命名02"></p>
+<p><img src="https://i2.tiimg.com/726074/bd2662f83ef7ce1c.png" alt="克隆完成后的配置"></p>
+<p>打开虚拟机之后可以使用  ifconfig查看网络配置信息</p>
+<p><img src="https://i2.tiimg.com/726074/dad1a31fd9322fe7.png" alt="查看配置"></p>
+<p>需要更改的信息有 主机名、ip</p>
+<p><img src="https://i2.tiimg.com/726074/50130340c6d9654e.png" alt="修改信息01"></p>
+<p>配置IP信息主要路径在 /etc/sysconfig/network-script，修改 sysconf-ens33 （ens33指的是网卡名称）</p>
+<p>文件中可以修改的有是否静态ip，PROTO一项改为 static  配置ip地址，子网掩码，网关，dns</p>
+<p><img src="https://i2.tiimg.com/726074/666c8e958b48f118.png" alt="修改信息02"></p>
+<p>进入编辑页面</p>
+<p><img src="https://i2.tiimg.com/726074/301894f1f186c05c.png" alt="修改信息03"></p>
+<p>半角状态输入’i’可修改内容，修改完成如下，Esc退出编辑，”:wq”可以保存修改并退出vim编辑页面</p>
+<p><img src="https://i2.tiimg.com/726074/769a038f27cc4adb.png" alt="修改信息04"></p>
+<p>重启之后使用ifconfig查看，ip已经改变。</p>
+<p>克隆得到另外两台虚拟机，按上述步骤修改IP信息之后即完成了本例中的创建虚拟机步骤。</p>
+<hr>
+
+        </div>
+
+        <div class="article-nav">
+            
+                <div class="article-prev">
+                    <a class="prev btn"
+                       rel="prev"
+                       href="/2020/08/27/FATE-1-2-%E5%AE%9E%E8%B7%B502%EF%BC%9AFATE%E9%9B%86%E7%BE%A4%E9%83%A8%E7%BD%B2/"
+                    >
+                        <i class="fa fa-chevron-left"></i> <span class="post-nav-title-item">FATE 1.2 实践02-FATE集群部署</span><span class="post-nav-item">上一篇</span>
+                    </a>
+                </div>
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2020/08/22/HashMap%E8%A7%A3%E6%9E%90/"
+                    >
+                        <span class="post-nav-title-item">HashMap解析</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">1.</span> <span class="nav-text">创建虚拟机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B0%E5%BB%BA%E8%99%9A%E6%8B%9F%E6%9C%BA"><span class="nav-number">1.1.</span> <span class="nav-text">新建虚拟机</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F"><span class="nav-number">1.2.</span> <span class="nav-text">配置操作系统</span></a></li></ol></li></ol>
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
