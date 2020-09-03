@@ -25,6 +25,8 @@
     <div class="page-top">
         <header class="header-wrapper">
 
+    <div class="header-progress"></div>
+
     <div class="header-content">
 
         <a class="logo-title" href="/">
@@ -140,7 +142,24 @@
                 enableQQ: true,
                 placeholder: '请提出您的宝贵建议~',
                 lang: 'zh-CN'.toLowerCase()
-            })
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
         </script>
     </div>
 
@@ -228,7 +247,7 @@
         <footer class="footer">
     <div class="info-container">
         <div class="copyright-info info-item">
-            &copy; 2020 <a href="/">wangxu</a>
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
         </div>
         <div class="theme-info info-item">
             由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
@@ -240,13 +259,14 @@
                 
                 
                     <span id="busuanzi_container_site_pv" style="display: none">
-                        总访问量<span id="busuanzi_value_site_pv"></span>
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
                     </span>
                 
             </div>
         
     </div>
 </footer>
+
     </div>
 </div>
 
@@ -277,6 +297,7 @@
         </div>
     </div>
 </div>
+
 
 
 <script src="/js/main.js"></script>
