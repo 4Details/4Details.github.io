@@ -67,12 +67,6 @@ local_search:
   # Preload the search data when the page loads.
   preload: false
 
-# Post word count
-# Dependencies: https://github.com/willin/hexo-wordcount
-post_wordcount:
-  wordcount: true  # word count, one article
-  min2read: true   # time to read, one article
-
 # Code Copy
 code_copy:
   enable: true
