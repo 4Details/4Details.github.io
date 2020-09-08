@@ -6,7 +6,7 @@ tags: [FATE,FL]
 top: 11
 ---
 
-# 配置FATE环境
+
 
 第1步中虚拟机创建完成后的信息如下
 
@@ -23,7 +23,7 @@ top: 11
 
 
 
-## 基础环境配置
+# 基础环境配置
 
 注意：不特殊说明，下面配置需要在所有机器上操作！！
 
@@ -44,7 +44,7 @@ chown -R app /data/projects
 
 
 
-### 关闭selinux
+## 关闭selinux
 
 确认是否已安装selinux
 
@@ -60,7 +60,7 @@ ubuntu系统执行：apt list --installed | grep selinux
 
 
 
-### 修改Linux最大打开文件数
+## 修改Linux最大打开文件数
 
 切换root用户，在limits.conf文件最后添加5、6行代码，保存退出
 
@@ -83,7 +83,7 @@ vim /etc/security/limits.conf
 
 
 
-### 添加主机映射
+## 添加主机映射
 
 
 
@@ -97,7 +97,7 @@ vim /etc/hosts
 
 
 
-### 关闭虚拟机防火墙
+## 关闭虚拟机防火墙
 
 在实际生产环境中需要配置防火墙端口规则！虚拟机环境下采用关闭防火墙的方式。
 
@@ -126,7 +126,7 @@ ufw disable
 ufw status
 ```
 
-### 给用户赋予sudo权限
+## 给用户赋予sudo权限
 
 root用户下对app用户赋予sudo权限
 
@@ -142,7 +142,7 @@ Defaults !env_reset
 
 
 
-### 配置ssh远程登录
+## 配置ssh远程登录
 
 **a. 切换app用户，生成rsa_id，具体根据下面代码**
 
@@ -198,13 +198,13 @@ Defaults !env_reset
 
 
 
-## FATE部署
+# FATE部署
 
 完成基础环境配置之后，接下来就需要部署FATE的运行环境，本例使用的是[Installation](https://github.com/FederatedAI/FATE/blob/master/cluster-deploy/doc/Fate-cluster_deployment_guide_install_zh.md)文档。
 
 下面的操作**只需在其中一台机器操作即可**，本例选用的是host 155。
 
-### 下载压缩包
+## 下载压缩包
 
 可以使用wget下载，也可以直接通过[链接](https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/FATE_install_v1.2.0.tar.gz)下载。
 
@@ -218,7 +218,7 @@ tar -xf FATE_install_v1.2.0.tar.gz
 
 ![下载压缩包并解压](https://s1.ax1x.com/2020/09/08/wQuhPe.png)
 
-### 修改configuration文件
+## 修改configuration文件
 
 可以使用vim，也可以直接使用编辑器打开并修改。
 
@@ -237,7 +237,7 @@ vi multinode_cluster_configuration.sh
 
 建议在部署之前拍摄快照，为防止在部署过程中因某些配置出错造成部署失败。
 
-### 部署
+## 部署
 
 本例中选择在各机器上部署所有组件。
 
@@ -267,7 +267,7 @@ bash deploy_cluster_multinode.sh binary fate_flow
 
 
 
-## 配置检查
+# 配置检查
 
 请务必详细对照检查！！！
 
