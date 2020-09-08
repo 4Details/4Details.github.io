@@ -10,7 +10,7 @@ category: [编程笔记]
 这几天在装.NET 的开发环境，在装好VS2013和Oracle 11g之后，做了一个测试项目，运行调试没问题
 但是涉及到数据库相关操作，如新建数据集、连接数据库等在调试的时候则会出现如下错误：
 
-![找不到请求的 .Net Framework Data Provider。可能没有安装](http://i2.tiimg.com/726074/54b8fbc50c3df7e7.jpg)
+![找不到请求的 .Net Framework Data Provider。可能没有安装](https://s1.ax1x.com/2020/09/08/wl3CF0.jpg)
 
 
 

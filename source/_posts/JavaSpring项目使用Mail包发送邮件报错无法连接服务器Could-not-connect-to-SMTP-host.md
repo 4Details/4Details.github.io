@@ -109,7 +109,7 @@ Caused by: sun.security.provider.certpath.SunCertPathBuilderException: unable to
 
 先放一张图，便于理解
 
-![http协议](images/787477-20161130221429021-1790360354.png)
+![http协议](https://s1.ax1x.com/2020/09/08/wQtrB4.png)
 
 #  解决方法
 

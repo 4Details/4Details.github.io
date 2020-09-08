@@ -67,7 +67,7 @@ https://elastic.co
   - 创建索引：curl -X PUT "localhost:9200/test"
   - 删除索引：curl -X DELETE "localhost:9200/test"
 
-![Es使用](https://i2.tiimg.com/726074/306767e7e8b55b5f.png)
+![Es使用](https://s1.ax1x.com/2020/09/08/wl18Zn.png)
 
 `PUT`,`GET`,`DELETE` HTTP协议的请求
 

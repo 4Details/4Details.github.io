@@ -56,7 +56,7 @@ ubuntu系统执行：apt list --installed | grep selinux
 
 
 
-![关闭selinux](https://i2.tiimg.com/726074/1ffc89980ab43ca6.png)
+![关闭selinux](https://s1.ax1x.com/2020/09/08/wQezx1.png)
 
 
 
@@ -77,7 +77,7 @@ vim /etc/security/limits.conf
 
 
 
-![编辑最大打开文件数](https://i2.tiimg.com/726074/2e80d0e8b8f1b7aa.png)
+![编辑最大打开文件数](https://s1.ax1x.com/2020/09/08/wQm9r6.md.png)
 
 
 
@@ -93,7 +93,7 @@ vim /etc/hosts
 
 
 
-![添加主机映射](https://i2.tiimg.com/726074/bb54d423f32f45d0.png)
+![添加主机映射](https://s1.ax1x.com/2020/09/08/wQuTKI.png)
 
 
 
@@ -113,7 +113,7 @@ systemctl status firewalld.service
 
 本例的环境是Centos系统
 
-![关闭虚拟机防火墙](https://i2.tiimg.com/726074/556664f24d0921ef.png)
+![关闭虚拟机防火墙](https://s1.ax1x.com/2020/09/08/wQmpKx.md.png)
 
 
 
@@ -148,7 +148,7 @@ Defaults !env_reset
 
 
 
-![配置ssh登录01](https://i2.tiimg.com/726074/42d5722d58facb33.png)
+![配置ssh登录01](https://s1.ax1x.com/2020/09/08/wQmCqK.png)
 
 
 
@@ -158,7 +158,7 @@ Defaults !env_reset
 
 **步骤如下：三台机器分别将id_rsa.pub 写入authorized_keys文件中并且赋予权限chomd 600**
 
-![配置ssh登录02](https://i2.tiimg.com/726074/e77b099df3e5875a.png)
+![配置ssh登录02](https://s1.ax1x.com/2020/09/08/wQmZRA.png)
 
 
 
@@ -168,7 +168,7 @@ Defaults !env_reset
 
 155->156
 
-![155->156](https://i2.tiimg.com/726074/adf0d7c9e4b5a816.png)
+![155->156](https://s1.ax1x.com/2020/09/08/wQmexI.png)
 
 
 
@@ -176,7 +176,7 @@ Defaults !env_reset
 
 
 
-![156->157](https://i2.tiimg.com/726074/1face612066cd770.png)
+![156->157](https://s1.ax1x.com/2020/09/08/wQu52d.png)
 
 
 
@@ -184,7 +184,7 @@ Defaults !env_reset
 
 
 
-![157->155 156](https://i2.tiimg.com/726074/76290d4bf4c62660.png)
+![157->155 156](https://s1.ax1x.com/2020/09/08/wQuIxA.md.png)
 
 
 
@@ -216,7 +216,7 @@ tar -xf FATE_install_v1.2.0.tar.gz
 
 
 
-![下载压缩包并解压](https://i2.tiimg.com/726074/c119001e5577e31a.png)
+![下载压缩包并解压](https://s1.ax1x.com/2020/09/08/wQuhPe.png)
 
 ### 修改configuration文件
 
@@ -229,9 +229,9 @@ vi multinode_cluster_configuration.sh
 
 
 
-![修改conf文件](https://i2.tiimg.com/726074/bd4b622b82444ffd.png)
+![修改conf文件](https://s1.ax1x.com/2020/09/08/wQu48H.png)
 
-![b端配置](https://i2.tiimg.com/726074/c2aca491c2558507.png)
+![b端配置](https://s1.ax1x.com/2020/09/08/wQuW5D.png)
 
 
 

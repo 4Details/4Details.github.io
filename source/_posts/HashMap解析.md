@@ -7,7 +7,7 @@ category: []
 
 #  HashMap继承体系
 
-![HashMap继承体系](http://i1.fuimg.com/726074/1872c236e17296ec.png)
+![HashMap继承体系](https://s1.ax1x.com/2020/09/08/wQ8ldI.png)
 
 ```java
 static class Node<K,V> implements Map.Entry<K,V> {
@@ -51,7 +51,7 @@ static class Node<K,V> implements Map.Entry<K,V> {
     }
 ```
 
-![1599012414328](HashMap解析.assets/1599012414328.png)
+![结构](https://s1.ax1x.com/2020/09/08/wQ1ek6.png)
 
 外层Node长度为16，当链表长度大于达到8且hash中所有元素达到64个，链表会升级为红黑树。
 

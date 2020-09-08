@@ -34,7 +34,7 @@ category: [讨论社区项目]
 
 浏览器访问服务器，首先访问的时Controller控制层，Controller调用业务层处理，处理完后将得到的数据封装到Model,传给视图层。
 
- ![Spring MVC官方架构](http://i2.tiimg.com/726074/da11245acd440b14.png)
+ ![Spring MVC官方架构](https://s1.ax1x.com/2020/09/08/wQNzz6.png)
 
 # Thymeleaf
 
