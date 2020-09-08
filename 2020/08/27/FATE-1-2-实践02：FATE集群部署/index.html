@@ -173,7 +173,7 @@
         </div>
 
         <div class="article-content markdown-body">
-            <h1 id="配置FATE环境"><a href="#配置FATE环境" class="headerlink" title="配置FATE环境"></a>配置FATE环境</h1><p>第1步中虚拟机创建完成后的信息如下</p>
+            <p>第1步中虚拟机创建完成后的信息如下</p>
 <table>
 <thead>
 <tr>
@@ -197,30 +197,30 @@
 </tr>
 </tbody></table>
 <p>下面的步骤均是依据官方文档操作 </p>
-<h2 id="基础环境配置"><a href="#基础环境配置" class="headerlink" title="基础环境配置"></a>基础环境配置</h2><p>注意：不特殊说明，下面配置需要在所有机器上操作！！</p>
+<h1 id="基础环境配置"><a href="#基础环境配置" class="headerlink" title="基础环境配置"></a>基础环境配置</h1><p>注意：不特殊说明，下面配置需要在所有机器上操作！！</p>
 <p>由于在创建虚拟机过程中已经更改过每台主机名、创建用户app，所以文档中hostname配置可跳过。</p>
 <p>root权限下创建文件夹  /data/projects 归属 app用户</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;切换root用户，-p创建文件夹，给app用户赋予权限</span><br><span class="line">su root</span><br><span class="line">mkdir -p &#x2F;data&#x2F;projects</span><br><span class="line">chown -R app &#x2F;data&#x2F;projects</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h3><p>确认是否已安装selinux</p>
+<h2 id="关闭selinux"><a href="#关闭selinux" class="headerlink" title="关闭selinux"></a>关闭selinux</h2><p>确认是否已安装selinux</p>
 <p>centos系统执行：rpm -qa | grep selinux</p>
 <p>ubuntu系统执行：apt list –installed | grep selinux</p>
 <p>如果已安装了selinux就执行：setenforce 0</p>
 <p><img src="https://s1.ax1x.com/2020/09/08/wQezx1.png" alt="关闭selinux"></p>
-<h3 id="修改Linux最大打开文件数"><a href="#修改Linux最大打开文件数" class="headerlink" title="修改Linux最大打开文件数"></a>修改Linux最大打开文件数</h3><p>切换root用户，在limits.conf文件最后添加5、6行代码，保存退出</p>
+<h2 id="修改Linux最大打开文件数"><a href="#修改Linux最大打开文件数" class="headerlink" title="修改Linux最大打开文件数"></a>修改Linux最大打开文件数</h2><p>切换root用户，在limits.conf文件最后添加5、6行代码，保存退出</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">su root</span><br><span class="line"></span><br><span class="line">vim &#x2F;etc&#x2F;security&#x2F;limits.conf</span><br><span class="line"></span><br><span class="line">* soft nofile 65536</span><br><span class="line">* hard nofile 65536</span><br></pre></td></tr></table></figure>
 
 
 
 <p><img src="https://s1.ax1x.com/2020/09/08/wQm9r6.md.png" alt="编辑最大打开文件数"></p>
-<h3 id="添加主机映射"><a href="#添加主机映射" class="headerlink" title="添加主机映射"></a>添加主机映射</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hosts</span><br></pre></td></tr></table></figure>
+<h2 id="添加主机映射"><a href="#添加主机映射" class="headerlink" title="添加主机映射"></a>添加主机映射</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;hosts</span><br></pre></td></tr></table></figure>
 
 
 
 <p><img src="https://s1.ax1x.com/2020/09/08/wQuTKI.png" alt="添加主机映射"></p>
-<h3 id="关闭虚拟机防火墙"><a href="#关闭虚拟机防火墙" class="headerlink" title="关闭虚拟机防火墙"></a>关闭虚拟机防火墙</h3><p>在实际生产环境中需要配置防火墙端口规则！虚拟机环境下采用关闭防火墙的方式。</p>
+<h2 id="关闭虚拟机防火墙"><a href="#关闭虚拟机防火墙" class="headerlink" title="关闭虚拟机防火墙"></a>关闭虚拟机防火墙</h2><p>在实际生产环境中需要配置防火墙端口规则！虚拟机环境下采用关闭防火墙的方式。</p>
 <p>如果是Centos系统：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">systemctl disable firewalld.service</span><br><span class="line">systemctl stop firewalld.service</span><br><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
 
@@ -229,12 +229,12 @@
 <p>如果是Ubuntu系统：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ufw disable</span><br><span class="line">ufw status</span><br></pre></td></tr></table></figure>
 
-<h3 id="给用户赋予sudo权限"><a href="#给用户赋予sudo权限" class="headerlink" title="给用户赋予sudo权限"></a>给用户赋予sudo权限</h3><p>root用户下对app用户赋予sudo权限</p>
+<h2 id="给用户赋予sudo权限"><a href="#给用户赋予sudo权限" class="headerlink" title="给用户赋予sudo权限"></a>给用户赋予sudo权限</h2><p>root用户下对app用户赋予sudo权限</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vim &#x2F;etc&#x2F;sudoers.d&#x2F;app</span><br><span class="line"></span><br><span class="line">app ALL&#x3D;(ALL) ALL</span><br><span class="line">app ALL&#x3D;(ALL) NOPASSWD: ALL</span><br><span class="line">Defaults !env_reset</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="配置ssh远程登录"><a href="#配置ssh远程登录" class="headerlink" title="配置ssh远程登录"></a>配置ssh远程登录</h3><p><strong>a. 切换app用户，生成rsa_id，具体根据下面代码</strong></p>
+<h2 id="配置ssh远程登录"><a href="#配置ssh远程登录" class="headerlink" title="配置ssh远程登录"></a>配置ssh远程登录</h2><p><strong>a. 切换app用户，生成rsa_id，具体根据下面代码</strong></p>
 <p><img src="https://s1.ax1x.com/2020/09/08/wQmCqK.png" alt="配置ssh登录01"></p>
 <p><strong>b.合并id_rsa_pub文件</strong></p>
 <p><strong>步骤如下：三台机器分别将id_rsa.pub 写入authorized_keys文件中并且赋予权限chomd 600</strong></p>
@@ -249,15 +249,15 @@
 <p><strong>上述完成之后即可通过  ssh usernane@ip访问某台虚拟机</strong></p>
 <p>需要注意的是，访问自身需要重新建立一个连接。</p>
 <p>建议配置以上步骤之后拍摄虚拟机快照，便于后期恢复重新部署。</p>
-<h2 id="FATE部署"><a href="#FATE部署" class="headerlink" title="FATE部署"></a>FATE部署</h2><p>完成基础环境配置之后，接下来就需要部署FATE的运行环境，本例使用的是<a target="_blank" rel="noopener" href="https://github.com/FederatedAI/FATE/blob/master/cluster-deploy/doc/Fate-cluster_deployment_guide_install_zh.md">Installation</a>文档。</p>
+<h1 id="FATE部署"><a href="#FATE部署" class="headerlink" title="FATE部署"></a>FATE部署</h1><p>完成基础环境配置之后，接下来就需要部署FATE的运行环境，本例使用的是<a target="_blank" rel="noopener" href="https://github.com/FederatedAI/FATE/blob/master/cluster-deploy/doc/Fate-cluster_deployment_guide_install_zh.md">Installation</a>文档。</p>
 <p>下面的操作<strong>只需在其中一台机器操作即可</strong>，本例选用的是host 155。</p>
-<h3 id="下载压缩包"><a href="#下载压缩包" class="headerlink" title="下载压缩包"></a>下载压缩包</h3><p>可以使用wget下载，也可以直接通过<a target="_blank" rel="noopener" href="https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/FATE_install_v1.2.0.tar.gz">链接</a>下载。</p>
+<h2 id="下载压缩包"><a href="#下载压缩包" class="headerlink" title="下载压缩包"></a>下载压缩包</h2><p>可以使用wget下载，也可以直接通过<a target="_blank" rel="noopener" href="https://webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com/FATE_install_v1.2.0.tar.gz">链接</a>下载。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;data&#x2F;projects</span><br><span class="line">wget https:&#x2F;&#x2F;webank-ai-1251170195.cos.ap-guangzhou.myqcloud.com&#x2F;FATE_install_v1.2.0.tar.gz</span><br><span class="line">tar -xf FATE_install_v1.2.0.tar.gz</span><br></pre></td></tr></table></figure>
 
 
 
 <p><img src="https://s1.ax1x.com/2020/09/08/wQuhPe.png" alt="下载压缩包并解压"></p>
-<h3 id="修改configuration文件"><a href="#修改configuration文件" class="headerlink" title="修改configuration文件"></a>修改configuration文件</h3><p>可以使用vim，也可以直接使用编辑器打开并修改。</p>
+<h2 id="修改configuration文件"><a href="#修改configuration文件" class="headerlink" title="修改configuration文件"></a>修改configuration文件</h2><p>可以使用vim，也可以直接使用编辑器打开并修改。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd &#x2F;data&#x2F;projects&#x2F;FATE&#x2F;cluster-deploy&#x2F;script</span><br><span class="line">vi multinode_cluster_configuration.sh</span><br></pre></td></tr></table></figure>
 
 
@@ -265,7 +265,7 @@
 <p><img src="https://s1.ax1x.com/2020/09/08/wQu48H.png" alt="修改conf文件"></p>
 <p><img src="https://s1.ax1x.com/2020/09/08/wQuW5D.png" alt="b端配置"></p>
 <p>建议在部署之前拍摄快照，为防止在部署过程中因某些配置出错造成部署失败。</p>
-<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><p>本例中选择在各机器上部署所有组件。</p>
+<h2 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h2><p>本例中选择在各机器上部署所有组件。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cd FATE&#x2F;cluster-deploy&#x2F;scripts</span><br><span class="line"># 部署所有组件</span><br><span class="line">bash deploy_cluster_multinode.sh binary all </span><br><span class="line"># 只部署部分组件(可选：jdk python mysql redis fate_flow federatedml fateboard proxy federation roll meta-service egg)：</span><br><span class="line">bash deploy_cluster_multinode.sh binary fate_flow</span><br></pre></td></tr></table></figure>
 
 
@@ -275,7 +275,7 @@
 <p>-———————————————————————————————————————-</p>
 <p>（部署时间暂未统计，时间需要2-4个小时，记录下了部署过程中终端产生的日志）</p>
 <p>此处为语雀文档，点击链接查看：<a target="_blank" rel="noopener" href="https://www.yuque.com/u190689/qoiq3w/seeq38">https://www.yuque.com/u190689/qoiq3w/seeq38</a></p>
-<h2 id="配置检查"><a href="#配置检查" class="headerlink" title="配置检查"></a>配置检查</h2><p>请务必详细对照检查！！！</p>
+<h1 id="配置检查"><a href="#配置检查" class="headerlink" title="配置检查"></a>配置检查</h1><p>请务必详细对照检查！！！</p>
 <p>到各个目标服务器上进行检查对应模块的配置是否准确，每个模块的对应配置文件所在路径可在此配置文件下查看，参考：<a target="_blank" rel="noopener" href="https://github.com/FederatedAI/FATE/blob/master/cluster-deploy/doc/configuration.md">https://github.com/FederatedAI/FATE/blob/master/cluster-deploy/doc/configuration.md</a></p>
 <p>至此，FATE v1.2的安装部署全部结束，接下来测试环境。</p>
 <p>建议部署成功之后拍摄快照，便于将来找到还原点。</p>
@@ -361,7 +361,7 @@
     <div class="sidebar sidebar-post fade-in-down-animation">
         <div class="post-toc-wrap">
     <div class="post-toc">
-        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEFATE%E7%8E%AF%E5%A2%83"><span class="nav-number">1.</span> <span class="nav-text">配置FATE环境</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">基础环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%ADselinux"><span class="nav-number">1.1.1.</span> <span class="nav-text">关闭selinux</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Linux%E6%9C%80%E5%A4%A7%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%95%B0"><span class="nav-number">1.1.2.</span> <span class="nav-text">修改Linux最大打开文件数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA%E6%98%A0%E5%B0%84"><span class="nav-number">1.1.3.</span> <span class="nav-text">添加主机映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">1.1.4.</span> <span class="nav-text">关闭虚拟机防火墙</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%BB%99%E7%94%A8%E6%88%B7%E8%B5%8B%E4%BA%88sudo%E6%9D%83%E9%99%90"><span class="nav-number">1.1.5.</span> <span class="nav-text">给用户赋予sudo权限</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-number">1.1.6.</span> <span class="nav-text">配置ssh远程登录</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#FATE%E9%83%A8%E7%BD%B2"><span class="nav-number">1.2.</span> <span class="nav-text">FATE部署</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-number">1.2.1.</span> <span class="nav-text">下载压缩包</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9configuration%E6%96%87%E4%BB%B6"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改configuration文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">1.2.3.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="nav-number">1.3.</span> <span class="nav-text">配置检查</span></a></li></ol></li></ol>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE"><span class="nav-number">1.</span> <span class="nav-text">基础环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%ADselinux"><span class="nav-number">1.1.</span> <span class="nav-text">关闭selinux</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9Linux%E6%9C%80%E5%A4%A7%E6%89%93%E5%BC%80%E6%96%87%E4%BB%B6%E6%95%B0"><span class="nav-number">1.2.</span> <span class="nav-text">修改Linux最大打开文件数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B7%BB%E5%8A%A0%E4%B8%BB%E6%9C%BA%E6%98%A0%E5%B0%84"><span class="nav-number">1.3.</span> <span class="nav-text">添加主机映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E9%97%AD%E8%99%9A%E6%8B%9F%E6%9C%BA%E9%98%B2%E7%81%AB%E5%A2%99"><span class="nav-number">1.4.</span> <span class="nav-text">关闭虚拟机防火墙</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%99%E7%94%A8%E6%88%B7%E8%B5%8B%E4%BA%88sudo%E6%9D%83%E9%99%90"><span class="nav-number">1.5.</span> <span class="nav-text">给用户赋予sudo权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%85%8D%E7%BD%AEssh%E8%BF%9C%E7%A8%8B%E7%99%BB%E5%BD%95"><span class="nav-number">1.6.</span> <span class="nav-text">配置ssh远程登录</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FATE%E9%83%A8%E7%BD%B2"><span class="nav-number">2.</span> <span class="nav-text">FATE部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B8%8B%E8%BD%BD%E5%8E%8B%E7%BC%A9%E5%8C%85"><span class="nav-number">2.1.</span> <span class="nav-text">下载压缩包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9configuration%E6%96%87%E4%BB%B6"><span class="nav-number">2.2.</span> <span class="nav-text">修改configuration文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2"><span class="nav-number">2.3.</span> <span class="nav-text">部署</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%85%8D%E7%BD%AE%E6%A3%80%E6%9F%A5"><span class="nav-number">3.</span> <span class="nav-text">配置检查</span></a></li></ol>
     </div>
 </div>
     </div>
