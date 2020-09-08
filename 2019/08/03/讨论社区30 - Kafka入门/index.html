@@ -192,10 +192,10 @@
 <p>windows 启动zookeeper和kafka（windows下启动报错，可以尝试直接删除日志文件夹重新启动）</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">zookeeper-server-start.bat d:\software\kafka_2.12-2.3.0\config\zookeeper.properties</span><br><span class="line"></span><br><span class="line">kafka-server-start.bat d:\software\kafka_2.12-2.3.0\config\server.properties</span><br></pre></td></tr></table></figure>
 
-<p><img src="http://i2.tiimg.com/726074/f09da785476dd516.jpg" alt="windows启动zookeeper"></p>
-<p><img src="http://i2.tiimg.com/726074/6e268e5245a0e8f8.jpg" alt="window启动kafka"></p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wl1ZIP.jpg" alt="windows启动zookeeper"></p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wl1Vat.jpg" alt="window启动kafka"></p>
 <p>创建一个test主题 分区</p>
-<p><img src="http://i2.tiimg.com/726074/aa14267742462333.png" alt="1598792421476"></p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wl1iKH.md.png" alt="创建test主题 分区"></p>
 <p>查询是否创建成功</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">D:\software\kafka_2.12-2.3.0\bin\windows&gt;kafka-topics.bat --list --bootstrap-server localhost:9092</span><br><span class="line">test</span><br></pre></td></tr></table></figure>
 

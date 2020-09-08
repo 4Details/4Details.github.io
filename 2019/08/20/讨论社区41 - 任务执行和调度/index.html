@@ -198,7 +198,7 @@
 <p>导入包之后还需要在数据库导入对应的表，可从<a target="_blank" rel="noopener" href="https://github.com/quartz-scheduler/quartz/tree/9f9e400733f51f7cb658e3319fc2c140ab8af938/quartz-core/src/main/resources/org/quartz/impl/jdbcjobstore">Quartz-Github</a>根据数据库类型选择下载。</p>
 <h2 id="Quartz-表介绍"><a href="#Quartz-表介绍" class="headerlink" title="Quartz 表介绍"></a>Quartz 表介绍</h2><p>​    Quartz的集群部署方案在架构上是分布式的，没有负责集中管理的节点，各节点间不会直接通信而是利用数据库锁的方式来实现集群环境下进行并发控制，所以Quartz集群化部署时必须要启用持久化配置。<br>分布式部署时需要保证各个节点的系统时间一致。Quartz默认提供了11张表。</p>
 <p>​    本文使用的是<code>tables_mysql_innodb.sql</code>文件，它显示指定了使用innodb存储引擎，另一个<code>tables_mysql.sql</code>文件没有指定具体的存储引擎；本文将对这些张表做简单介绍。</p>
-<p><img src="https://i2.tiimg.com/726074/5846948e32d2dc91.png" alt="Quartz包含的表"></p>
+<p><img src="https://s1.ax1x.com/2020/09/08/wl1BL9.png" alt="Quartz包含的表"></p>
 <p>​    前面6张都是关于各种triggers的信息，后面包括job，日程表，调度节点状态，悲观锁等信息；相关表操作在类<code>StdJDBCDelegate</code>中，相关sql语句在<code>StdJDBCConstants</code>中；</p>
 </li>
 </ul>
