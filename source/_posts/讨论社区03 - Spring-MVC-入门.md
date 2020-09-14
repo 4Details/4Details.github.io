@@ -15,11 +15,39 @@ category: [讨论社区项目]
 浏览器服务器通信步骤：
 
 1. 打开一个TCP连接
+
+   TCP连接被用来发送一条或多条请求以及接收响应消息。客户端可能打开一条新的连接，或重用一个已经存在的连接，也可能打开几个新的TCP连接连向服务端。
+
 2. 发生一个HTTP报文 
+
+   HTTP（在HTTP/2之前）是语义可读的。在HTTP/2中，这些简单的消息被封装在了帧中，使得报文不能直接被读取，但是原理是相同的。
+
+   ```
+   GET / HTTP/1.1
+   Host: developer.mozilla.org
+   Accept-Language: fr
+   ```
+
 3. 读取服务器返回的报文信息
+
+   ```
+   HTTP/1.1 200 OK
+   Date: Sat, 09 Oct 2010 14:28:02 GMT
+   Server: Apache
+   Last-Modified: Tue, 01 Dec 2009 20:18:22 GMT
+   ETag: "51142bc1-7449-479b075b2891b"
+   Accept-Ranges: bytes
+   Content-Length: 29769
+   Content-Type: text/html
+   
+   <!DOCTYPE html... (here comes the 29769 bytes of the requested web page)
+   ```
+
 4. 关闭连接或为后续请求重用连接
 
-- 按下F12进入调试，在Network下看请求响应（Header和Response）
+当HTTP流水线启动时，后续请求都可以不用等待第一个请求的成功响应就被发送。然而HTTP流水线已经被证明很难在现有的网络中实现，因为现有网络中有很多老旧的软件与现代版本的软件共存。因此，HTTP流水线已被在有多请求下表现得更文件的HTTP/2的帧取代。
+
+按下F12进入调试，在Network下看请求响应（Header和Response）
 
 # Spring MVC
 
@@ -32,11 +60,17 @@ category: [讨论社区项目]
 - 核心组件
   - 前端控制器：DispatcherServlet
 
-浏览器访问服务器，首先访问的时Controller控制层，Controller调用业务层处理，处理完后将得到的数据封装到Model,传给视图层。
+浏览器访问服务器，首先访问的时Controller控制层，Controller接收请求中的数据，调用业务层处理，处理完后将得到的数据封装到Model,传给视图层，视图层利用模板生成html返回给浏览器，整个过程中有一个核心组件——DispatcherServlet。
+
+![Spring最新版本架构](https://imgconvert.csdnimg.cn/aHR0cDovL2Nkbi5uZXVzd2MyMDE5Lnh5ei8yMDIwMDMwOTEwNTExOC5wbmc?x-oss-process=image/format,png)
+
+下面是一个老版的架构流程图：新请求由前端控制器解析，handlerMapping根据代码中的注解找到相应的controller去处理，返回model给前端控制器，前端控制器再调用视图解析器处理，得到响应返回给用户。
 
  ![Spring MVC官方架构](https://s1.ax1x.com/2020/09/08/wQNzz6.png)
 
 # Thymeleaf
+
+![模板渲染](https://imgconvert.csdnimg.cn/aHR0cDovL2Nkbi5uZXVzd2MyMDE5Lnh5ei8yMDIwMDMwOTExMDQ1NS5wbmc?x-oss-process=image/format,png)
 
 - 模板引擎
 
