@@ -156,12 +156,12 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>981 字</span>
+        <i class="fa fa-book"></i> <span>1.4k 字</span>
         </span>
     
     
         <span class="article-min2read article-meta-item">
-        <i class="fa fa-clock-o"></i> <span>5 分钟</span>
+        <i class="fa fa-clock-o"></i> <span>6 分钟</span>
         </span>
     
 </div>
@@ -177,14 +177,21 @@
 </ul>
 <p>浏览器服务器通信步骤：</p>
 <ol>
-<li>打开一个TCP连接</li>
-<li>发生一个HTTP报文 </li>
-<li>读取服务器返回的报文信息</li>
-<li>关闭连接或为后续请求重用连接</li>
+<li><p>打开一个TCP连接</p>
+<p>TCP连接被用来发送一条或多条请求以及接收响应消息。客户端可能打开一条新的连接，或重用一个已经存在的连接，也可能打开几个新的TCP连接连向服务端。</p>
+</li>
+<li><p>发生一个HTTP报文 </p>
+<p>HTTP（在HTTP/2之前）是语义可读的。在HTTP/2中，这些简单的消息被封装在了帧中，使得报文不能直接被读取，但是原理是相同的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F; HTTP&#x2F;1.1</span><br><span class="line">Host: developer.mozilla.org</span><br><span class="line">Accept-Language: fr</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>读取服务器返回的报文信息</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP&#x2F;1.1 200 OK</span><br><span class="line">Date: Sat, 09 Oct 2010 14:28:02 GMT</span><br><span class="line">Server: Apache</span><br><span class="line">Last-Modified: Tue, 01 Dec 2009 20:18:22 GMT</span><br><span class="line">ETag: &quot;51142bc1-7449-479b075b2891b&quot;</span><br><span class="line">Accept-Ranges: bytes</span><br><span class="line">Content-Length: 29769</span><br><span class="line">Content-Type: text&#x2F;html</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE html... (here comes the 29769 bytes of the requested web page)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>关闭连接或为后续请求重用连接</p>
+</li>
 </ol>
-<ul>
-<li>按下F12进入调试，在Network下看请求响应（Header和Response）</li>
-</ul>
+<p>当HTTP流水线启动时，后续请求都可以不用等待第一个请求的成功响应就被发送。然而HTTP流水线已经被证明很难在现有的网络中实现，因为现有网络中有很多老旧的软件与现代版本的软件共存。因此，HTTP流水线已被在有多请求下表现得更文件的HTTP/2的帧取代。</p>
+<p>按下F12进入调试，在Network下看请求响应（Header和Response）</p>
 <h1 id="Spring-MVC"><a href="#Spring-MVC" class="headerlink" title="Spring MVC"></a>Spring MVC</h1><ul>
 <li>三层架构<ul>
 <li>表现层(mvc)、业务层、数据访问层</li>
@@ -199,9 +206,12 @@
 </ul>
 </li>
 </ul>
-<p>浏览器访问服务器，首先访问的时Controller控制层，Controller调用业务层处理，处理完后将得到的数据封装到Model,传给视图层。</p>
+<p>浏览器访问服务器，首先访问的时Controller控制层，Controller接收请求中的数据，调用业务层处理，处理完后将得到的数据封装到Model,传给视图层，视图层利用模板生成html返回给浏览器，整个过程中有一个核心组件——DispatcherServlet。</p>
+<p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2Nkbi5uZXVzd2MyMDE5Lnh5ei8yMDIwMDMwOTEwNTExOC5wbmc?x-oss-process=image/format,png" alt="Spring最新版本架构"></p>
+<p>下面是一个老版的架构流程图：新请求由前端控制器解析，handlerMapping根据代码中的注解找到相应的controller去处理，返回model给前端控制器，前端控制器再调用视图解析器处理，得到响应返回给用户。</p>
 <p> <img src="https://s1.ax1x.com/2020/09/08/wQNzz6.png" alt="Spring MVC官方架构"></p>
-<h1 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h1><ul>
+<h1 id="Thymeleaf"><a href="#Thymeleaf" class="headerlink" title="Thymeleaf"></a>Thymeleaf</h1><p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL2Nkbi5uZXVzd2MyMDE5Lnh5ei8yMDIwMDMwOTExMDQ1NS5wbmc?x-oss-process=image/format,png" alt="模板渲染"></p>
+<ul>
 <li><p>模板引擎</p>
 <ul>
 <li>生成动态的HTML。</li>

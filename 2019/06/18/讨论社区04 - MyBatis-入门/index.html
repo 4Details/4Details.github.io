@@ -160,7 +160,7 @@
     
     
         <span class="article-wordcount article-meta-item">
-        <i class="fa fa-book"></i> <span>143 字</span>
+        <i class="fa fa-book"></i> <span>344 字</span>
         </span>
     
     
@@ -192,6 +192,8 @@
 </li>
 <li>在application.properties中配置数据库、Mybatis相关。</li>
 </ul>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"># DataSourceProperties</span><br><span class="line">#数据库驱动，5.x版本和8.x版本不一样</span><br><span class="line">spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver</span><br><span class="line">#数据库连接url，jdbc:mysql://数据库ip地址:端口/数据库名？字符编码&amp;是否启用安全连接&amp;时区</span><br><span class="line">spring.datasource.url=jdbc:mysql://localhost:3306/&#123;database-name&#125;?characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=Hongkong</span><br><span class="line">#数据库用户名和密码</span><br><span class="line">spring.datasource.username=&#123;username&#125;</span><br><span class="line">spring.datasource.password=&#123;password&#125;</span><br><span class="line">#连接池类型，最大连接数，最小空闲和超时时间</span><br><span class="line">spring.datasource.type=com.zaxxer.hikari.HikariDataSource</span><br><span class="line">spring.datasource.hikari.maximum-pool-size=15</span><br><span class="line">spring.datasource.hikari.minimum-idle=5</span><br><span class="line">spring.datasource.hikari.idle-timeout=30000</span><br><span class="line"></span><br><span class="line"># MybatisProperties</span><br><span class="line">#mybatis相关配置，mapper的位置，实体类的包，自动生成key和下划线命名驼峰命名的匹配</span><br><span class="line">mybatis.mapper-locations=classpath:mapper/*.xml</span><br><span class="line">mybatis.type-aliases-package=&#123;entity的包路径&#125;</span><br><span class="line">mybatis.configuration.useGeneratedKeys=true</span><br><span class="line">mybatis.configuration.mapUnderscoreToCamelCase=true</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
