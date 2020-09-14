@@ -3,6 +3,7 @@ title: HashMap解析
 date: 2020-08-22 23:25:32
 tags: [HashMap]
 category: [算法笔记]
+top: 27
 ---
 
 #  HashMap继承体系
@@ -476,19 +477,135 @@ final Node<K,V> getNode(int hash, Object key) {
 4. 如果有冲突，则通过key.equals(k)查找
 5. 以上都没找到则返回null
 
+##  树化、树转链表
+
+```java
+static final int TREEIFY_THRESHOLD = 8;
+
+/**
+ * 当桶数组容量小于该值时，优先进行扩容，而不是树化
+ */
+static final int MIN_TREEIFY_CAPACITY = 64;
+
+static final class TreeNode<K,V> extends LinkedHashMap.Entry<K,V> {
+    TreeNode<K,V> parent;  // red-black tree links
+    TreeNode<K,V> left;
+    TreeNode<K,V> right;
+    TreeNode<K,V> prev;    // needed to unlink next upon deletion
+    boolean red;
+    TreeNode(int hash, K key, V val, Node<K,V> next) {
+        super(hash, key, val, next);
+    }
+}
+
+/**
+ * 将普通节点链表转换成树形节点链表
+ */
+final void treeifyBin(Node<K,V>[] tab, int hash) {
+    int n, index; Node<K,V> e;
+    // 桶数组容量小于 MIN_TREEIFY_CAPACITY，优先进行扩容而不是树化
+    if (tab == null || (n = tab.length) < MIN_TREEIFY_CAPACITY)
+        resize();
+    else if ((e = tab[index = (n - 1) & hash]) != null) {
+        // hd 为头节点（head），tl 为尾节点（tail）
+        TreeNode<K,V> hd = null, tl = null;
+        do {
+            // 将普通节点替换成树形节点
+            TreeNode<K,V> p = replacementTreeNode(e, null);
+            if (tl == null)
+                hd = p;
+            else {
+                p.prev = tl;
+                tl.next = p;
+            }
+            tl = p;
+        } while ((e = e.next) != null);  // 将普通链表转成由树形节点链表
+        if ((tab[index] = hd) != null)
+            // 将树形链表转换成红黑树
+            hd.treeify(tab);
+    }
+}
+
+TreeNode<K,V> replacementTreeNode(Node<K,V> p, Node<K,V> next) {
+    return new TreeNode<>(p.hash, p.key, p.value, next);
+}
+```
+
+```java
+// 红黑树转链表阈值
+static final int UNTREEIFY_THRESHOLD = 6;
+
+final void split(HashMap<K,V> map, Node<K,V>[] tab, int index, int bit) {
+    TreeNode<K,V> b = this;
+    // Relink into lo and hi lists, preserving order
+    TreeNode<K,V> loHead = null, loTail = null;
+    TreeNode<K,V> hiHead = null, hiTail = null;
+    int lc = 0, hc = 0;
+    /* 
+     * 红黑树节点仍然保留了 next 引用，故仍可以按链表方式遍历红黑树。
+     * 下面的循环是对红黑树节点进行分组，与上面类似
+     */
+    for (TreeNode<K,V> e = b, next; e != null; e = next) {
+        next = (TreeNode<K,V>)e.next;
+        e.next = null;
+        if ((e.hash & bit) == 0) {
+            if ((e.prev = loTail) == null)
+                loHead = e;
+            else
+                loTail.next = e;
+            loTail = e;
+            ++lc;
+        }
+        else {
+            if ((e.prev = hiTail) == null)
+                hiHead = e;
+            else
+                hiTail.next = e;
+            hiTail = e;
+            ++hc;
+        }
+    }
+
+    if (loHead != null) {
+        // 如果 loHead 不为空，且链表长度小于等于 6，则将红黑树转成链表
+        if (lc <= UNTREEIFY_THRESHOLD)
+            tab[index] = loHead.untreeify(map);
+        else {
+            tab[index] = loHead;
+            /* 
+             * hiHead == null 时，表明扩容后，
+             * 所有节点仍在原位置，树结构不变，无需重新树化
+             */
+            if (hiHead != null) 
+                loHead.treeify(tab);
+        }
+    }
+    // 与上面类似
+    if (hiHead != null) {
+        if (hc <= UNTREEIFY_THRESHOLD)
+            tab[index + bit] = hiHead.untreeify(map);
+        else {
+            tab[index + bit] = hiHead;
+            if (loHead != null)
+                hiHead.treeify(tab);
+        }
+    }
+}
+```
+
 #  面试相关
 
-1. 是否使用过HashMap？什么是HashMap？为何会使用？
+1. **是否使用过HashMap？什么是HashMap？为何会使用？**
 
-2. 能否让HashMap同步？
+2. **能否让HashMap同步？**
 
    `Map map = Collections.synchronizeMap(hashMap)`
 
-3. HashMap的工作原理？
+3. **HashMap的工作原理？**
 
    初始化数组16，以2的次幂数扩容；扩容阈值由负载因子判断；拉链法解决hash冲突；冲突节点数大于8且数组中节点总数大于64发生树化，链表节点数小于6，红黑树转化成链表。
 
-4. HashMap的put()和get()方法的原理？
+4. **HashMap的put()和get()方法的原理？**
 
    put方法
 
@@ -507,37 +624,37 @@ final Node<K,V> getNode(int hash, Object key) {
    - 如果有冲突，则通过key.equals(k)查找；
    - 以上均无返回值，则get结果为null。
 
-5. 当两个对象的hashcode相同会发生什么？
+5. **当两个对象的hashcode相同会发生什么？**
 
    两个对象的hashcode相同说明两者在数组中的索引bucket相同，会发生哈希冲突。HashMap使用链表存储对象，这个Entry会存储在链表中，存储时会检查链表中是否包含key（key != null && key.equals(k) ， 或者将键值对添加到链表尾部。如果链表长度≥8，链表树化....）。
 
-6. 如果两个键的hashcode相同，如何获取值对象？
+6. **如果两个键的hashcode相同，如何获取值对象？**
 
    两个对象的hashcode相同说明在数组中的索引位置相同，找到索引位bucket之后，会调用keys.equals()方法去找到链表中的正确节点（key != null && key.equals(k) )
 
-7. 怎么减少碰撞 ？
+7. **怎么减少碰撞 ？**
 
    使用final修饰的对象、不可变的对象作为键，例如Integer、String（不可变，final，而且已经重写了equals和hashCode方法）作为键比较好。
 
    可以使用自定义的对象作为键，只要遵守了equals和hashCode方法定义规则，并且当对象插入到hashMap中之后将不会再改变。
 
-8. 如果HashMap的大小超过了负载因子的定义容量，怎么办？
+8. **如果HashMap的大小超过了负载因子的定义容量，怎么办？**
 
    会调用`resize()`方法进行数组扩容
 
-9. 了解重新调整HashMap大小存在什么问题麽？
+9. **了解重新调整HashMap大小存在什么问题麽？**
 
    在多线程的情况下，可能产生条件竞争。
 
    因为如果两个线程都发现HashMap需要重新调整大小，二者会同时试着调整数组大小。在调整过程中，存储在链表中的元素的次序会反过来，因为移动到新的bucket位置的时候，HashMap并不会将元素放在链表尾部而是放在头部（头插法），这是为了避免尾部遍历（Tail Traversing）。如果竞争条件发生了，那么就会造成死循环。
 
-10. HashMap是非线程安全的，那么原因是什么？（HashMap的死锁）
+10. **HashMap是非线程安全的，那么原因是什么？（HashMap的死锁）**
 
     由于HashMap的容量是有限的，如果HashMap中的数组的容量很小，存储大量元素时，冲突就会很频繁，此时O(1)的查找效率就会退变成O(n)，这是hash表的缺陷。
 
     为了解决上述问题，为HashMap设计了一个阈值，即负载因子 * 数组长度，超过阈值则会触发自动扩容。
 
-11. 影响HashMap性能的因素？
+11. **影响HashMap性能的因素？**
 
     负载因子；
 

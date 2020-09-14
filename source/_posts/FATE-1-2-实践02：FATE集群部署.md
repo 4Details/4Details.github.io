@@ -3,7 +3,7 @@ title: FATE 1.2 实践02-FATE集群部署
 date: 2020-08-27 13:49:03
 category: [联邦学习]
 tags: [FATE,FL]
-top: 11
+top: 28
 ---
 
 
