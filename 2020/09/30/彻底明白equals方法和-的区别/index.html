@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    
+    <title>
+        彻底明白equals方法和==的区别 | 4Details
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <link rel="shortcut icon" href="/images/favicon01.png">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <script id="hexo-configurations">
+    let CONFIG = {"hostname":"yoursite.com","root":"/","localsearch":{"enable":true,"trigger":"auto","unescape":false,"preload":false},"themeInfo":{"name":"ILS","version":"1.2.0","author":"XPoet","repository":"https://github.com/XPoet/hexo-theme-ils"},"path":"search.json"};
+  </script>
+<meta name="generator" content="Hexo 5.1.1"><link rel="alternate" href="/atom.xml" title="4Details" type="application/atom+xml">
+</head>
+
+
+<body>
+<div class="page-template">
+    <div class="page-top">
+        <header class="header-wrapper">
+
+    <div class="header-progress"></div>
+
+    <div class="header-content">
+
+        <a class="logo-title" href="/">
+            4Details
+        </a>
+
+        <ul class="menu-list">
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/"
+                    >
+                        主页
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/archives"
+                    >
+                        归档
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/links"
+                    >
+                        链接
+                    </a>
+                </li>
+            
+                <li class="menu-item">
+                    <a class=""
+                       href="/about"
+                    >
+                        关于
+                    </a>
+                </li>
+            
+        </ul>
+
+        <div class="menu-bar">
+            <div class="menu-bar-middle"></div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/">主页</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/archives">归档</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/links">链接</a>
+                </li>
+            
+                <li class="drawer-menu-item">
+                    <a class=""
+                       href="/about">关于</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+    </div>
+
+    <div class="page-middle ">
+
+        <main class="main-content normal-code-theme">
+
+            <div class="main-content-left">
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <h3><a class="title-hover-animation">彻底明白equals方法和==的区别</a></h3>
+        </div>
+
+        <div class="meta-info">
+            <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa fa-calendar-o"></i> 2020-09-30 13:26:56
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fa fa-folder"></i>
+            <ul>
+                
+                    <li>
+                        <a href="/categories/Java%E5%9F%BA%E7%A1%80/">Java基础</a>
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa fa-eye"></i> <span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+    
+        <span class="article-wordcount article-meta-item">
+        <i class="fa fa-book"></i> <span>833 字</span>
+        </span>
+    
+    
+        <span class="article-min2read article-meta-item">
+        <i class="fa fa-clock-o"></i> <span>3 分钟</span>
+        </span>
+    
+</div>
+
+        </div>
+
+        <div class="article-content markdown-body">
+            <p>被Java基础中的<code>equal()</code>和<code>==</code>困扰很久，决心弄一篇博客，让自己彻底记住！</p>
+<p>一直固有的观点就是：<code>==</code>是比较内存地址，<code>equals()</code>是比较值，有些类（如<code>String</code>）重写了<code>equals()</code>方法</p>
+<p>但是这种观点不够完善：</p>
+<ul>
+<li><p><code>==</code> 比较基本数据类型的时候，比较的是值，引用数据类型则比较的是地址（**<code>new</code>的对象，<code>==</code>的结果永远是false**）</p>
+</li>
+<li><p><code>equals()</code>属于<code>Object</code>类的方法，如果没有重写过<code>euqals()</code>方法，那么等同于<code>==</code>，但是<code>String</code>类里面的<code>equals()</code>方法被重写过了，所以比较的是值。</p>
+</li>
+</ul>
+<p>下面通过几个例子来强化</p>
+<p><strong>Demo 01</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * equals和等等的区别</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">EqualsDemo</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> String name;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">this</span>.name = name;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s1 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        String s2 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line"></span><br><span class="line">        System.out.println(s1 == s2);</span><br><span class="line">        System.out.println(s1.equals(s2));</span><br><span class="line">        Set&lt;String&gt; set1 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        set1.add(s1);</span><br><span class="line">        set1.add(s2);</span><br><span class="line">        System.out.println(set1.size());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line"></span><br><span class="line">        String s3 = <span class="string">&quot;cbd&quot;</span>;</span><br><span class="line">        String s4 = <span class="string">&quot;cbd&quot;</span>;</span><br><span class="line"></span><br><span class="line">        System.out.println(s3 == s4);</span><br><span class="line">        System.out.println(s3.equals(s4));</span><br><span class="line">        Set&lt;String&gt; set3 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        set3.add(s3);</span><br><span class="line">        set3.add(s3);</span><br><span class="line">        System.out.println(set3.size());</span><br><span class="line"></span><br><span class="line">        System.out.println(<span class="string">&quot;==============&quot;</span>);</span><br><span class="line"></span><br><span class="line">        Person user1 = <span class="keyword">new</span> User(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        Person user2 = <span class="keyword">new</span> User(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">        System.out.println(user1 == user2);</span><br><span class="line">        System.out.println(user1.equals(user2));</span><br><span class="line">        Set&lt;Person&gt; set2 = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">        set2.add(user1);</span><br><span class="line">        set2.add(user2);</span><br><span class="line">        System.out.println(set2.size());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打印出来的结果：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">false</span>（==：如果是new出来的对象，比较的时候永远是<span class="literal">false</span>）</span><br><span class="line"><span class="literal">true</span>：（字符串中的equals被重写过，比较的是值）</span><br><span class="line">1：（HashSet底层是HashMap，HashMap内部是调用equals 和 HashCode，但是String内部的HashCode和equals也被复写）</span><br><span class="line">==============</span><br><span class="line"><span class="literal">true</span>（我们通过这种方式创建的会放在一个字符串常量池中，相同的字符串，会指向常量池中同一个对象，因此他们的地址是一样的）</span><br><span class="line"><span class="literal">true</span>（字符串中的equals被重写过，比较的是值）</span><br><span class="line">1</span><br><span class="line">==============</span><br><span class="line"><span class="literal">false</span>（==：如果是new出来的对象，比较的时候永远是<span class="literal">false</span>）</span><br><span class="line"><span class="literal">false</span>（Person中的equals没有被重写，相当于等等）</span><br><span class="line">2</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>Demo 02</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">String str1 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">String str2 = <span class="keyword">new</span> String(<span class="string">&quot;abc&quot;</span>);</span><br><span class="line">String str3 = <span class="string">&quot;abc&quot;</span>;</span><br><span class="line">String str4 =  <span class="string">&quot;xxx&quot;</span>;</span><br><span class="line">String str5 = <span class="string">&quot;abc&quot;</span> + <span class="string">&quot;xxx&quot;</span>;</span><br><span class="line">String str6 = str3 + str4;</span><br><span class="line"></span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str2：&quot;</span> + (str1 == str2));</span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str3：&quot;</span> + (str1 == str3));</span><br><span class="line">System.out.println(<span class="string">&quot;str1.equals(str2)：&quot;</span> + (str1.equals(str2)));</span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str5：&quot;</span> + (str1 == str5));</span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str6：&quot;</span> + (str1 == str6));</span><br><span class="line">System.out.println(<span class="string">&quot;str5 == str6：&quot;</span> + (str5 == str6));</span><br><span class="line">System.out.println(<span class="string">&quot;str5.equals(str6)：&quot;</span> + (str5.equals(str6)));</span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str6.intern()：&quot;</span> + (str1 == str6.intern()));</span><br><span class="line">System.out.println(<span class="string">&quot;str1 == str2.intern()：&quot;</span> + (str1 == str2.intern()));</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>打印结果</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">str1 == str2：<span class="literal">false</span></span><br><span class="line">str1 == str3：<span class="literal">true</span></span><br><span class="line">str1.equals(str2)：<span class="literal">true</span></span><br><span class="line">str1 == str5：<span class="literal">false</span></span><br><span class="line">str1 == str6：<span class="literal">false</span></span><br><span class="line">str5 == str6：<span class="literal">false</span></span><br><span class="line">str5.equals(str6)：<span class="literal">false</span></span><br><span class="line">str1 == str6.intern()：<span class="literal">false</span></span><br><span class="line">str1 == str2.intern()：<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>注</strong></p>
+<p>关于<code>intern()</code>方法</p>
+<p><code>intern()</code>方法就是从常量池中获取对象，返回字符串对象的规范表现形式；</p>
+<p>字符串池最初为空，由类字符串私下维护，调用<code>intern()</code>方法时，如果池中已包含由<code>equals(Object)</code>方法确定的与此<code>String</code>对象相等的字符串，则返回池中的字符串，否则就将该字符串添加到池中，并返回对此字符串对象的引用。</p>
+<p>因此，对于任意两个字符串<code>s</code>和<code>t</code>，<code>s.intern() == t.intern()</code>当且仅当<code>s.equals(t)</code>为<code>true</code>时候，所以文字字符串和字符串值常量表达式都会被插入。</p>
+
+        </div>
+
+        <div class="article-nav">
+            
+            
+                <div class="article-next">
+                    <a class="next btn"
+                       rel="next"
+                       href="/2020/09/26/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E2%80%94%E2%80%94%E6%8A%BD%E8%B1%A1%E5%B7%A5%E5%8E%82%E6%A8%A1%E5%BC%8F/"
+                    >
+                        <span class="post-nav-title-item">设计模式——抽象工厂模式</span><span class="post-nav-item">下一篇</span> <i class="fa fa-chevron-right"></i>
+                    </a>
+                </div>
+            
+        </div>
+
+        <div class="comment-container">
+            <div class="comments-container">
+    
+        
+    <div class="valine-container">
+        <script src='//unpkg.com/valine/dist/Valine.min.js'></script>
+        <div id="vcomments"></div>
+        <script>
+            new Valine({
+                el: '#vcomments',
+                appId: '7pPhwqK3blQJSznIgu7jRJWI-gzGzoHsz',
+                appKey: 'Oz9ktEWXHxxXWg6h7Va0zX57',
+                meta: 'nick,mail,link'.split(','),
+                avatar: 'wavatar',
+                enableQQ: true,
+                placeholder: '请提出您的宝贵建议~',
+                lang: 'zh-CN'.toLowerCase()
+            });
+
+
+            // Valine 评论列表增加"作者"标识
+            const getValineDomTimer = setInterval(() => {
+                const vcards = document.querySelectorAll('#vcomments .vcards .vcard');
+                if (vcards.length > 0) {
+                    for (let vcard of vcards) {
+                        const vnick = vcard.querySelector('.vhead .vnick');
+                        if (vnick.innerHTML.toLocaleLowerCase() === 'wangxu'.toLocaleLowerCase()) {
+                            vcard.classList.add('author');
+                        }
+                    }
+                    clearInterval(getValineDomTimer);
+                } else {
+                    clearInterval(getValineDomTimer);
+                }
+            }, 2000);
+        </script>
+    </div>
+
+
+    
+</div>
+        </div>
+    </div>
+</div>
+
+
+                
+
+            </div>
+
+            
+                <div class="main-content-right">
+                    
+    <div class="sidebar sidebar-post fade-in-down-animation">
+        <div class="post-toc-wrap">
+    <div class="post-toc">
+        
+    </div>
+</div>
+    </div>
+
+                </div>
+            
+
+        </main>
+
+        <div class="sidebar-tools">
+            <div class="tools-container">
+    <ul class="tools-list">
+        
+            <li class="search popup-trigger">
+                <i class="fa fa-search"></i>
+            </li>
+            
+<script src="/js/local-search.js"></script>
+
+        
+        <li class="mode-toggle">
+            <i class="fa fa-moon-o"></i>
+        </li>
+        
+            <li class="rss">
+                <a href="/atom.xml" target="_blank"><i class="fa fa-rss"></i></a>
+            </li>
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+            <div class="scroll-to-top">
+                <ul>
+                    <li>
+                        <!--<i class="fa fa-caret-up"></i>-->
+                        <span class="scroll-percent"></span>
+                    </li>
+                </ul>
+            </div>
+        
+    </div>
+
+    <div class="page-bottom">
+        <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy; 2020 <i class="fa fa-heart-o"></i> <a href="/">wangxu</a>
+        </div>
+        <div class="theme-info info-item">
+            由 <a target="_blank" href="https://hexo.io">Hexo</a> 驱动 | 主题 <a
+                    href="https://github.com/XPoet/hexo-theme-ils" target="_blank">ILS v1.2.0</a>
+        </div>
+        
+            <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="website-count info-item">
+                
+                
+                    <span id="busuanzi_container_site_pv" style="display: none">
+                        总访问量 <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+</div>
+
+    <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-icon">
+            <i class="fa fa-search"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="搜索..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fa fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="/js/main.js"></script>
+<script src="/js/header-shrink.js"></script>
+<script src="/js/toggle-mode.js"></script>
+
+
+
+    
+<script src="/js/scroll-to-top.js"></script>
+
+
+
+
+
+    
+        
+<script src="/js/code-copy.js"></script>
+
+    
+
+    
+        
+<script src="/lib/anime.min.js"></script>
+<script src="/js/toc.js"></script>
+
+    
+
+
+
+
+</body>
+</html>
